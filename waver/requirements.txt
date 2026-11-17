@@ -1,0 +1,6 @@
+# Dependências simplificadas para Waver 1.0
+# Efficient processing
+torchvision>=0.15.0
+
+# Batch utilities
+tqdm>=4.66.0
