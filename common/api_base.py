@@ -19,24 +19,24 @@ from model_loader import ModelLoader
 logger = get_logger(__name__)
 
 class JobStatus(str, Enum):
-    """Status de um job de geração"""
+    """Status de um job de geraçêo"""
     QUEUED = "queued"
     PROCESSING = "processing"
     COMPLETED = "completed"
     FAILED = "failed"
 
 class GenerateRequest(BaseModel):
-    """Request para geração de vídeo"""
+    """Request para geraçêo de vídeo"""
     prompt: str = Field(..., min_length=1, max_length=1000, description="Prompt de texto")
-    duration: int = Field(5, ge=1, le=60, description="Duração em segundos")
+    duration: int = Field(5, ge=1, le=60, description="Duraçêo em segundos")
     fps: int = Field(24, description="Frames por segundo")
-    resolution: str = Field("1024x576", description="Resolução (WxH)")
+    resolution: str = Field("1024x576", description="Resoluçêo (WxH)")
     seed: Optional[int] = Field(None, description="Seed para reprodutibilidade")
     negative_prompt: Optional[str] = Field(None, description="Negative prompt")
     guidance_scale: float = Field(7.5, ge=1.0, le=20.0, description="Guidance scale")
 
 class Job:
-    """Representa um job de geração de vídeo"""
+    """Representa um job de geraçêo de vídeo"""
 
     def __init__(self, request: GenerateRequest, model_name: str):
         self.id = f"{model_name}-{uuid.uuid4().hex[:8]}"
@@ -82,7 +82,7 @@ class VideoModelAPI:
         Args:
             model_name: Nome do modelo
             model_loader: Instância do ModelLoader
-            generate_function: Função que gera vídeo
+            generate_function: Funçêo que gera vídeo
             output_dir: Diretório para salvar vídeos
         """
         self.model_name = model_name
@@ -93,14 +93,14 @@ class VideoModelAPI:
 
         self.app = FastAPI(
             title=f"{model_name} Video Generation API",
-            description=f"API para geração de vídeos usando {model_name}",
+            description=f"API para geraçêo de vídeos usando {model_name}",
             version="1.0.0"
         )
 
         # Configurar CORS para permitir acesso do frontend
         self.app.add_middleware(
             CORSMiddleware,
-            allow_origins=["*"],  # Em produção, especifique domínios permitidos
+            allow_origins=["*"],  # Em produçêo, especifique domínios permitidos
             allow_credentials=True,
             allow_methods=["*"],
             allow_headers=["*"],
@@ -177,7 +177,7 @@ class VideoModelAPI:
 
         @self.app.post("/generate")
         async def generate(request: GenerateRequest, background_tasks: BackgroundTasks):
-            """Cria job de geração de vídeo"""
+            """Cria job de geraçêo de vídeo"""
             try:
                 # Validar parâmetros
                 if not validate_video_params(request.duration, request.fps, request.resolution):
@@ -219,7 +219,7 @@ class VideoModelAPI:
             if job_id:
                 job = self.jobs.get(job_id)
                 if not job:
-                    raise HTTPException(status_code=404, detail="Job não encontrado")
+                    raise HTTPException(status_code=404, detail="Job nêo encontrado")
                 return job.to_dict()
             else:
                 return {
@@ -233,7 +233,7 @@ class VideoModelAPI:
             """Informações de um job específico"""
             job = self.jobs.get(job_id)
             if not job:
-                raise HTTPException(status_code=404, detail="Job não encontrado")
+                raise HTTPException(status_code=404, detail="Job nêo encontrado")
             return job.to_dict()
 
         @self.app.get("/jobs/{job_id}/download")
@@ -241,16 +241,16 @@ class VideoModelAPI:
             """Download do vídeo gerado"""
             job = self.jobs.get(job_id)
             if not job:
-                raise HTTPException(status_code=404, detail="Job não encontrado")
+                raise HTTPException(status_code=404, detail="Job nêo encontrado")
 
             if job.status != JobStatus.COMPLETED:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"Job não completado (status: {job.status.value})"
+                    detail=f"Job nêo completado (status: {job.status.value})"
                 )
 
             if not job.output_path or not job.output_path.exists():
-                raise HTTPException(status_code=404, detail="Arquivo não encontrado")
+                raise HTTPException(status_code=404, detail="Arquivo nêo encontrado")
 
             return FileResponse(
                 path=job.output_path,

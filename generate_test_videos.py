@@ -16,7 +16,7 @@ def test_comfyui_connection():
         print("✓ ComfyUI está online")
         return True
     except Exception as e:
-        print(f"✗ ComfyUI não acessível: {e}")
+        print(f"✗ ComfyUI nêo acessível: {e}")
         return False
 
 def load_workflow(workflow_path):
@@ -74,7 +74,7 @@ def check_models():
             pass
 
 def main():
-    print("=== Teste de Geração de Vídeos ===\n")
+    print("=== Teste de Geraçêo de Vídeos ===\n")
 
     if not test_comfyui_connection():
         sys.exit(1)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Monitora o status dos jobs de geração de vídeo
+Monitora o status dos jobs de geraçêo de vídeo
 """
 import requests
 import time
@@ -29,7 +29,7 @@ def check_job_status(model_name, api_url, job_id):
         return {"error": str(e)}
 
 def main():
-    print("Monitorando geração de vídeos...")
+    print("Monitorando geraçêo de vídeos...")
     print("="*80)
 
     max_iterations = 60  # 10 minutos (60 x 10s)
@@ -74,10 +74,10 @@ def main():
                     print(f"{model_name}: {status.get('output_path')}")
             break
 
-        time.sleep(10)  # Espera 10s antes da próxima verificação
+        time.sleep(10)  # Espera 10s antes da próxima verificaçêo
 
     if iteration >= max_iterations:
-        print("\n⏱ Timeout - Alguns jobs ainda estão processando após 10 minutos")
+        print("\n⏱ Timeout - Alguns jobs ainda estêo processando após 10 minutos")
 
 if __name__ == "__main__":
     main()

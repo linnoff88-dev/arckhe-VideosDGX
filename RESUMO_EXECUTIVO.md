@@ -11,13 +11,13 @@
 - **LTX-2 19B Distilled** rodando no DGX Spark 2026
 - **Gemma 3 12B QAT** como text encoder
 - **Pipeline completo** text → video + audio
-- **API REST** disponível para automação
+- **API REST** disponível para automaçêo
 
 ### 🎬 Primeiro Vídeo Gerado
 - **Arquivo**: `ComfyUI/output/PRIMEIRO_VIDEO_LTX2_OFICIAL_00001_.mp4`
 - **Especificações**: 512x512, 49 frames, 24fps, 2.04s
 - **Qualidade**: Alta fidelidade ao prompt
-- **Tempo de geração**: 77 segundos
+- **Tempo de geraçêo**: 77 segundos
 
 ---
 
@@ -25,7 +25,7 @@
 
 ```bash
 cd /home/nmaldaner/projetos/VideosDGX
-./gerar_video_ltx2.py "Descrição do vídeo que você quer gerar"
+./gerar_video_ltx2.py "Descriçêo do vídeo que você quer gerar"
 ```
 
 **Exemplos:**
@@ -42,18 +42,18 @@ cd /home/nmaldaner/projetos/VideosDGX
 
 ---
 
-## 📚 Documentação Disponível
+## 📚 Documentaçêo Disponível
 
-| Arquivo | Descrição |
+| Arquivo | Descriçêo |
 |---------|-----------|
-| `PRIMEIRO_VIDEO_SUCESSO.md` | Documentação completa técnica |
+| `PRIMEIRO_VIDEO_SUCESSO.md` | Documentaçêo completa técnica |
 | `README_GERAR_VIDEOS.md` | Guia de uso do script |
-| `gerar_video_ltx2.py` | Script principal para geração |
-| `RESUMO_EXECUTIVO.md` | Este arquivo (visão geral) |
+| `gerar_video_ltx2.py` | Script principal para geraçêo |
+| `RESUMO_EXECUTIVO.md` | Este arquivo (visêo geral) |
 
 ---
 
-## 🔧 Configuração Atual
+## 🔧 Configuraçêo Atual
 
 ### Hardware
 - **DGX Spark 2026**: 128GB RAM unificada, GB10 Blackwell
@@ -67,7 +67,7 @@ cd /home/nmaldaner/projetos/VideosDGX
 
 ### Capacidade Atual
 - ✅ Text-to-video
-- ✅ Geração com áudio
+- ✅ Geraçêo com áudio
 - ✅ Resoluções: 512x512 até 1920x1080
 - ✅ Durações: 2s até 10s+
 - ✅ FPS configurável: 24-30
@@ -77,8 +77,8 @@ cd /home/nmaldaner/projetos/VideosDGX
 
 ## ⚡ Performance
 
-### Tempo de Geração (Referência)
-| Configuração | Tempo Aproximado |
+### Tempo de Geraçêo (Referência)
+| Configuraçêo | Tempo Aproximado |
 |--------------|------------------|
 | 512x512, 2s (49 frames) | ~77s |
 | 1024x576, 2s | ~150s |
@@ -96,11 +96,11 @@ cd /home/nmaldaner/projetos/VideosDGX
 
 ### ✅ O Que Funciona
 1. **Modelo Gemma QAT obrigatório**: `google/gemma-3-12b-it-qat-q4_0-unquantized`
-2. Autenticação HuggingFace necessária para download
+2. Autenticaçêo HuggingFace necessária para download
 3. Path do modelo deve incluir arquivo: `gemma-path/model-00001-of-00005.safetensors`
 4. Diretório `text_encoders/` deve ter apenas o modelo correto (sem conflitos)
 
-### ❌ O Que NÃO Funciona
+### ❌ O Que NêO Funciona
 1. Modelos FP8 de terceiros (GitMylo, etc.)
 2. Modelo base `google/gemma-3-12b-it` (sem QAT)
 3. Múltiplos diretórios Gemma causam path resolution incorreto
@@ -120,7 +120,7 @@ cd /home/nmaldaner/projetos/VideosDGX
 - [ ] Otimizar pipeline (cache de modelos)
 - [ ] Interface web para facilitar uso
 - [ ] Integrar outros modelos (Wan 2.1, MAGI-1)
-- [ ] Sistema de fila para produção
+- [ ] Sistema de fila para produçêo
 
 ### Longo Prazo (Próximos 3 Meses)
 - [ ] Docker containers para isolamento
@@ -133,7 +133,7 @@ cd /home/nmaldaner/projetos/VideosDGX
 ## 🎬 Casos de Uso Imediatos
 
 ### 1. Prototipagem Rápida
-Gere conceitos visuais rapidamente para apresentações, validação de ideias, storyboards.
+Gere conceitos visuais rapidamente para apresentações, validaçêo de ideias, storyboards.
 
 ### 2. Conteúdo para Redes Sociais
 Crie vídeos curtos automatizados para Instagram, TikTok, YouTube Shorts.
@@ -149,17 +149,17 @@ Demonstre capacidades de IA generativa, eduque sobre limitações e possibilidad
 
 ---
 
-## 📊 Comparação com Alternativas
+## 📊 Comparaçêo com Alternativas
 
-| Solução | Qualidade | Velocidade | Custo | Controle |
+| Soluçêo | Qualidade | Velocidade | Custo | Controle |
 |---------|-----------|------------|-------|----------|
 | **LTX-2 (Nossa)** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | RunwayML | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ |
 | Pika Labs | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ |
 | Stable Video | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 
-**Vantagens da nossa solução:**
-- ✅ Sem custos por geração
+**Vantagens da nossa soluçêo:**
+- ✅ Sem custos por geraçêo
 - ✅ Sem limites de uso
 - ✅ Privacidade total (on-premise)
 - ✅ Customizável (fine-tuning possível)
@@ -171,19 +171,19 @@ Demonstre capacidades de IA generativa, eduque sobre limitações e possibilidad
 
 ### ✅ Garantias
 - **Processamento local**: Nenhum dado sai do DGX
-- **Sem telemetria**: Modelos não comunicam com externos
+- **Sem telemetria**: Modelos nêo comunicam com externos
 - **Controle total**: Você controla modelos, dados, outputs
 
 ### ⚠️ Considerações
 - Modelos baixados do HuggingFace (público)
 - Licenças dos modelos devem ser respeitadas
-- Outputs gerados são de sua responsabilidade
+- Outputs gerados sêo de sua responsabilidade
 
 ---
 
 ## 📞 Suporte e Recursos
 
-### Documentação Local
+### Documentaçêo Local
 ```
 /home/nmaldaner/projetos/VideosDGX/PRIMEIRO_VIDEO_SUCESSO.md
 /home/nmaldaner/projetos/VideosDGX/README_GERAR_VIDEOS.md
@@ -206,14 +206,14 @@ http://localhost:8188
 
 ---
 
-## ✨ Conclusão
+## ✨ Conclusêo
 
-**MISSÃO CUMPRIDA!** 🎉
+**MISSêO CUMPRIDA!** 🎉
 
-O DGX Spark 2026 está oficialmente operacional para geração de vídeos de alta qualidade usando LTX-2. A infraestrutura está pronta para:
+O DGX Spark 2026 está oficialmente operacional para geraçêo de vídeos de alta qualidade usando LTX-2. A infraestrutura está pronta para:
 
-- ✅ **Produção imediata** de vídeos sob demanda
-- ✅ **Experimentação** com diferentes configurações
+- ✅ **Produçêo imediata** de vídeos sob demanda
+- ✅ **Experimentaçêo** com diferentes configurações
 - ✅ **Desenvolvimento** de aplicações customizadas
 - ✅ **Pesquisa** em video LLMs
 
@@ -222,4 +222,4 @@ O DGX Spark 2026 está oficialmente operacional para geração de vídeos de alt
 
 ---
 
-**Última atualização**: 16/02/2026 12:56
+**Última atualizaçêo**: 16/02/2026 12:56

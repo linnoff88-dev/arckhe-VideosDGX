@@ -1,6 +1,6 @@
 """
-Configuração e carregamento do modelo MAGI-1
-MAGI-1: Modelo autoregressive para geração de vídeos longos
+Configuraçêo e carregamento do modelo MAGI-1
+MAGI-1: Modelo autoregressive para geraçêo de vídeos longos
 """
 import torch
 from pathlib import Path
@@ -16,17 +16,17 @@ def load_magi1_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, A
 
     Args:
         model_path: Caminho para os arquivos do modelo
-        quantization: Tipo de quantização (fp4, fp8, fp16)
+        quantization: Tipo de quantizaçêo (fp4, fp8, fp16)
 
     Returns:
         Tupla (model, pipeline)
     """
-    logger.info(f"Carregando MAGI-1 de {model_path} com quantização {quantization}")
+    logger.info(f"Carregando MAGI-1 de {model_path} com quantizaçêo {quantization}")
 
     try:
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
-        # Configurações de quantização FP4
+        # Configurações de quantizaçêo FP4
         if quantization == "fp4":
             from transformers import BitsAndBytesConfig
 
@@ -37,12 +37,12 @@ def load_magi1_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, A
                 bnb_4bit_quant_type="nf4"
             )
             torch_dtype = torch.float16
-            logger.info("Usando quantização FP4 (NF4)")
+            logger.info("Usando quantizaçêo FP4 (NF4)")
 
         elif quantization == "fp8":
             torch_dtype = torch.float8_e4m3fn if hasattr(torch, 'float8_e4m3fn') else torch.float16
             quantization_config = None
-            logger.info("Usando quantização FP8")
+            logger.info("Usando quantizaçêo FP8")
 
         else:
             torch_dtype = torch.float16
@@ -52,7 +52,7 @@ def load_magi1_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, A
         # Verificar se modelo existe
         model_path_obj = Path(model_path)
         if not model_path_obj.exists():
-            logger.warning(f"Modelo não encontrado em {model_path}, baixando do HuggingFace...")
+            logger.warning(f"Modelo nêo encontrado em {model_path}, baixando do HuggingFace...")
             model_id = "sand-ai/MAGI-1"  # ID oficial do HuggingFace
         else:
             model_id = str(model_path_obj)
@@ -69,7 +69,7 @@ def load_magi1_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, A
             trust_remote_code=True  # MAGI pode ter código customizado
         )
 
-        # Mover para GPU (se não estiver usando quantização FP4)
+        # Mover para GPU (se nêo estiver usando quantizaçêo FP4)
         if quantization != "fp4":  # FP4 já gerencia device automaticamente
             model = model.to(device)
 
@@ -78,7 +78,7 @@ def load_magi1_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, A
             tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
         except:
             tokenizer = None
-            logger.warning("Tokenizer não disponível para MAGI-1")
+            logger.warning("Tokenizer nêo disponível para MAGI-1")
 
         logger.info("MAGI-1 carregado com sucesso")
 
@@ -92,7 +92,7 @@ def load_magi1_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, A
                 return self.generate(**kwargs)
 
             def generate(self, **kwargs):
-                # Implementação simplificada
+                # Implementaçêo simplificada
                 return self.model.generate(**kwargs)
 
         pipeline = MAGI1Pipeline(model, tokenizer)
@@ -120,7 +120,7 @@ def generate_video_magi1(pipeline: Any, request: Any, output_path: Path) -> None
         num_frames = request.duration * request.fps
 
         # MAGI-1 usa abordagem autoregressive
-        # Esta é uma implementação simplificada
+        # Esta é uma implementaçêo simplificada
         generator = None
         if request.seed is not None:
             torch.manual_seed(request.seed)
@@ -128,10 +128,10 @@ def generate_video_magi1(pipeline: Any, request: Any, output_path: Path) -> None
                 torch.cuda.manual_seed(request.seed)
 
         # Gerar frames de forma autoregressive
-        # NOTA: Interface real depende da implementação do MAGI-1
+        # NOTA: Interface real depende da implementaçêo do MAGI-1
         frames = []
 
-        # Placeholder: em produção, isso geraria frames iterativamente
+        # Placeholder: em produçêo, isso geraria frames iterativamente
         # mantendo contexto temporal
         logger.info(f"Gerando {num_frames} frames com contexto temporal...")
 

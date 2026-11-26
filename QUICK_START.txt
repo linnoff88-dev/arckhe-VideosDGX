@@ -24,7 +24,7 @@ ComfyUI/output/ltx2_video_*.mp4
 📋 OPÇÕES PRINCIPAIS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Resolução HD:
+Resoluçêo HD:
 ./gerar_video_ltx2.py "prompt" --width 1024 --height 576
 
 Vídeo longo (5s):
@@ -37,7 +37,7 @@ Seed específica:
 ./gerar_video_ltx2.py "prompt" --seed 12345
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⏱️  TEMPOS DE GERAÇÃO (APROXIMADOS)
+⏱️  TEMPOS DE GERAÇêO (APROXIMADOS)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 512x512,  2s (49 frames)  →  ~77s
@@ -51,7 +51,7 @@ Seed específica:
 Script principal:
   gerar_video_ltx2.py
 
-Documentação:
+Documentaçêo:
   RESUMO_EXECUTIVO.md         ← Comece por aqui!
   README_GERAR_VIDEOS.md       ← Guia de uso
   PRIMEIRO_VIDEO_SUCESSO.md    ← Detalhes técnicos
@@ -87,26 +87,26 @@ Interface web:
   "astronaut"  ← Muito simples, falta contexto
 
 ESTRUTURA IDEAL:
-  [SUJEITO] + [AÇÃO] + [CENÁRIO] + [ESTILO] + [QUALIDADE]
+  [SUJEITO] + [AÇêO] + [CENÁRIO] + [ESTILO] + [QUALIDADE]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ⚠️  PROBLEMAS COMUNS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Erro: "Prompt é obrigatório"
-  Solução: Sempre passe um prompt entre aspas
+  Soluçêo: Sempre passe um prompt entre aspas
 
-Vídeo não segue prompt:
-  Solução: Aumente --cfg (ex: --cfg 5.0)
+Vídeo nêo segue prompt:
+  Soluçêo: Aumente --cfg (ex: --cfg 5.0)
 
-Geração muito lenta:
-  Solução: Reduza resolução (--width 512 --height 512)
+Geraçêo muito lenta:
+  Soluçêo: Reduza resoluçêo (--width 512 --height 512)
 
 Vídeo muito curto:
-  Solução: Aumente frames (--frames 121 para 5s)
+  Soluçêo: Aumente frames (--frames 121 para 5s)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ CONFIGURAÇÃO ATUAL
+✨ CONFIGURAÇêO ATUAL
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Hardware:  DGX Spark 2026 (128GB RAM, GB10 Blackwell)
@@ -117,7 +117,7 @@ Total:     ~65GB em disco
 Capacidades:
   ✅ Text-to-video com áudio
   ✅ 512x512 até 1920x1080
-  ✅ 2s até 10s+ de duração
+  ✅ 2s até 10s+ de duraçêo
   ✅ 24-30 FPS configurável
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -131,5 +131,5 @@ Prompt:  "A red ball bouncing on white background,
           simple smooth animation, 4k quality"
 
 ═══════════════════════════════════════════════════════════════
-Última atualização: 16/02/2026 12:56
+Última atualizaçêo: 16/02/2026 12:56
 ═══════════════════════════════════════════════════════════════

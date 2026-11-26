@@ -6,13 +6,13 @@
 
 ## 🚀 COMO INICIAR
 
-### Opção 1: Script Automatizado (Mais Fácil)
+### Opçêo 1: Script Automatizado (Mais Fácil)
 ```bash
 cd /home/nmaldaner/projetos/VideosDGX
 ./iniciar_interface_web.sh
 ```
 
-### Opção 2: Manual
+### Opçêo 2: Manual
 ```bash
 cd /home/nmaldaner/projetos/VideosDGX
 python3 web_interface.py
@@ -47,7 +47,7 @@ hostname -I | awk '{print $1}'
 - Animações suaves
 - Fácil de usar
 
-### 🎬 Geração de Vídeos
+### 🎬 Geraçêo de Vídeos
 - **Formulário intuitivo** com todos os parâmetros
 - **Presets rápidos**:
   - ⚡ Rápido (512x512, 2s)
@@ -55,7 +55,7 @@ hostname -I | awk '{print $1}'
   - ⏱️ Longo (512x512, 5s)
   - ✨ Qualidade (1024x576, 5s)
 - **Cálculo automático** de tempo estimado
-- **Validação de campos**
+- **Validaçêo de campos**
 
 ### 📊 Gerenciamento de Jobs
 - **Lista de todos os vídeos** gerados
@@ -65,14 +65,14 @@ hostname -I | awk '{print $1}'
   - 🟢 Concluído
   - 🔴 Erro
 - **Player de vídeo integrado** (assista direto na interface!)
-- **Detalhes completos** de cada geração
-- **Atualização automática** a cada 5 segundos
+- **Detalhes completos** de cada geraçêo
+- **Atualizaçêo automática** a cada 5 segundos
 
 ### 🎯 Configurações Disponíveis
-- **Prompt** (descrição do vídeo)
+- **Prompt** (descriçêo do vídeo)
 - **Prompt negativo** (o que evitar)
-- **Resolução** (largura x altura)
-- **Frames** (duração do vídeo)
+- **Resoluçêo** (largura x altura)
+- **Frames** (duraçêo do vídeo)
 - **FPS** (frames por segundo)
 - **CFG Scale** (fidelidade ao prompt)
 - **Seed** (reproduzibilidade)
@@ -106,14 +106,14 @@ http://localhost:7860
 
 ### 3. Gerar Vídeo
 
-**Opção A: Usar Preset**
+**Opçêo A: Usar Preset**
 1. Clique em um dos botões de preset (Rápido, HD, Longo, Qualidade)
 2. Digite seu prompt
 3. Clique em "🚀 Gerar Vídeo"
 
-**Opção B: Customizar**
+**Opçêo B: Customizar**
 1. Digite seu prompt
-2. Ajuste os parâmetros (resolução, frames, CFG, etc.)
+2. Ajuste os parâmetros (resoluçêo, frames, CFG, etc.)
 3. Veja o tempo estimado atualizar automaticamente
 4. Clique em "🚀 Gerar Vídeo"
 
@@ -153,7 +153,7 @@ http://localhost:7860
 
 ### Exemplo 3: Múltiplos Vídeos
 - Você pode submeter **vários vídeos de uma vez**
-- Eles serão processados em sequência
+- Eles serêo processados em sequência
 - A interface mostra o status de cada um
 - Todos ficam salvos na lista para assistir depois
 
@@ -168,7 +168,7 @@ uvicorn.run(app, host="0.0.0.0", port=7860)  # Mude 7860 para outra porta
 ```
 
 ### Acesso Remoto
-Por padrão, a interface aceita conexões de qualquer IP.
+Por padrêo, a interface aceita conexões de qualquer IP.
 
 **Para acessar de outro computador:**
 1. Descubra o IP do DGX:
@@ -183,12 +183,12 @@ Por padrão, a interface aceita conexões de qualquer IP.
    ```
 
 ### Persistência de Jobs
-Os jobs são salvos em:
+Os jobs sêo salvos em:
 ```
 /tmp/ltx2_jobs.json
 ```
 
-Se reiniciar o servidor, os jobs anteriores serão carregados automaticamente!
+Se reiniciar o servidor, os jobs anteriores serêo carregados automaticamente!
 
 ---
 
@@ -206,7 +206,7 @@ A interface expõe uma API REST que pode ser usada programaticamente:
 - Body (JSON):
 ```json
 {
-  "prompt": "Descrição do vídeo",
+  "prompt": "Descriçêo do vídeo",
   "negative": "Prompt negativo",
   "width": 512,
   "height": 512,
@@ -272,9 +272,9 @@ curl http://localhost:7860/api/video/web_abc123_00001_.mp4 -o video.mp4
 ```
 ERROR: [Errno 98] Address already in use
 ```
-**Solução**: Mude a porta em `web_interface.py` (linha final)
+**Soluçêo**: Mude a porta em `web_interface.py` (linha final)
 
-### Não consigo acessar remotamente
+### Nêo consigo acessar remotamente
 1. Verifique firewall:
    ```bash
    sudo ufw allow 7860
@@ -282,7 +282,7 @@ ERROR: [Errno 98] Address already in use
 2. Verifique se está usando IP correto
 3. Teste localmente primeiro: `http://localhost:7860`
 
-### Vídeos não aparecem
+### Vídeos nêo aparecem
 1. Verifique se ComfyUI está rodando:
    ```bash
    ps aux | grep comfyui
@@ -313,11 +313,11 @@ Possíveis melhorias futuras:
 - [ ] **WebSocket** para updates em tempo real (sem polling)
 - [ ] **Cancelar jobs** em andamento
 - [ ] **Galeria de templates** de prompts
-- [ ] **Download de vídeos** com botão dedicado
-- [ ] **Comparação lado-a-lado** de vídeos
+- [ ] **Download de vídeos** com botêo dedicado
+- [ ] **Comparaçêo lado-a-lado** de vídeos
 - [ ] **Editor de prompts** com sugestões
 - [ ] **Dashboard de estatísticas** (total gerado, tempo médio, etc.)
-- [ ] **Autenticação** para múltiplos usuários
+- [ ] **Autenticaçêo** para múltiplos usuários
 - [ ] **Temas** (claro/escuro)
 - [ ] **Histórico de prompts** recentes
 
@@ -325,7 +325,7 @@ Possíveis melhorias futuras:
 
 ## 📞 SUPORTE
 
-- **Documentação**: Este arquivo
+- **Documentaçêo**: Este arquivo
 - **Logs do servidor**: Terminal onde rodou `iniciar_interface_web.sh`
 - **Logs do ComfyUI**: `comfyui_server.log`
 - **API docs**: http://localhost:7860/docs (FastAPI auto-docs)

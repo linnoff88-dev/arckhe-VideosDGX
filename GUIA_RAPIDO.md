@@ -18,7 +18,7 @@ Abra: **http://localhost:7860**
 
 ## 📋 PRESETS DISPONÍVEIS
 
-| Preset | Resolução | Duração | Tempo |
+| Preset | Resoluçêo | Duraçêo | Tempo |
 |--------|-----------|---------|-------|
 | ⚡ Rápido | 512x512 | 2s | ~2 min |
 | 📺 HD | 1024x576 | 2s | ~3 min |
@@ -53,19 +53,19 @@ ls -lht ComfyUI/output/*.mp4 | head -5
 
 ## ❓ PROBLEMAS COMUNS
 
-### Botão "Gerar" está desabilitado
+### Botêo "Gerar" está desabilitado
 ➜ Já há um vídeo sendo processado. Aguarde terminar.
 
 ### Vídeo demora muito
 ➜ Normal! Leva 2-5 minutos dependendo dos parâmetros.
 
-### Interface não abre
+### Interface nêo abre
 ```bash
 kill -9 $(lsof -t -i:7860)
 ./iniciar_interface_web_v3.sh
 ```
 
-## 📂 ONDE ESTÃO OS VÍDEOS?
+## 📂 ONDE ESTêO OS VÍDEOS?
 
 ```bash
 /home/nmaldaner/projetos/VideosDGX/ComfyUI/output/
@@ -85,8 +85,8 @@ kill -9 $(lsof -t -i:7860)
 
 ## 📞 AJUDA COMPLETA
 
-- **Documentação completa**: `SOLUCAO_DEFINITIVA_V3.md`
-- **Solução temporária CLI**: `SOLUCAO_TEMPORARIA.md`
+- **Documentaçêo completa**: `SOLUCAO_DEFINITIVA_V3.md`
+- **Soluçêo temporária CLI**: `SOLUCAO_TEMPORARIA.md`
 
 ---
 

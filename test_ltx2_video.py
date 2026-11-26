@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script de teste para geração de vídeo com LTX-2 via API do ComfyUI
+Script de teste para geraçêo de vídeo com LTX-2 via API do ComfyUI
 """
 
 import json
@@ -55,7 +55,7 @@ def check_queue():
         return None
 
 def wait_for_completion(prompt_id, max_wait=600):
-    """Aguarda a conclusão da geração"""
+    """Aguarda a conclusêo da geraçêo"""
     start_time = time.time()
 
     while time.time() - start_time < max_wait:
@@ -72,24 +72,24 @@ def wait_for_completion(prompt_id, max_wait=600):
         is_pending = any(item[1] == prompt_id for item in pending)
 
         if not is_running and not is_pending:
-            print("✓ Geração concluída!")
+            print("✓ Geraçêo concluída!")
             return True
 
         print(f"Aguardando... ({int(time.time() - start_time)}s)")
         time.sleep(5)
 
-    print("⚠ Timeout aguardando conclusão")
+    print("⚠ Timeout aguardando conclusêo")
     return False
 
 def main():
-    print("=== Teste de Geração de Vídeo LTX-2 ===\n")
+    print("=== Teste de Geraçêo de Vídeo LTX-2 ===\n")
 
     # Verifica se o ComfyUI está rodando
     try:
         response = requests.get(f"{COMFYUI_URL}/system_stats", timeout=5)
         print("✓ ComfyUI está online")
     except:
-        print("✗ ComfyUI não está acessível. Verifique se está rodando.")
+        print("✗ ComfyUI nêo está acessível. Verifique se está rodando.")
         return
 
     # Carrega o workflow
@@ -102,7 +102,7 @@ def main():
     workflow = modify_workflow_prompt(workflow, test_prompt)
 
     # Envia para a fila
-    print("\nEnviando para geração...")
+    print("\nEnviando para geraçêo...")
     result = queue_prompt(workflow)
 
     if not result:
@@ -112,7 +112,7 @@ def main():
     prompt_id = result.get('prompt_id')
     print(f"✓ Prompt ID: {prompt_id}")
 
-    # Aguarda conclusão
+    # Aguarda conclusêo
     print("\nGerando vídeo (isso pode levar alguns minutos)...")
     success = wait_for_completion(prompt_id)
 
@@ -124,7 +124,7 @@ def main():
             print(f"\n✓ Vídeo gerado: {latest_video}")
             print(f"  Tamanho: {latest_video.stat().st_size / (1024**2):.2f} MB")
         else:
-            print("\n⚠ Vídeo gerado mas não encontrado no diretório de output")
+            print("\n⚠ Vídeo gerado mas nêo encontrado no diretório de output")
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Interface Web para Geração de Vídeos LTX-2
+Interface Web para Geraçêo de Vídeos LTX-2
 Acesse em: http://localhost:7860
 """
 
@@ -106,7 +106,7 @@ def generate_video(job_id: str, request: VideoRequest):
             print(f"\n⏳ Aguardando vídeo ser gerado (timeout: 15 minutos)...")
             print(f"   Job ID: {job_id}")
 
-            # Padrão principal esperado
+            # Padrêo principal esperado
             main_pattern = f"web_{job_id}_*.mp4"
             print(f"   Procurando: {main_pattern}")
 
@@ -154,7 +154,7 @@ def generate_video(job_id: str, request: VideoRequest):
             else:
                 # Listar todos os arquivos recentes no output
                 recent_files = sorted(OUTPUT_DIR.glob("*.mp4"), key=lambda x: x.stat().st_mtime, reverse=True)[:5]
-                print(f"   ❌ Vídeo não encontrado após {elapsed}s!")
+                print(f"   ❌ Vídeo nêo encontrado após {elapsed}s!")
                 print(f"   📁 Últimos 5 arquivos em output:")
                 for f in recent_files:
                     print(f"      - {f.name}")
@@ -445,7 +445,7 @@ async def home():
 
             <form id="videoForm">
                 <div class="form-group">
-                    <label>Prompt (Descrição do Vídeo)</label>
+                    <label>Prompt (Descriçêo do Vídeo)</label>
                     <textarea id="prompt" name="prompt" placeholder="Ex: Um gato caminhando na praia ao pôr do sol, 4k quality, cinematic" required></textarea>
                 </div>
 
@@ -668,7 +668,7 @@ async def home():
 
 @app.post("/api/generate")
 async def generate(request: VideoRequest, background_tasks: BackgroundTasks):
-    """Inicia geração de vídeo"""
+    """Inicia geraçêo de vídeo"""
     job_id = str(uuid.uuid4())[:8]
 
     jobs[job_id] = {
@@ -695,7 +695,7 @@ async def get_video(filename: str):
     file_path = OUTPUT_DIR / filename
     if file_path.exists():
         return FileResponse(file_path)
-    return {"error": "Vídeo não encontrado"}
+    return {"error": "Vídeo nêo encontrado"}
 
 if __name__ == "__main__":
     print("=" * 60)

@@ -1,6 +1,6 @@
 """
-Configuração e carregamento do modelo LTX-2
-LTX-2: Modelo de geração de vídeo + áudio da Lightricks
+Configuraçêo e carregamento do modelo LTX-2
+LTX-2: Modelo de geraçêo de vídeo + áudio da Lightricks
 """
 import torch
 from pathlib import Path
@@ -17,25 +17,25 @@ def load_ltx2_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, An
 
     Args:
         model_path: Caminho para os arquivos do modelo
-        quantization: Tipo de quantização (fp4, fp8, fp16)
+        quantization: Tipo de quantizaçêo (fp4, fp8, fp16)
 
     Returns:
         Tupla (model, pipeline)
     """
-    logger.info(f"Carregando LTX-2 de {model_path} com quantização {quantization}")
+    logger.info(f"Carregando LTX-2 de {model_path} com quantizaçêo {quantization}")
 
     try:
         # Importar LTXPipeline do diffusers (suporte nativo)
         from diffusers.pipelines.ltx import LTXPipeline
         logger.info("Usando LTXPipeline do diffusers")
 
-        # Configurações de quantização e device
+        # Configurações de quantizaçêo e device
         device = "cuda" if torch.cuda.is_available() else "cpu"
 
-        # Por enquanto, usar FP16 até configurar quantização específica do LTX-2
+        # Por enquanto, usar FP16 até configurar quantizaçêo específica do LTX-2
         torch_dtype = torch.float16
         quantization_config = None
-        logger.info(f"Usando FP16 (quantização {quantization} não implementada ainda para DiffusionPipeline)")
+        logger.info(f"Usando FP16 (quantizaçêo {quantization} nêo implementada ainda para DiffusionPipeline)")
 
         # Verificar se modelo existe
         model_path_obj = Path(model_path)
@@ -52,7 +52,7 @@ def load_ltx2_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, An
                 logger.warning(f"Cache vazio em {hf_cache_path}")
                 model_id = "Lightricks/LTX-2"
         elif not model_path_obj.exists():
-            logger.warning(f"Modelo não encontrado em {model_path}, baixando do HuggingFace...")
+            logger.warning(f"Modelo nêo encontrado em {model_path}, baixando do HuggingFace...")
             model_id = "Lightricks/LTX-2"  # ID oficial do HuggingFace
         else:
             model_id = str(model_path_obj)
@@ -74,7 +74,7 @@ def load_ltx2_model(model_path: str, quantization: str = "fp4") -> Tuple[Any, An
             # Otimizações para Blackwell
             pipeline.enable_model_cpu_offload()  # Aproveitar memória unificada
 
-        # Patch para compatibilidade: transformer não aceita rope_interpolation_scale
+        # Patch para compatibilidade: transformer nêo aceita rope_interpolation_scale
         # Fazer monkey-patch da classe do transformer para aceitar e ignorar esse parâmetro
         import types
         transformer_class = pipeline.transformer.__class__
@@ -107,7 +107,7 @@ def generate_video_ltx2(pipeline: Any, request: Any, output_path: Path) -> None:
     logger.info(f"Gerando vídeo: {request.prompt[:50]}...")
 
     try:
-        # Parsear resolução
+        # Parsear resoluçêo
         width, height = map(int, request.resolution.split('x'))
 
         # Calcular número de frames
@@ -120,7 +120,7 @@ def generate_video_ltx2(pipeline: Any, request: Any, output_path: Path) -> None:
             generator.manual_seed(request.seed)
 
         # Gerar vídeo
-        # NOTA: Interface pode variar dependendo da implementação real do LTX-2
+        # NOTA: Interface pode variar dependendo da implementaçêo real do LTX-2
         output = pipeline(
             prompt=request.prompt,
             negative_prompt=request.negative_prompt,

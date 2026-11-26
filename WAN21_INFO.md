@@ -7,25 +7,25 @@
 1. **Diffusion Model**
    - Arquivo: `wan2.1_t2v_14B.safetensors`
    - Tamanho: 65 GB
-   - Localização: `ComfyUI/models/unet/`
+   - Localizaçêo: `ComfyUI/models/unet/`
    - Status: ✅ Instalado
 
 2. **Text Encoder (T5)**
    - Arquivo: `models_t5_umt5-xxl-enc-bf16.pth`
    - Tamanho: 11.4 GB
-   - Localização: `ComfyUI/models/text_encoders/`
+   - Localizaçêo: `ComfyUI/models/text_encoders/`
    - Status: ⏳ Baixando (~20 min restantes)
 
 3. **VAE**
    - Arquivo: `Wan2.1_VAE.pth`
    - Tamanho: 508 MB
-   - Localização: `ComfyUI/models/vae/`
+   - Localizaçêo: `ComfyUI/models/vae/`
    - Status: ⏳ Baixando (~5 min restantes)
 
 4. **Custom Node**
    - Nome: ComfyUI-WanVideoKsampler
-   - Função: Gerenciamento otimizado de memória
-   - Localização: `ComfyUI/custom_nodes/ComfyUI-WanVideoKsampler/`
+   - Funçêo: Gerenciamento otimizado de memória
+   - Localizaçêo: `ComfyUI/custom_nodes/ComfyUI-WanVideoKsampler/`
    - Status: ✅ Instalado
 
 ## ⚙️ Especificações Técnicas
@@ -33,7 +33,7 @@
 ### Arquitetura
 - **Parâmetros**: 14 bilhões
 - **Tipo**: Diffusion Transformer com Flow Matching
-- **Dimensão do modelo**: 5120
+- **Dimensêo do modelo**: 5120
 - **Layers**: 40 blocos transformer
 - **Attention heads**: 40
 
@@ -42,11 +42,11 @@
 - **Suporte bilíngue**: Chinês e Inglês
 - **Resoluções suportadas**: 480P e 720P
 - **Frames**: Até 128 frames (8 segundos) com 12GB VRAM
-- **Geração de texto**: Primeiro modelo open-source capaz de gerar texto dentro do vídeo
+- **Geraçêo de texto**: Primeiro modelo open-source capaz de gerar texto dentro do vídeo
 
 ## 🎯 Parâmetros Recomendados
 
-### Configuração Básica (480P, 5s)
+### Configuraçêo Básica (480P, 5s)
 ```
 Resolution: 480P (854x480 ou 720x480)
 Frames: 80 frames (~5 segundos)
@@ -55,7 +55,7 @@ CFG Scale: 1.0 (oficial) ou 5-7 (mais controle)
 Frame Rate: Salvar em 24fps (modelo gera em 16fps)
 ```
 
-### Configuração Longa (480P, 8s)
+### Configuraçêo Longa (480P, 8s)
 ```
 Resolution: 480P
 Frames: 128 frames (~8 segundos)
@@ -64,7 +64,7 @@ CFG: 1.0
 VRAM mínima: 12GB
 ```
 
-### Configuração HD (720P, 5s)
+### Configuraçêo HD (720P, 5s)
 ```
 Resolution: 720P (1280x720)
 Frames: 80 frames
@@ -77,13 +77,13 @@ VRAM mínima: 16GB+
 
 ### VRAM (GPU Memory)
 
-| Configuração | VRAM Mínima | VRAM Recomendada |
+| Configuraçêo | VRAM Mínima | VRAM Recomendada |
 |--------------|-------------|------------------|
 | 480P, 5s     | 8GB         | 12GB             |
 | 480P, 8s     | 12GB        | 16GB             |
 | 720P, 5s     | 16GB        | 20GB+            |
 
-**DGX Spark**: ✅ 128GB memória unificada - suporta qualquer configuração!
+**DGX Spark**: ✅ 128GB memória unificada - suporta qualquer configuraçêo!
 
 ### RAM (System Memory)
 - Mínimo: 32GB
@@ -124,11 +124,11 @@ VRAM mínima: 16GB+
 | Característica | LTX-2 19B | Wan 2.1 14B |
 |----------------|-----------|-------------|
 | Parâmetros | 19B | 14B |
-| Áudio | ✅ Sim | ❌ Não |
-| Geração de texto | ❌ Não | ✅ Sim (chinês/inglês) |
+| Áudio | ✅ Sim | ❌ Nêo |
+| Geraçêo de texto | ❌ Nêo | ✅ Sim (chinês/inglês) |
 | Text Encoder | Gemma 3 12B | T5 uMT5-XXL |
-| Resoluções | 512x512 padrão | 480P, 720P otimizados |
-| Duração máxima | ~10s (241 frames) | ~8s (128 frames) |
+| Resoluções | 512x512 padrêo | 480P, 720P otimizados |
+| Duraçêo máxima | ~10s (241 frames) | ~8s (128 frames) |
 | Tamanho total | ~44GB | ~77GB |
 | Idiomas suporte | Inglês | Chinês + Inglês |
 
@@ -137,7 +137,7 @@ VRAM mínima: 16GB+
 1. ⏳ Aguardar downloads completarem
 2. ✅ Criar workflow JSON para ComfyUI
 3. ✅ Criar script CLI `gerar_video_wan21.py`
-4. ✅ Testar geração de vídeo
+4. ✅ Testar geraçêo de vídeo
 5. ✅ Adicionar à interface web
 6. ✅ Documentar uso
 
@@ -150,4 +150,4 @@ VRAM mínima: 16GB+
 
 ---
 
-**Status**: 🔄 Em configuração - Downloads em progresso
+**Status**: 🔄 Em configuraçêo - Downloads em progresso

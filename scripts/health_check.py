@@ -122,7 +122,7 @@ def main():
 
         # Model loaded
         model_loaded = ready.get("ready", False)
-        loaded_text = f"{Colors.GREEN}Carregado{Colors.END}" if model_loaded else f"{Colors.YELLOW}Não carregado{Colors.END}"
+        loaded_text = f"{Colors.GREEN}Carregado{Colors.END}" if model_loaded else f"{Colors.YELLOW}Nêo carregado{Colors.END}"
 
         # Memory usage
         gpu_mem = "N/A"
@@ -171,11 +171,11 @@ def main():
     print(f"Modelos carregados: {loaded_count}/{len(MODELS)}")
 
     if all_healthy:
-        print(f"\n{Colors.GREEN}{Colors.BOLD}✓ Todos os serviços estão saudáveis{Colors.END}")
+        print(f"\n{Colors.GREEN}{Colors.BOLD}✓ Todos os serviços estêo saudáveis{Colors.END}")
         print()
         return 0
     else:
-        print(f"\n{Colors.YELLOW}{Colors.BOLD}⚠ Alguns serviços precisam de atenção{Colors.END}")
+        print(f"\n{Colors.YELLOW}{Colors.BOLD}⚠ Alguns serviços precisam de atençêo{Colors.END}")
         print()
         return 1
 

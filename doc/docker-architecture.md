@@ -2,12 +2,12 @@
 
 ## Resumo Executivo
 
-Arquitetura containerizada para rodar 4 modelos de geração de vídeo (LTX-2, Wan 2.1, MAGI-1, Waver 1.0) no DGX Spark 2026.
+Arquitetura containerizada para rodar 4 modelos de geraçêo de vídeo (LTX-2, Wan 2.1, MAGI-1, Waver 1.0) no DGX Spark 2026.
 
 **Decisões Arquiteturais:**
 - ✅ Um container por modelo (isolamento total)
 - ✅ API REST completa (FastAPI) para cada modelo
-- ✅ Carregamento sob demanda (otimização de memória)
+- ✅ Carregamento sob demanda (otimizaçêo de memória)
 - ✅ Volumes Docker persistentes (portabilidade)
 
 ## Especificações do Hardware
@@ -15,13 +15,13 @@ Arquitetura containerizada para rodar 4 modelos de geração de vídeo (LTX-2, W
 **DGX Spark 2026:**
 - 128GB memória unificada (CPU+GPU)
 - ~1 PFLOP FP4 (Blackwell GB10)
-- Suporte nativo a quantização FP4/FP8
+- Suporte nativo a quantizaçêo FP4/FP8
 
 ## Estrutura do Projeto
 
 ```
 VideosDGX/
-├── docker-compose.yml          # Orquestração dos 4 containers
+├── docker-compose.yml          # Orquestraçêo dos 4 containers
 ├── .env                        # Variáveis de ambiente
 ├── common/                     # Código compartilhado
 │   ├── base.Dockerfile        # Base image NVIDIA CUDA
@@ -85,12 +85,12 @@ WORKDIR /app
 ### 2. API Framework (`common/api_base.py`)
 
 **Funcionalidades:**
-- Lazy loading: carrega modelo apenas na primeira requisição
+- Lazy loading: carrega modelo apenas na primeira requisiçêo
 - Queue system: gerencia múltiplas requisições
 - Health checks: `/health`, `/ready`, `/info`
 - Auto-unload: descarrega modelo após timeout (opcional)
 
-**Endpoints Padrão:**
+**Endpoints Padrêo:**
 ```
 POST /generate       → Gera vídeo
 GET  /health         → Status do container
@@ -104,7 +104,7 @@ GET  /queue/status   → Status da fila
 
 **Responsabilidades:**
 - Detecta se modelo já está em memória
-- Aplica quantização (FP4/FP8) automaticamente
+- Aplica quantizaçêo (FP4/FP8) automaticamente
 - Monitora uso de memória GPU
 - Implementa cache inteligente
 
@@ -172,13 +172,13 @@ volumes:
 | Estado | Memória RAM | Latência |
 |--------|-------------|----------|
 | Container iniciado | ~500MB/container | N/A |
-| Modelo carregado | 15-35GB/modelo | 30-60s (primeira requisição) |
+| Modelo carregado | 15-35GB/modelo | 30-60s (primeira requisiçêo) |
 | Inferência | Memória constante | <5s (requisições subsequentes) |
 | Auto-unload | -15-35GB | Libera após 30min inativo |
 
 ### Estimativa de Memória por Modelo
 
-| Modelo | Quantização | RAM Ocupada | Capacidade no Spark |
+| Modelo | Quantizaçêo | RAM Ocupada | Capacidade no Spark |
 |--------|-------------|-------------|---------------------|
 | LTX-2 | FP4 (NVFP4) | ~25-30GB | ✅ Roda full version |
 | Wan 2.1 | FP8 | ~28-32GB | ✅ Contexto máximo |
@@ -290,7 +290,7 @@ Testa performance de cada modelo:
 - Reduz overhead de transferências PCIe
 - Permite buffers maiores para vídeo
 
-### 2. Quantização Blackwell
+### 2. Quantizaçêo Blackwell
 ```python
 # model_config.py exemplo
 QUANTIZATION_CONFIG = {
@@ -353,7 +353,7 @@ docker-compose up -d
 python scripts/health_check.py
 ```
 
-### 2. Testar Geração
+### 2. Testar Geraçêo
 
 ```bash
 # LTX-2: Vídeo + Audio
@@ -398,7 +398,7 @@ docker-compose logs -f ltx2
 
 ## Troubleshooting
 
-### Modelo não carrega
+### Modelo nêo carrega
 
 ```bash
 # Verificar espaço em disco
@@ -414,7 +414,7 @@ docker-compose logs ltx2
 ### Out of Memory
 
 ```bash
-# Descarregar modelos não usados
+# Descarregar modelos nêo usados
 curl -X POST http://localhost:8001/unload
 curl -X POST http://localhost:8002/unload
 
@@ -422,7 +422,7 @@ curl -X POST http://localhost:8002/unload
 nvidia-smi --query-gpu=memory.used,memory.free --format=csv
 ```
 
-### Container não inicia
+### Container nêo inicia
 
 ```bash
 # Rebuild da image
@@ -435,7 +435,7 @@ docker run --rm videosdgx-ltx2 pip list
 ## Próximos Passos
 
 1. **Fine-tuning**: Adaptar modelos para casos específicos
-2. **Web UI**: Interface gráfica para geração de vídeos
+2. **Web UI**: Interface gráfica para geraçêo de vídeos
 3. **Batch Processing**: Sistema de jobs assíncronos
 4. **Cache System**: Reutilizar vídeos similares
 5. **Auto-scaling**: Carregar/descarregar modelos baseado em demanda
@@ -443,7 +443,7 @@ docker run --rm videosdgx-ltx2 pip list
 
 ## Estimativas de Custo Computacional
 
-| Operação | Tempo | Memória GPU |
+| Operaçêo | Tempo | Memória GPU |
 |----------|-------|-------------|
 | Build images | 20-30min | N/A |
 | Download modelos | 2-4h | N/A |
@@ -456,4 +456,4 @@ docker run --rm videosdgx-ltx2 pip list
 - DGX Spark: 128GB memória unificada, ~1 PFLOP FP4
 - Blackwell GB10: Suporte nativo FP4/FP8
 - Modelos: LTX-2, Wan 2.1, MAGI-1, Waver 1.0
-- Documentação original: `doc/videsodgx.txt`
+- Documentaçêo original: `doc/videsodgx.txt`

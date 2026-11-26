@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Interface Web para Geração de Vídeos LTX-2 (Versão 2 - Não Bloqueante)
+Interface Web para Geraçêo de Vídeos LTX-2 (Versêo 2 - Nêo Bloqueante)
 Acesse em: http://localhost:7860
 """
 
@@ -55,7 +55,7 @@ def save_jobs():
 load_jobs()
 
 def submit_video(job_id: str, request: VideoRequest):
-    """Submete vídeo para geração (NÃO espera terminar)"""
+    """Submete vídeo para geraçêo (NêO espera terminar)"""
     try:
         jobs[job_id]['status'] = 'submitting'
         save_jobs()
@@ -308,7 +308,7 @@ async def home():
     <div class="container">
         <div class="header">
             <h1>🎬 LTX-2 Video Generator v2</h1>
-            <p>Versão Otimizada - Não Bloqueante</p>
+            <p>Versêo Otimizada - Nêo Bloqueante</p>
         </div>
 
         <div class="main-card">
@@ -467,7 +467,7 @@ async def home():
 
 @app.post("/api/generate")
 async def generate(request: VideoRequest, background_tasks: BackgroundTasks):
-    """Inicia geração de vídeo"""
+    """Inicia geraçêo de vídeo"""
     job_id = str(uuid.uuid4())[:8]
 
     jobs[job_id] = {
@@ -486,7 +486,7 @@ async def generate(request: VideoRequest, background_tasks: BackgroundTasks):
 @app.get("/api/jobs")
 async def get_jobs():
     """Lista todos os jobs e atualiza status"""
-    # Atualizar jobs que estão processando
+    # Atualizar jobs que estêo processando
     for job_id, job in jobs.items():
         if job['status'] == 'processing':
             video_file = check_video_ready(job_id)
@@ -504,19 +504,19 @@ async def get_video(filename: str):
     file_path = OUTPUT_DIR / filename
     if file_path.exists():
         return FileResponse(file_path)
-    return {"error": "Vídeo não encontrado"}
+    return {"error": "Vídeo nêo encontrado"}
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("🎬 LTX-2 Video Generator v2 - Não Bloqueante")
+    print("🎬 LTX-2 Video Generator v2 - Nêo Bloqueante")
     print("=" * 60)
     print()
     print("🌐 Acesse: http://localhost:7860")
     print()
     print("✨ Melhorias:")
-    print("   - Não bloqueia o servidor")
+    print("   - Nêo bloqueia o servidor")
     print("   - Múltiplos jobs simultâneos")
-    print("   - Atualização automática a cada 3s")
+    print("   - Atualizaçêo automática a cada 3s")
     print()
     print("⌨️  Ctrl+C para parar")
     print("=" * 60)

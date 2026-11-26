@@ -1,11 +1,11 @@
-# 🔧 SOLUÇÃO TEMPORÁRIA - Usar CLI Diretamente
+# 🔧 SOLUÇêO TEMPORÁRIA - Usar CLI Diretamente
 
 ## 🐛 O Problema
 
 O Gemma encoder fica em estado corrompido após gerar 1-2 vídeos, causando erro CUDA.
 Este é um bug conhecido do ComfyUI-LTXVideo com modelos multi-shard.
 
-## ✅ SOLUÇÃO QUE FUNCIONA: Usar CLI
+## ✅ SOLUÇêO QUE FUNCIONA: Usar CLI
 
 ### Método 1: Script CLI (100% Confiável)
 
@@ -44,7 +44,7 @@ ls -lht ComfyUI/output/ | head -3
 ./gerar_video_ltx2.py "um cachorro correndo"
 ```
 
-### Para Gerar Múltiplos (com reinicialização)
+### Para Gerar Múltiplos (com reinicializaçêo)
 ```bash
 #!/bin/bash
 prompts=(
@@ -123,15 +123,15 @@ sleep 15
 
 ## 🎯 POR QUE FUNCIONA
 
-- ✅ CLI submete e termina (não trava)
+- ✅ CLI submete e termina (nêo trava)
 - ✅ ComfyUI processa normalmente
 - ✅ Reiniciar limpa o estado do Gemma
 - ✅ Cada vídeo em estado limpo = sem erros
 
-## 🔮 SOLUÇÃO PERMANENTE (Futura)
+## 🔮 SOLUÇêO PERMANENTE (Futura)
 
 Possíveis soluções para o bug:
-1. Atualizar ComfyUI-LTXVideo para versão mais nova
+1. Atualizar ComfyUI-LTXVideo para versêo mais nova
 2. Usar modelo Gemma single-file em vez de multi-shard
 3. Modificar código do encoder para recarregar entre usos
 4. Usar FP8 em vez de QAT (se disponível)

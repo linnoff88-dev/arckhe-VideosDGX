@@ -16,11 +16,11 @@ Seu vídeo estará em:
 → ComfyUI/output/ltx2_video_*.mp4
 
 ┌──────────────────────────────────────────────────────────────┐
-│ 📚 DOCUMENTAÇÃO RÁPIDA                                       │
+│ 📚 DOCUMENTAÇêO RÁPIDA                                       │
 └──────────────────────────────────────────────────────────────┘
 
 → QUICK_START.txt          - Referência de 1 página
-→ RESUMO_EXECUTIVO.md      - Visão geral completa
+→ RESUMO_EXECUTIVO.md      - Visêo geral completa
 → README_GERAR_VIDEOS.md   - Guia com exemplos
 → INDEX.md                 - Índice de todos recursos
 
@@ -28,7 +28,7 @@ Seu vídeo estará em:
 │ ⚡ EXEMPLOS RÁPIDOS                                          │
 └──────────────────────────────────────────────────────────────┘
 
-# Resolução HD
+# Resoluçêo HD
 ./gerar_video_ltx2.py "Paisagem montanhosa" \
   --width 1024 --height 576
 
@@ -54,7 +54,7 @@ Interface web:
 → http://localhost:8188
 
 ┌──────────────────────────────────────────────────────────────┐
-│ ⏱️  TEMPO DE GERAÇÃO                                         │
+│ ⏱️  TEMPO DE GERAÇêO                                         │
 └──────────────────────────────────────────────────────────────┘
 
 512x512,  2s  →  ~77 segundos
@@ -71,5 +71,5 @@ Interface web:
 💬 "A red ball bouncing on white background..."
 
 ╔══════════════════════════════════════════════════════════════╗
-║  MISSÃO CUMPRIDA! Sistema 100% operacional! 🎉              ║
+║  MISSêO CUMPRIDA! Sistema 100% operacional! 🎉              ║
 ╚══════════════════════════════════════════════════════════════╝

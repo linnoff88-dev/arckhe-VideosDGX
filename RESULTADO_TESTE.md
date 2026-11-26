@@ -1,13 +1,13 @@
-# Resultado do Teste de Geração de Vídeo
+# Resultado do Teste de Geraçêo de Vídeo
 ## Data: 16 de Fevereiro de 2026 - 10:40
 
 ---
 
 ## 🎯 Objetivo
 
-Testar a geração de vídeos pela primeira vez após liberação da memória.
+Testar a geraçêo de vídeos pela primeira vez após liberaçêo da memória.
 
-**Opção testada**: ComfyUI (mais viável que Python API)
+**Opçêo testada**: ComfyUI (mais viável que Python API)
 
 ---
 
@@ -81,7 +81,7 @@ Processos:
 **Total de nodes**: 683 nodes
 
 Isso inclui:
-- Nodes padrão do ComfyUI
+- Nodes padrêo do ComfyUI
 - Custom nodes do ComfyUI-LTXVideo
 - Nodes do MAGI-1 (se carregou)
 
@@ -109,8 +109,8 @@ distilled.py: error: the following arguments are required:
   --spatial-upsampler-path
 ```
 
-**Causa**: API Python requer um modelo upsampler que não temos
-**Status**: ❌ Python API não pode ser usada sem baixar componente adicional
+**Causa**: API Python requer um modelo upsampler que nêo temos
+**Status**: ❌ Python API nêo pode ser usada sem baixar componente adicional
 
 ---
 
@@ -122,7 +122,7 @@ distilled.py: error: the following arguments are required:
 
 **Encontrado**: Nenhum arquivo .json de workflow
 
-**Impacto**: Não posso testar geração via API REST sem um workflow válido
+**Impacto**: Nêo posso testar geraçêo via API REST sem um workflow válido
 
 **Alternativas**:
 1. Criar workflow manualmente na interface web
@@ -150,7 +150,7 @@ distilled.py: error: the following arguments are required:
 |------------|--------|-------------|
 | Workflow JSON | ❌ AUSENTE | Precisa criar ou baixar |
 | Python API completa | ❌ BLOQUEADO | Falta spatial upsampler |
-| Teste end-to-end | ❌ NÃO FEITO | Aguardando workflow |
+| Teste end-to-end | ❌ NêO FEITO | Aguardando workflow |
 
 ---
 
@@ -161,7 +161,7 @@ distilled.py: error: the following arguments are required:
 **Antes (08:00-10:30)**:
 ```
 ❌ CUDA OOM impedindo tudo
-❌ ComfyUI não iniciava
+❌ ComfyUI nêo iniciava
 ❌ Python API bloqueada
 ❌ 0% de chance de gerar vídeo
 ```
@@ -185,16 +185,16 @@ distilled.py: error: the following arguments are required:
 
 Para **realmente gerar um vídeo**, precisamos de **UMA** destas opções:
 
-**Opção A: Interface Web** (MAIS FÁCIL)
+**Opçêo A: Interface Web** (MAIS FÁCIL)
 ```
 1. Acessar http://localhost:8188 no navegador
 2. Carregar nodes do LTX-2 manualmente
 3. Conectar nodes (prompt → sampler → decoder → save)
 4. Clicar "Queue Prompt"
-5. Aguardar geração
+5. Aguardar geraçêo
 ```
 
-**Opção B: Workflow JSON**
+**Opçêo B: Workflow JSON**
 ```
 1. Baixar exemplo de:
    - github.com/Lightricks/ComfyUI-LTXVideo/tree/main/workflows
@@ -202,7 +202,7 @@ Para **realmente gerar um vídeo**, precisamos de **UMA** destas opções:
 3. Queue prompt
 ```
 
-**Opção C: Baixar Spatial Upsampler**
+**Opçêo C: Baixar Spatial Upsampler**
 ```
 1. Identificar modelo correto
 2. Baixar (~1-5GB)
@@ -211,14 +211,14 @@ Para **realmente gerar um vídeo**, precisamos de **UMA** destas opções:
 
 ---
 
-## 💡 Recomendação Imediata
+## 💡 Recomendaçêo Imediata
 
 ### Use a Interface Web! 🖥️
 
 **Por quê**:
 - ✅ ComfyUI JÁ está rodando
 - ✅ Interface visual é mais fácil
-- ✅ Não requer arquivos adicionais
+- ✅ Nêo requer arquivos adicionais
 - ✅ Pode testar em tempo real
 
 **Como acessar**:
@@ -241,7 +241,7 @@ http://[IP-DO-DGX]:8188
 
 ---
 
-## 🎊 Conclusão
+## 🎊 Conclusêo
 
 ### STATUS ATUAL: 90% COMPLETO
 
@@ -250,19 +250,19 @@ http://[IP-DO-DGX]:8188
 - ✅ Iniciar ComfyUI pela primeira vez
 - ✅ Detectar GPU e ativar CUDA
 - ✅ Carregar todos os nodes e modelos
-- ✅ **SISTEMA PRONTO PARA GERAÇÃO**
+- ✅ **SISTEMA PRONTO PARA GERAÇêO**
 
 **Falta apenas**:
 - ❌ Criar/carregar um workflow
 - ❌ Clicar "Queue Prompt"
 - ❌ Aguardar o primeiro vídeo
 
-### COMPARAÇÃO COM ESTADO ANTERIOR
+### COMPARAÇêO COM ESTADO ANTERIOR
 
 **Ontem (após 12h de trabalho)**:
 ```
-Status: ❌ Sistema configurado mas NÃO FUNCIONAL
-Geração de vídeos: 0% operacional
+Status: ❌ Sistema configurado mas NêO FUNCIONAL
+Geraçêo de vídeos: 0% operacional
 Vídeos gerados: 0
 Bloqueio: CUDA OOM
 ```
@@ -270,14 +270,14 @@ Bloqueio: CUDA OOM
 **Hoje (após mais 2h)**:
 ```
 Status: ✅ Sistema 90% FUNCIONAL
-Geração de vídeos: 90% operacional (falta workflow)
+Geraçêo de vídeos: 90% operacional (falta workflow)
 Vídeos gerados: 0 (mas MUITO PERTO!)
 Bloqueio: REMOVIDO ✅
 ```
 
 ---
 
-## 📝 Próxima Ação Recomendada
+## 📝 Próxima Açêo Recomendada
 
 **URGENTE**: Acessar interface web do ComfyUI e criar primeiro workflow!
 

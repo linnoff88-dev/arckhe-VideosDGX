@@ -27,8 +27,8 @@ class ModelLoader:
         Args:
             model_name: Nome do modelo (ltx2, wan21, etc)
             model_path: Caminho para os arquivos do modelo
-            load_function: Função que carrega o modelo
-            quantization: Tipo de quantização (fp4, fp8, fp16)
+            load_function: Funçêo que carrega o modelo
+            quantization: Tipo de quantizaçêo (fp4, fp8, fp16)
             auto_unload_minutes: Minutos de inatividade antes de descarregar (None = nunca)
         """
         self.model_name = model_name
@@ -80,7 +80,7 @@ class ModelLoader:
 
             start_time = time.time()
 
-            # Chama função de carregamento específica do modelo
+            # Chama funçêo de carregamento específica do modelo
             self.model, self.pipeline = self.load_function(
                 self.model_path,
                 self.quantization
@@ -123,7 +123,7 @@ class ModelLoader:
         """
         with self._lock:
             if not self.loaded:
-                logger.info(f"{self.model_name}: Modelo não estava carregado")
+                logger.info(f"{self.model_name}: Modelo nêo estava carregado")
                 return {
                     "status": "not_loaded",
                     "model_name": self.model_name

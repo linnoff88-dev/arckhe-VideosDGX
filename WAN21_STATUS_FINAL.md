@@ -4,12 +4,12 @@
 
 ### O Problema
 - T5 encoder baixado em formato `.pth` (PyTorch)
-- ComfyUI não consegue carregar `.pth` como safetensors
+- ComfyUI nêo consegue carregar `.pth` como safetensors
 - Erro: "SafetensorError: Error while deserializing header: header too large"
 
-### A Solução
+### A Soluçêo
 - Baixar T5 encoder em formato **safetensors**
-- Usar versão FP8 otimizada: `umt5_xxl_fp8_e4m3fn_scaled.safetensors`
+- Usar versêo FP8 otimizada: `umt5_xxl_fp8_e4m3fn_scaled.safetensors`
 - Repositório: Comfy-Org/Wan_2.1_ComfyUI_repackaged
 
 ---
@@ -21,19 +21,19 @@
 1. **Diffusion Model**
    - Arquivo: `wan2.1_t2v_14B.safetensors`
    - Tamanho: 65 GB
-   - Localização: `ComfyUI/models/unet/`
+   - Localizaçêo: `ComfyUI/models/unet/`
    - Status: ✅ Instalado
 
 2. **T5 Text Encoder (NOVO - Safetensors)**
    - Arquivo: `umt5_xxl_fp8_e4m3fn_scaled.safetensors`
    - Tamanho: 6.74 GB (FP8 quantizado)
-   - Localização: `ComfyUI/models/text_encoders/`
+   - Localizaçêo: `ComfyUI/models/text_encoders/`
    - Status: ⏳ Baixando (~18 minutos)
 
 3. **VAE**
    - Arquivo: `Wan2.1_VAE.pth`
    - Tamanho: 485 MB
-   - Localização: `ComfyUI/models/vae/`
+   - Localizaçêo: `ComfyUI/models/vae/`
    - Status: ✅ Instalado
 
 ### ✅ Custom Nodes
@@ -93,7 +93,7 @@ umt5_xxl_fp8_e4m3fn_scaled.safetensors (6.74 GB)
 ls -lh ComfyUI/models/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
 # Deve mostrar: ~6.3G
 
-# Testar geração
+# Testar geraçêo
 cd /home/nmaldaner/projetos/VideosDGX
 ./gerar_video_wan21.py "a cat walking on a beach at sunset"
 
@@ -105,9 +105,9 @@ ls -lht ComfyUI/output/ | grep wan21
 
 ---
 
-## ✅ Garantias de Não Afetar LTX-2
+## ✅ Garantias de Nêo Afetar LTX-2
 
-### O que NÃO foi tocado:
+### O que NêO foi tocado:
 - ✅ Modelos LTX-2 (checkpoints, VAE, projeções)
 - ✅ Gemma encoder (text_encoders/gemma-3-12b-it-qat-q4_0-unquantized/)
 - ✅ Custom node ComfyUI-LTXVideo
@@ -120,7 +120,7 @@ ls -lht ComfyUI/output/ | grep wan21
 - ✅ Apenas renomeado T5 antigo (.pth → .OLD)
 - ✅ LTX-2 continua 100% funcional
 
-### Teste de Verificação LTX-2:
+### Teste de Verificaçêo LTX-2:
 ```bash
 # Testar se LTX-2 ainda funciona
 ./gerar_video_ltx2.py "test video ltx2" --frames 49
@@ -130,14 +130,14 @@ ls -lht ComfyUI/output/ | grep wan21
 
 ---
 
-## 📊 Comparação T5 Versões
+## 📊 Comparaçêo T5 Versões
 
-| Versão | Formato | Tamanho | Status | ComfyUI |
+| Versêo | Formato | Tamanho | Status | ComfyUI |
 |--------|---------|---------|--------|---------|
-| models_t5_umt5-xxl-enc-bf16.pth | PyTorch | 11 GB | ❌ Incompatível | Não carrega |
+| models_t5_umt5-xxl-enc-bf16.pth | PyTorch | 11 GB | ❌ Incompatível | Nêo carrega |
 | umt5_xxl_fp8_e4m3fn_scaled.safetensors | Safetensors | 6.74 GB | ✅ Compatível | ✅ Carrega |
 
-**Vantagens da versão FP8:**
+**Vantagens da versêo FP8:**
 - ✅ Menor tamanho (6.74 GB vs 11 GB)
 - ✅ Formato compatível (safetensors)
 - ✅ Otimizado para Blackwell GB10 (FP8 nativo)
@@ -158,7 +158,7 @@ ls -lht ComfyUI/output/ | grep wan21
 
 2. **Wan 2.1 14B** ⏳ 99% Pronto (aguardando download)
    - Text-to-Video
-   - Geração de texto em cena
+   - Geraçêo de texto em cena
    - Script CLI
    - ~72 GB total
 
@@ -190,12 +190,12 @@ ComfyUI/models/
 
 ## ⏱️ Timeline
 
-- **10:45** - Sessão iniciada
+- **10:45** - Sessêo iniciada
 - **12:53** - Primeiro vídeo LTX-2 gerado com sucesso
 - **18:03-18:15** - Interface web v3 funcionando
 - **18:47-19:09** - Wan 2.1 componentes baixados (T5 .pth errado)
 - **19:12** - Problema T5 identificado
-- **19:15** - Solução encontrada (T5 safetensors)
+- **19:15** - Soluçêo encontrada (T5 safetensors)
 - **19:16** - Download T5 correto iniciado
 - **~19:35** - Estimativa: Download completo + teste final
 
@@ -211,7 +211,7 @@ Após o download completar:
 # Saída esperada:
 🎬 Gerando workflow Wan 2.1...
 🚀 Submetendo para ComfyUI...
-✅ SUCESSO! Geração iniciada!
+✅ SUCESSO! Geraçêo iniciada!
 
 # Aguardar ~2-3 minutos
 
@@ -223,4 +223,4 @@ wan21_video_00001_.mp4 (~600KB - 1MB)
 
 **Status Atual:** ⏳ Aguardando download T5 safetensors (~15 minutos restantes)
 
-**Última Atualização:** 2026-02-16 19:16
+**Última Atualizaçêo:** 2026-02-16 19:16

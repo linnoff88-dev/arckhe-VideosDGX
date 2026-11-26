@@ -1,6 +1,6 @@
 # 🔧 Setup Completo LTX-2 no DGX Spark 2026
 
-## Documentação Técnica Completa - Do Zero ao Funcionamento
+## Documentaçêo Técnica Completa - Do Zero ao Funcionamento
 
 **Data**: Fevereiro 2026
 **Hardware**: DGX Spark 2026
@@ -11,12 +11,12 @@
 ## 📋 Índice
 
 1. [Hardware e Ambiente](#hardware-e-ambiente)
-2. [Instalação Base](#instalação-base)
+2. [Instalaçêo Base](#instalaçêo-base)
 3. [Modelos Necessários](#modelos-necessários)
 4. [Problemas Críticos e Soluções](#problemas-críticos-e-soluções)
 5. [Estrutura de Arquivos](#estrutura-de-arquivos)
 6. [Scripts Criados](#scripts-criados)
-7. [Verificação e Testes](#verificação-e-testes)
+7. [Verificaçêo e Testes](#verificaçêo-e-testes)
 8. [Troubleshooting](#troubleshooting)
 
 ---
@@ -43,7 +43,7 @@ CUDA: 12.3
 
 ---
 
-## 2. Instalação Base
+## 2. Instalaçêo Base
 
 ### 2.1. ComfyUI
 
@@ -62,7 +62,7 @@ source ../comfyui-env/bin/activate
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
 
-# IMPORTANTE: Instalar sqlalchemy (necessário mas não estava em requirements)
+# IMPORTANTE: Instalar sqlalchemy (necessário mas nêo estava em requirements)
 pip install sqlalchemy
 ```
 
@@ -135,7 +135,7 @@ wget https://huggingface.co/Lightricks/LTX-Video/resolve/main/ltx-video-2b-v0.9.
 # Renomear
 mv ltx-video-2b-v0.9.1.safetensors ltx-2-19b-distilled.safetensors
 
-# OU via huggingface-cli (se tiver autenticação)
+# OU via huggingface-cli (se tiver autenticaçêo)
 huggingface-cli download Lightricks/LTX-Video ltx-video-2b-v0.9.1.safetensors
 ```
 
@@ -176,10 +176,10 @@ wget https://huggingface.co/Lightricks/LTX-Video/resolve/main/ltx-video-2b-v0.9.
 mv ltx-video-2b-v0.9.1-fp4_projections_only.safetensors ltx-2-19b-dev-fp4_projections_only.safetensors
 ```
 
-### 3.3. Verificação dos Modelos
+### 3.3. Verificaçêo dos Modelos
 
 ```bash
-# Script de verificação
+# Script de verificaçêo
 cd /home/nmaldaner/projetos/VideosDGX
 
 echo "=== Verificando Modelos LTX-2 ==="
@@ -210,11 +210,11 @@ ls -lh ComfyUI/models/clip/ltx-2-19b-dev-fp4_projections_only.safetensors
 SafetensorError: Error while deserializing header: incomplete metadata
 ```
 
-**Causa:** Modelo base Gemma (`google/gemma-3-12b-it`) não é compatível. Precisa QAT Q4.
+**Causa:** Modelo base Gemma (`google/gemma-3-12b-it`) nêo é compatível. Precisa QAT Q4.
 
-**Solução:**
+**Soluçêo:**
 ```bash
-# ERRADO (não usar)
+# ERRADO (nêo usar)
 # google/gemma-3-12b-it
 # google/gemma-3-12b-it-fp8
 
@@ -223,7 +223,7 @@ huggingface-cli download google/gemma-3-12b-it-qat-q4_0-unquantized \
   --local-dir ComfyUI/models/text_encoders/gemma-3-12b-it-qat-q4_0-unquantized
 ```
 
-**Verificação:**
+**Verificaçêo:**
 ```bash
 # Deve ter exatamente 5 shards
 ls ComfyUI/models/text_encoders/gemma-3-12b-it-qat-q4_0-unquantized/model-*.safetensors
@@ -250,15 +250,15 @@ File "gemma_encoder.py", line 323, in encode_token_weights
 **Sintomas:**
 - Primeiro vídeo: ✅ Funciona
 - Segundo vídeo: ❌ CUDA error
-- Reiniciar ComfyUI: ❌ Erro persiste se não reiniciar corretamente
+- Reiniciar ComfyUI: ❌ Erro persiste se nêo reiniciar corretamente
 
-**Solução Temporária:**
+**Soluçêo Temporária:**
 ```bash
 # Reiniciar ComfyUI entre cada vídeo
 ./reiniciar_comfyui.sh
 ```
 
-**Solução Definitiva:** Interface web v3 com auto-restart
+**Soluçêo Definitiva:** Interface web v3 com auto-restart
 ```bash
 # Usa web_interface_v3.py
 # Reinicia automaticamente após cada vídeo
@@ -268,7 +268,7 @@ File "gemma_encoder.py", line 323, in encode_token_weights
 **Root Cause:** Bug conhecido do ComfyUI-LTXVideo com modelos multi-shard.
 
 **Possíveis Fixes Futuros:**
-1. Atualizar ComfyUI-LTXVideo para versão mais nova
+1. Atualizar ComfyUI-LTXVideo para versêo mais nova
 2. Usar modelo Gemma single-file (se disponível)
 3. Modificar código do encoder para recarregar entre usos
 4. Usar FP8 em vez de QAT (se disponível e funcional)
@@ -282,9 +282,9 @@ File "gemma_encoder.py", line 323, in encode_token_weights
 ModuleNotFoundError: No module named 'sqlalchemy'
 ```
 
-**Causa:** Dependência não estava em requirements.txt do ComfyUI
+**Causa:** Dependência nêo estava em requirements.txt do ComfyUI
 
-**Solução:**
+**Soluçêo:**
 ```bash
 source comfyui-env/bin/activate
 pip install sqlalchemy
@@ -292,13 +292,13 @@ pip install sqlalchemy
 
 ---
 
-### 🔴 Problema 4: reiniciar_comfyui.sh não ativa venv
+### 🔴 Problema 4: reiniciar_comfyui.sh nêo ativa venv
 
-**Erro:** ComfyUI não inicia após script de restart
+**Erro:** ComfyUI nêo inicia após script de restart
 
-**Causa:** Script não ativava virtual environment
+**Causa:** Script nêo ativava virtual environment
 
-**Solução:**
+**Soluçêo:**
 ```bash
 # Editar reiniciar_comfyui.sh
 # Adicionar antes de python main.py:
@@ -324,7 +324,7 @@ nohup python main.py --listen 0.0.0.0 --port 8188 > ../comfyui_server.log 2>&1 &
 
 ```
 /home/nmaldaner/projetos/VideosDGX/
-├── ComfyUI/                           # ComfyUI instalação
+├── ComfyUI/                           # ComfyUI instalaçêo
 │   ├── main.py
 │   ├── custom_nodes/
 │   │   ├── ComfyUI-LTXVideo/         # Node LTX-2
@@ -347,7 +347,7 @@ nohup python main.py --listen 0.0.0.0 --port 8188 > ../comfyui_server.log 2>&1 &
 ├── reiniciar_comfyui.sh              # Restart script
 ├── web_interface_v3.py               # Interface web
 ├── iniciar_interface_web_v3.sh       # Iniciar interface
-├── SOLUCAO_DEFINITIVA_V3.md          # Documentação
+├── SOLUCAO_DEFINITIVA_V3.md          # Documentaçêo
 ├── GUIA_RAPIDO.md                    # Referência rápida
 └── SETUP_COMPLETO_LTX2_DGX_SPARK.md  # Este arquivo
 ```
@@ -360,7 +360,7 @@ nohup python main.py --listen 0.0.0.0 --port 8188 > ../comfyui_server.log 2>&1 &
 
 **Propósito:** Gerar vídeos via linha de comando
 
-**Localização:** `/home/nmaldaner/projetos/VideosDGX/gerar_video_ltx2.py`
+**Localizaçêo:** `/home/nmaldaner/projetos/VideosDGX/gerar_video_ltx2.py`
 
 **Uso:**
 ```bash
@@ -383,7 +383,7 @@ nohup python main.py --listen 0.0.0.0 --port 8188 > ../comfyui_server.log 2>&1 &
 - Cria workflow JSON dinamicamente
 - Usa o Gemma QAT correto no path
 - Submete via API do ComfyUI
-- Retorna imediatamente (não bloqueia)
+- Retorna imediatamente (nêo bloqueia)
 
 ---
 
@@ -391,7 +391,7 @@ nohup python main.py --listen 0.0.0.0 --port 8188 > ../comfyui_server.log 2>&1 &
 
 **Propósito:** Reiniciar ComfyUI e limpar estado CUDA
 
-**Localização:** `/home/nmaldaner/projetos/VideosDGX/reiniciar_comfyui.sh`
+**Localizaçêo:** `/home/nmaldaner/projetos/VideosDGX/reiniciar_comfyui.sh`
 
 **Uso:**
 ```bash
@@ -413,7 +413,7 @@ nohup python main.py --listen 0.0.0.0 --port 8188 > ../comfyui_server.log 2>&1 &
 
 **Propósito:** Interface web com auto-restart
 
-**Localização:** `/home/nmaldaner/projetos/VideosDGX/web_interface_v3.py`
+**Localizaçêo:** `/home/nmaldaner/projetos/VideosDGX/web_interface_v3.py`
 
 **Uso:**
 ```bash
@@ -435,22 +435,22 @@ FastAPI Backend
 
 Frontend (HTML/JS)
 ├── Formulário com presets
-├── Auto-atualização a cada 5s
+├── Auto-atualizaçêo a cada 5s
 └── Player de vídeo integrado
 ```
 
 **Diferenciais v3:**
 - ✅ Reinicia ComfyUI automaticamente após cada vídeo
-- ✅ Aguarda geração completa (não retorna até vídeo pronto)
+- ✅ Aguarda geraçêo completa (nêo retorna até vídeo pronto)
 - ✅ Apenas 1 vídeo por vez (previne corruption)
 - ✅ Timeout handling
 - ✅ 100% confiável
 
 ---
 
-## 7. Verificação e Testes
+## 7. Verificaçêo e Testes
 
-### 7.1. Verificar Instalação
+### 7.1. Verificar Instalaçêo
 
 ```bash
 cd /home/nmaldaner/projetos/VideosDGX
@@ -510,7 +510,7 @@ ls -lht ComfyUI/output/ | head -3
 
 ## 8. Troubleshooting
 
-### 8.1. ComfyUI não inicia
+### 8.1. ComfyUI nêo inicia
 
 **Verificar:**
 ```bash
@@ -537,7 +537,7 @@ python main.py --listen 0.0.0.0 --port 8188
 
 ---
 
-### 8.2. Vídeo não é gerado
+### 8.2. Vídeo nêo é gerado
 
 **Sintomas:**
 - Script submete com sucesso
@@ -557,11 +557,11 @@ curl http://localhost:8188/queue
 
 **Causas Comuns:**
 1. **CUDA OOM**: Memória insuficiente
-   - Solução: Reduzir frames/resolução
+   - Soluçêo: Reduzir frames/resoluçêo
 2. **Gemma Corruption**: Segundo vídeo falha
-   - Solução: Reiniciar ComfyUI (`./reiniciar_comfyui.sh`)
-3. **Modelo errado**: Gemma não-QAT
-   - Solução: Verificar se está usando QAT Q4
+   - Soluçêo: Reiniciar ComfyUI (`./reiniciar_comfyui.sh`)
+3. **Modelo errado**: Gemma nêo-QAT
+   - Soluçêo: Verificar se está usando QAT Q4
 
 ---
 
@@ -575,14 +575,14 @@ File "gemma_encoder.py", line 323, in encode_token_weights
 
 **Causa:** Gemma multi-shard corrupted
 
-**Solução Imediata:**
+**Soluçêo Imediata:**
 ```bash
 ./reiniciar_comfyui.sh
 sleep 15
 # Tentar novamente
 ```
 
-**Solução Permanente:**
+**Soluçêo Permanente:**
 ```bash
 # Usar interface v3 (auto-restart)
 ./iniciar_interface_web_v3.sh
@@ -590,7 +590,7 @@ sleep 15
 
 ---
 
-### 8.4. Interface web não carrega
+### 8.4. Interface web nêo carrega
 
 **Verificar:**
 ```bash
@@ -604,7 +604,7 @@ ps aux | grep web_interface_v3
 pip list | grep -E "fastapi|uvicorn"
 ```
 
-**Solução:**
+**Soluçêo:**
 ```bash
 # Instalar dependências se necessário
 pip install fastapi uvicorn[standard] python-multipart
@@ -627,16 +627,16 @@ kill -9 $(lsof -t -i:7860)
 
 **Vídeo muito lento/rápido:**
 - LTX-2 gera em taxa fixa
-- Ajustar FPS na saída: `--fps 24` (padrão)
+- Ajustar FPS na saída: `--fps 24` (padrêo)
 
 **Qualidade ruim:**
-- Aumentar resolução: `--width 1024 --height 576`
+- Aumentar resoluçêo: `--width 1024 --height 576`
 - Aumentar CFG: `--cfg 4.0`
 - Usar seed diferente
 
 ---
 
-## 9. Comandos de Manutenção
+## 9. Comandos de Manutençêo
 
 ### Limpar cache e logs
 
@@ -686,7 +686,7 @@ tar -czf backup_scripts_$(date +%Y%m%d).tar.gz \
   iniciar_interface_web_v3.sh \
   *.md
 
-# Modelos NÃO fazer backup (muito grandes)
+# Modelos NêO fazer backup (muito grandes)
 # Mas anotar versions/commits usados
 ```
 
@@ -730,7 +730,7 @@ https://huggingface.co/google/gemma-3-12b-it-qat-q4_0-unquantized
 ```
 Hardware: DGX Spark 2026 (128GB unified memory)
 
-Tempos de geração (aproximados):
+Tempos de geraçêo (aproximados):
 - 512x512, 49 frames (2s): ~2 minutos
 - 1024x576, 49 frames (2s): ~3 minutos
 - 512x512, 121 frames (5s): ~5 minutos
@@ -738,7 +738,7 @@ Tempos de geração (aproximados):
 
 VRAM usado:
 - Modelos em memória: ~30-35GB
-- Durante geração: picos de 40-45GB
+- Durante geraçêo: picos de 40-45GB
 - 128GB é mais que suficiente
 ```
 
@@ -762,7 +762,7 @@ VRAM usado:
 
 ### Funcionalidades Testadas?
 
-- [ ] Geração via CLI (`gerar_video_ltx2.py`)
+- [ ] Geraçêo via CLI (`gerar_video_ltx2.py`)
 - [ ] Interface web v3 funcionando
 - [ ] Auto-restart funciona
 - [ ] Múltiplos vídeos sem CUDA error
@@ -775,12 +775,12 @@ VRAM usado:
 
 ### Erros Conhecidos
 
-Se encontrar erros não documentados aqui:
+Se encontrar erros nêo documentados aqui:
 
 1. Verificar log: `tail -f comfyui_server.log`
 2. Verificar issues do ComfyUI-LTXVideo
 3. Procurar no Discord do ComfyUI
-4. Atualizar esta documentação com a solução!
+4. Atualizar esta documentaçêo com a soluçêo!
 
 ### Atualizações Futuras
 
@@ -788,7 +788,7 @@ Quando atualizar modelos ou software:
 1. Fazer backup dos scripts funcionais
 2. Testar em ambiente separado se possível
 3. Atualizar versões neste documento
-4. Testar geração após atualização
+4. Testar geraçêo após atualizaçêo
 
 ---
 
@@ -815,6 +815,6 @@ Quando atualizar modelos ou software:
 
 ---
 
-**Última atualização:** 2026-02-16
-**Autor:** Configuração assistida por Claude Sonnet 4.5
-**Status:** ✅ Documentação completa e testada
+**Última atualizaçêo:** 2026-02-16
+**Autor:** Configuraçêo assistida por Claude Sonnet 4.5
+**Status:** ✅ Documentaçêo completa e testada

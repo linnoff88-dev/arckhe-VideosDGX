@@ -2,5 +2,5 @@
 # Video utils
 imageio>=2.33.0
 
-# Quantização
+# Quantizaçêo
 bitsandbytes>=0.41.0

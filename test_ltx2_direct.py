@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Teste de geração de vídeo LTX-2 usando API Python direta
+Teste de geraçêo de vídeo LTX-2 usando API Python direta
 """
 import torch
 from ltx_pipelines import DistilledPipeline
 
 def generate_video():
-    print("=== Teste LTX-2 - Geração Direta ===\n")
+    print("=== Teste LTX-2 - Geraçêo Direta ===\n")
 
     # Configurações
     model_path = "/home/nmaldaner/projetos/VideosDGX/ComfyUI/models/checkpoints/ltx-2-19b-distilled.safetensors"
@@ -46,7 +46,7 @@ def generate_video():
         print(f"Salvando em: {output_path}")
 
         # Salva vídeo
-        # (implementação depende do formato retornado)
+        # (implementaçêo depende do formato retornado)
 
         return True
 

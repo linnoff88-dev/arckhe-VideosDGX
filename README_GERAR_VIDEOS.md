@@ -5,7 +5,7 @@
 Use `gerar_video_ltx2.py` para gerar vídeos facilmente:
 
 ```bash
-./gerar_video_ltx2.py "Descrição do vídeo"
+./gerar_video_ltx2.py "Descriçêo do vídeo"
 ```
 
 ## Exemplos de Uso
@@ -15,7 +15,7 @@ Use `gerar_video_ltx2.py` para gerar vídeos facilmente:
 ./gerar_video_ltx2.py "Um gato caminhando na praia ao pôr do sol"
 ```
 
-### Resolução HD
+### Resoluçêo HD
 ```bash
 ./gerar_video_ltx2.py "Paisagem montanhosa com névoa" \
   --width 1024 --height 576
@@ -66,9 +66,9 @@ Use `gerar_video_ltx2.py` para gerar vídeos facilmente:
 
 ## Parâmetros Disponíveis
 
-| Parâmetro | Padrão | Descrição |
+| Parâmetro | Padrêo | Descriçêo |
 |-----------|--------|-----------|
-| `prompt` | - | Descrição do vídeo (obrigatório) |
+| `prompt` | - | Descriçêo do vídeo (obrigatório) |
 | `--negative` | "" | Prompt negativo |
 | `--width` | 512 | Largura (múltiplo de 32) |
 | `--height` | 512 | Altura (múltiplo de 32) |
@@ -98,7 +98,7 @@ Use `gerar_video_ltx2.py` para gerar vídeos facilmente:
 
 ## Durações Recomendadas
 
-| Duração | Frames (24fps) | Tempo de Geração Estimado |
+| Duraçêo | Frames (24fps) | Tempo de Geraçêo Estimado |
 |---------|----------------|---------------------------|
 | 2s | 49 | ~77s |
 | 3s | 73 | ~115s |
@@ -131,7 +131,7 @@ Exemplo:
 
 ## Monitoramento
 
-### Acompanhar Geração em Tempo Real
+### Acompanhar Geraçêo em Tempo Real
 ```bash
 tail -f /home/nmaldaner/projetos/VideosDGX/comfyui_server.log
 ```
@@ -169,22 +169,22 @@ Aumente `--frames`:
 --frames 241  # 10 segundos @ 24fps
 ```
 
-### Vídeo Não Segue o Prompt
+### Vídeo Nêo Segue o Prompt
 Aumente CFG:
 ```bash
 --cfg 5.0  # Mais fiel ao prompt
 --cfg 7.0  # Muito fiel (pode reduzir qualidade)
 ```
 
-### Geração Muito Lenta
-Reduza resolução ou frames:
+### Geraçêo Muito Lenta
+Reduza resoluçêo ou frames:
 ```bash
 --width 512 --height 512 --frames 49  # Mais rápido
 ```
 
 ## Performance
 
-### Tempo de Geração (aproximado)
+### Tempo de Geraçêo (aproximado)
 
 **512x512, 49 frames**: ~77 segundos
 **1024x576, 49 frames**: ~150 segundos
@@ -198,7 +198,7 @@ Reduza resolução ou frames:
 
 ## Exemplos Práticos
 
-### Geração em Lote
+### Geraçêo em Lote
 ```bash
 #!/bin/bash
 prompts=(
@@ -212,7 +212,7 @@ for i in "${!prompts[@]}"; do
     ./gerar_video_ltx2.py "${prompts[$i]}" \
         --output "video_$(printf "%02d" $i)" \
         --seed $i
-    sleep 80  # Aguardar geração completar
+    sleep 80  # Aguardar geraçêo completar
 done
 ```
 
@@ -242,6 +242,6 @@ done
 
 ## 📞 Suporte
 
-- **Documentação completa**: `PRIMEIRO_VIDEO_SUCESSO.md`
+- **Documentaçêo completa**: `PRIMEIRO_VIDEO_SUCESSO.md`
 - **Workflow detalhado**: `submit_workflow_final.py`
 - **Logs**: `/home/nmaldaner/projetos/VideosDGX/comfyui_server.log`

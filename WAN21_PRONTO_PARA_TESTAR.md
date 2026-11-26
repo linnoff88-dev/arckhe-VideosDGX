@@ -4,13 +4,13 @@
 
 ### ✅ Instalados e Prontos
 1. **Modelo Principal**: `wan2.1_t2v_14B.safetensors` (65 GB) ✅
-   - Localização: `ComfyUI/models/unet/`
+   - Localizaçêo: `ComfyUI/models/unet/`
 
 2. **VAE**: `Wan2.1_VAE.pth` (485 MB) ✅
-   - Localização: `ComfyUI/models/vae/`
+   - Localizaçêo: `ComfyUI/models/vae/`
 
 3. **Custom Node**: ComfyUI-WanVideoKsampler ✅
-   - Localização: `ComfyUI/custom_nodes/ComfyUI-WanVideoKsampler/`
+   - Localizaçêo: `ComfyUI/custom_nodes/ComfyUI-WanVideoKsampler/`
 
 4. **Workflow JSON**: `workflow_wan21_basic.json` ✅
    - Template pronto para uso
@@ -56,7 +56,7 @@
 
 ## 🎯 Parâmetros Recomendados
 
-### Configuração Básica (Melhor para começar)
+### Configuraçêo Básica (Melhor para começar)
 ```bash
 ./gerar_video_wan21.py "seu prompt" \
   --width 720 \
@@ -64,11 +64,11 @@
   --frames 80 \
   --cfg 1.0
 ```
-- Duração: ~5 segundos
+- Duraçêo: ~5 segundos
 - VRAM: ~8GB
 - Tempo: ~3-4 minutos
 
-### Configuração Longa
+### Configuraçêo Longa
 ```bash
 ./gerar_video_wan21.py "seu prompt" \
   --width 720 \
@@ -76,11 +76,11 @@
   --frames 128 \
   --cfg 1.0
 ```
-- Duração: ~8 segundos
+- Duraçêo: ~8 segundos
 - VRAM: ~12GB
 - Tempo: ~5-6 minutos
 
-### Configuração HD
+### Configuraçêo HD
 ```bash
 ./gerar_video_wan21.py "seu prompt" \
   --width 1280 \
@@ -88,7 +88,7 @@
   --frames 80 \
   --cfg 1.0
 ```
-- Duração: ~5 segundos (HD)
+- Duraçêo: ~5 segundos (HD)
 - VRAM: ~16GB
 - Tempo: ~5-7 minutos
 
@@ -133,14 +133,14 @@
 
 ---
 
-## 📊 Comparação LTX-2 vs Wan 2.1
+## 📊 Comparaçêo LTX-2 vs Wan 2.1
 
 | Característica | LTX-2 19B | Wan 2.1 14B |
 |----------------|-----------|-------------|
-| **Áudio** | ✅ Sim | ❌ Não |
-| **Geração de texto** | ❌ Não | ✅ Sim |
-| **Resolução padrão** | 512x512 | 480P, 720P |
-| **Duração máxima** | ~10s | ~8s |
+| **Áudio** | ✅ Sim | ❌ Nêo |
+| **Geraçêo de texto** | ❌ Nêo | ✅ Sim |
+| **Resoluçêo padrêo** | 512x512 | 480P, 720P |
+| **Duraçêo máxima** | ~10s | ~8s |
 | **Idiomas** | Inglês | Chinês + Inglês |
 | **Tamanho total** | ~44GB | ~77GB |
 | **VRAM mínima** | 8GB | 8GB (480P, 5s) |
@@ -149,7 +149,7 @@
 
 ## 🔧 Troubleshooting
 
-### T5 Encoder não carrega
+### T5 Encoder nêo carrega
 ```bash
 # Verificar se arquivo está completo
 ls -lh ComfyUI/models/text_encoders/models_t5_umt5-xxl-enc-bf16.pth
@@ -162,21 +162,21 @@ tail -50 comfyui_server.log
 ### Out of Memory (OOM)
 **Soluções:**
 1. Reduzir frames: `--frames 80` → `--frames 60`
-2. Reduzir resolução: `720x480` → `640x360`
+2. Reduzir resoluçêo: `720x480` → `640x360`
 3. Usar CFG menor: `--cfg 1.0` (ao invés de 5-7)
 
 ### Vídeo em slow-motion
-**Causa:** Modelo gera em 16fps, mas salvamos em 24fps por padrão
+**Causa:** Modelo gera em 16fps, mas salvamos em 24fps por padrêo
 
-**Solução:** Ajustar FPS de saída:
+**Soluçêo:** Ajustar FPS de saída:
 ```bash
 ./gerar_video_wan21.py "seu prompt" --fps 16  # Velocidade natural
-./gerar_video_wan21.py "seu prompt" --fps 24  # Mais suave (padrão)
+./gerar_video_wan21.py "seu prompt" --fps 24  # Mais suave (padrêo)
 ```
 
 ---
 
-## 📂 Onde os Vídeos São Salvos
+## 📂 Onde os Vídeos Sêo Salvos
 
 ```bash
 /home/nmaldaner/projetos/VideosDGX/ComfyUI/output/
@@ -208,7 +208,7 @@ Se funcionar: ✅ **Wan 2.1 está operacional!**
 
 ---
 
-## 📋 Checklist de Verificação
+## 📋 Checklist de Verificaçêo
 
 Antes de testar, confirmar:
 
@@ -218,7 +218,7 @@ Antes de testar, confirmar:
   - [ ] `ComfyUI/models/unet/wan2.1_t2v_14B.safetensors`
   - [ ] `ComfyUI/models/text_encoders/models_t5_umt5-xxl-enc-bf16.pth`
   - [ ] `ComfyUI/models/vae/Wan2.1_VAE.pth`
-- [ ] Script tem permissão de execução (`ls -l gerar_video_wan21.py`)
+- [ ] Script tem permissêo de execuçêo (`ls -l gerar_video_wan21.py`)
 
 ---
 
@@ -226,6 +226,6 @@ Antes de testar, confirmar:
 
 Quando concluir, você terá **2 modelos funcionando**:
 - ✅ LTX-2 19B (com áudio)
-- ✅ Wan 2.1 14B (com geração de texto)
+- ✅ Wan 2.1 14B (com geraçêo de texto)
 
-🚀 **Próximo passo**: Testar geração + Adicionar Wan 2.1 à interface web v3!
+🚀 **Próximo passo**: Testar geraçêo + Adicionar Wan 2.1 à interface web v3!

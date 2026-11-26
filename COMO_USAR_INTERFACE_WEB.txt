@@ -33,7 +33,7 @@ http://localhost:7860
 ✅ Presets rápidos (Rápido, HD, Longo, Qualidade)
 ✅ Player de vídeo integrado
 ✅ Lista de todos os vídeos gerados
-✅ Status em tempo real (atualização automática)
+✅ Status em tempo real (atualizaçêo automática)
 ✅ Barra de progresso animada
 ✅ Funciona em celular (responsivo)
 ✅ Estimativa de tempo automática
@@ -55,7 +55,7 @@ http://[IP-DO-DGX]:7860
 Pressione Ctrl+C no terminal
 
 ┌──────────────────────────────────────────────────────────────┐
-│ 📚 DOCUMENTAÇÃO COMPLETA                                     │
+│ 📚 DOCUMENTAÇêO COMPLETA                                     │
 └──────────────────────────────────────────────────────────────┘
 
 Ver arquivo: INTERFACE_WEB.md

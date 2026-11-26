@@ -1,5 +1,5 @@
 """
-Configuração e carregamento do modelo Waver 1.0
+Configuraçêo e carregamento do modelo Waver 1.0
 Waver 1.0: Modelo lightweight para batch generation
 """
 import torch
@@ -16,20 +16,20 @@ def load_waver_model(model_path: str, quantization: str = "fp8") -> Tuple[Any, A
 
     Args:
         model_path: Caminho para os arquivos do modelo
-        quantization: Tipo de quantização (fp8, fp16)
+        quantization: Tipo de quantizaçêo (fp8, fp16)
 
     Returns:
         Tupla (model, pipeline)
     """
-    logger.info(f"Carregando Waver 1.0 de {model_path} com quantização {quantization}")
+    logger.info(f"Carregando Waver 1.0 de {model_path} com quantizaçêo {quantization}")
 
     try:
         from diffusers import DiffusionPipeline
 
-        # Configurações de quantização
+        # Configurações de quantizaçêo
         if quantization == "fp8":
             torch_dtype = torch.float8_e4m3fn if hasattr(torch, 'float8_e4m3fn') else torch.float16
-            logger.info("Usando quantização FP8")
+            logger.info("Usando quantizaçêo FP8")
         else:
             torch_dtype = torch.float16
             logger.info("Usando FP16")
@@ -37,7 +37,7 @@ def load_waver_model(model_path: str, quantization: str = "fp8") -> Tuple[Any, A
         # Verificar se modelo existe
         model_path_obj = Path(model_path)
         if not model_path_obj.exists():
-            logger.warning(f"Modelo não encontrado em {model_path}, baixando do HuggingFace...")
+            logger.warning(f"Modelo nêo encontrado em {model_path}, baixando do HuggingFace...")
             model_id = "FoundationVision/Waver"  # ID oficial do HuggingFace
         else:
             model_id = str(model_path_obj)
@@ -51,7 +51,7 @@ def load_waver_model(model_path: str, quantization: str = "fp8") -> Tuple[Any, A
             model_id,
             torch_dtype=torch_dtype,
             use_safetensors=True,
-            low_cpu_mem_usage=True,  # Otimização para modelo lightweight
+            low_cpu_mem_usage=True,  # Otimizaçêo para modelo lightweight
             device_map=None  # Prevent auto device detection
         )
 

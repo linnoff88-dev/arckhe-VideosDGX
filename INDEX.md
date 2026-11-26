@@ -8,27 +8,27 @@
 ## 🎯 COMECE AQUI
 
 1. **QUICK_START.txt** - Referência rápida (comece por este!)
-2. **RESUMO_EXECUTIVO.md** - Visão geral executiva
+2. **RESUMO_EXECUTIVO.md** - Visêo geral executiva
 3. **README_GERAR_VIDEOS.md** - Guia completo de uso
 
 ---
 
-## 📚 Documentação
+## 📚 Documentaçêo
 
 ### Documentos Principais
 
-| Arquivo | Descrição | Quando Usar |
+| Arquivo | Descriçêo | Quando Usar |
 |---------|-----------|-------------|
 | **QUICK_START.txt** | Referência rápida 1 página | Consulta rápida, comandos básicos |
-| **RESUMO_EXECUTIVO.md** | Visão geral executiva | Entender o projeto, status, capacidades |
+| **RESUMO_EXECUTIVO.md** | Visêo geral executiva | Entender o projeto, status, capacidades |
 | **README_GERAR_VIDEOS.md** | Guia completo de uso | Aprender a usar o script, exemplos |
-| **PRIMEIRO_VIDEO_SUCESSO.md** | Documentação técnica completa | Troubleshooting, detalhes técnicos |
-| **INDEX.md** | Este arquivo | Navegação rápida, encontrar recursos |
+| **PRIMEIRO_VIDEO_SUCESSO.md** | Documentaçêo técnica completa | Troubleshooting, detalhes técnicos |
+| **INDEX.md** | Este arquivo | Navegaçêo rápida, encontrar recursos |
 
 ### Documentos Técnicos
 
 - **research-findings-dgx-spark-video-generation.md** - Pesquisa inicial sobre modelos
-- **README.md** - Documentação geral do projeto
+- **README.md** - Documentaçêo geral do projeto
 - **CLAUDE.md** - Instruções para Claude Code
 
 ---
@@ -37,19 +37,19 @@
 
 ### Scripts Principais
 
-| Script | Função | Status |
+| Script | Funçêo | Status |
 |--------|--------|--------|
 | **gerar_video_ltx2.py** | Gerar vídeos LTX-2 facilmente | ✅ Funcional |
 | test_ltx2_video.py | Testes básicos LTX-2 | 📦 Legacy |
 | test_ltx2_direct.py | Testes diretos | 📦 Legacy |
 | test_ltx2_cpu.py | Testes CPU | 📦 Legacy |
-| generate_test_videos.py | Geração batch | 📦 Legacy |
-| generate_all_videos.py | Geração múltipla | 📦 Legacy |
+| generate_test_videos.py | Geraçêo batch | 📦 Legacy |
+| generate_all_videos.py | Geraçêo múltipla | 📦 Legacy |
 | check_jobs_status.py | Monitor de jobs | 📦 Legacy |
 
 ### Scripts em /tmp
 
-| Script | Função |
+| Script | Funçêo |
 |--------|--------|
 | /tmp/submit_workflow_final.py | Workflow validado que funcionou |
 | /tmp/simple_ltx_workflow.py | Workflow simples inicial |
@@ -68,9 +68,9 @@ ComfyUI/output/PRIMEIRO_VIDEO_LTX2_OFICIAL_00001_.mp4
 
 **Detalhes:**
 - Data: 16/02/2026 12:53
-- Resolução: 512x512
+- Resoluçêo: 512x512
 - Frames: 49 (24fps)
-- Duração: 2.04s
+- Duraçêo: 2.04s
 - Prompt: "A red ball bouncing on white background, simple smooth animation, 4k quality"
 
 ### Diretório de Outputs
@@ -93,7 +93,7 @@ ComfyUI/models/checkpoints/ltx-2-19b-distilled.safetensors
 
 - Tamanho: ~39GB
 - Parâmetros: 19B (distilled)
-- Função: Geração de vídeo + áudio
+- Funçêo: Geraçêo de vídeo + áudio
 
 ### Gemma 3 (Text Encoder) - CRÍTICO!
 
@@ -113,11 +113,11 @@ ComfyUI/models/text_encoders/gemma-3-12b-it-qat-q4_0-unquantized/
 
 **Total**: 22.7GB
 
-⚠️ **IMPORTANTE**: Deve ser especificamente a versão **QAT** (Quantization-Aware Training)!
+⚠️ **IMPORTANTE**: Deve ser especificamente a versêo **QAT** (Quantization-Aware Training)!
 
 ---
 
-## 🔧 Configuração do Sistema
+## 🔧 Configuraçêo do Sistema
 
 ### ComfyUI
 
@@ -143,7 +143,7 @@ VideosDGX/
 │       └── ComfyUI-LTXVideo/
 ├── gerar_video_ltx2.py          ← Script principal
 ├── QUICK_START.txt              ← Referência rápida
-├── RESUMO_EXECUTIVO.md          ← Visão executiva
+├── RESUMO_EXECUTIVO.md          ← Visêo executiva
 ├── README_GERAR_VIDEOS.md       ← Guia de uso
 ├── PRIMEIRO_VIDEO_SUCESSO.md    ← Doc técnica
 └── comfyui_server.log           ← Logs
@@ -153,7 +153,7 @@ VideosDGX/
 
 ## 🚀 Comandos Úteis
 
-### Geração de Vídeo
+### Geraçêo de Vídeo
 
 ```bash
 # Básico
@@ -179,7 +179,7 @@ ls -lht ComfyUI/output/ | head -10
 ls -t ComfyUI/output/*.mp4 | head -1
 ```
 
-### Manutenção
+### Manutençêo
 
 ```bash
 # Checar modelos instalados
@@ -199,12 +199,12 @@ df -h /home/nmaldaner/projetos/VideosDGX/
 
 ### Problemas Comuns
 
-| Problema | Solução | Documentação |
+| Problema | Soluçêo | Documentaçêo |
 |----------|---------|--------------|
 | SafetensorError | Usar modelo Gemma QAT correto | PRIMEIRO_VIDEO_SUCESSO.md |
 | Erro de path | Verificar estrutura de diretórios | PRIMEIRO_VIDEO_SUCESSO.md |
-| Vídeo não segue prompt | Aumentar CFG (--cfg 5.0) | README_GERAR_VIDEOS.md |
-| Geração lenta | Reduzir resolução/frames | README_GERAR_VIDEOS.md |
+| Vídeo nêo segue prompt | Aumentar CFG (--cfg 5.0) | README_GERAR_VIDEOS.md |
+| Geraçêo lenta | Reduzir resoluçêo/frames | README_GERAR_VIDEOS.md |
 
 ### Logs
 
@@ -215,7 +215,7 @@ grep -i error comfyui_server.log | tail -20
 # Ver warnings
 grep -i warning comfyui_server.log | tail -20
 
-# Ver última geração
+# Ver última geraçêo
 tail -100 comfyui_server.log
 ```
 
@@ -225,7 +225,7 @@ tail -100 comfyui_server.log
 
 ### Benchmarks
 
-| Configuração | Tempo | Throughput |
+| Configuraçêo | Tempo | Throughput |
 |--------------|-------|------------|
 | 512x512, 2s | ~77s | 1.5 vídeos/min |
 | 1024x576, 2s | ~150s | 0.8 vídeos/min |
@@ -248,7 +248,7 @@ tail -100 comfyui_server.log
 - **ComfyUI-LTXVideo**: https://github.com/Lightricks/ComfyUI-LTXVideo
 - **ComfyUI**: https://github.com/comfyanonymous/ComfyUI
 
-### Documentação Externa
+### Documentaçêo Externa
 
 - HuggingFace: https://huggingface.co/docs
 - Transformers: https://huggingface.co/docs/transformers
@@ -260,10 +260,10 @@ tail -100 comfyui_server.log
 
 ### ✅ Completado
 
-- [x] Instalação LTX-2 e Gemma
+- [x] Instalaçêo LTX-2 e Gemma
 - [x] Primeiro vídeo gerado com sucesso
-- [x] Script de geração automatizado
-- [x] Documentação completa
+- [x] Script de geraçêo automatizado
+- [x] Documentaçêo completa
 - [x] Troubleshooting guide
 
 ### 🔄 Em Progresso
@@ -278,7 +278,7 @@ tail -100 comfyui_server.log
 - [ ] API REST wrapper (FastAPI)
 - [ ] Sistema de fila para batch
 - [ ] Docker containers
-- [ ] Integração outros modelos (Wan 2.1, MAGI-1, Waver)
+- [ ] Integraçêo outros modelos (Wan 2.1, MAGI-1, Waver)
 
 ---
 
@@ -290,7 +290,7 @@ tail -100 comfyui_server.log
 - **12:11-12:49** - Download Gemma QAT concluído (22.7GB)
 - **11:40-12:13** - Download Gemma base concluído (22.7GB)
 - **00:00-12:00** - Troubleshooting e debugging extensivo
-- **12:56** - Documentação completa finalizada
+- **12:56** - Documentaçêo completa finalizada
 
 ---
 
@@ -305,6 +305,6 @@ Para dúvidas ou problemas:
 
 ---
 
-**Última atualização**: 16/02/2026 13:00
+**Última atualizaçêo**: 16/02/2026 13:00
 **Status do sistema**: ✅ **OPERACIONAL**
 **Vídeos gerados**: 1+ e contando!

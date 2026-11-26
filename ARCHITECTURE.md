@@ -1,8 +1,8 @@
 # Arquitetura VideosDGX
 
-## Visão Geral
+## Visêo Geral
 
-VideosDGX implementa uma arquitetura de microserviços containerizada para modelos de geração de vídeo, otimizada para o hardware DGX Spark 2026.
+VideosDGX implementa uma arquitetura de microserviços containerizada para modelos de geraçêo de vídeo, otimizada para o hardware DGX Spark 2026.
 
 ## Componentes Principais
 
@@ -18,7 +18,7 @@ VideosDGX implementa uma arquitetura de microserviços containerizada para model
 - **Vantagens**:
   - Build mais rápido (cache compartilhado)
   - Consistência entre containers
-  - Redução de espaço em disco
+  - Reduçêo de espaço em disco
 
 #### model_loader.py
 - **Responsabilidades**:
@@ -26,7 +26,7 @@ VideosDGX implementa uma arquitetura de microserviços containerizada para model
   - Gerenciamento de memória
   - Auto-unload baseado em timeout
   - Thread-safe operations
-- **Padrão**: Singleton por container
+- **Padrêo**: Singleton por container
 - **Otimizações**:
   - Lock para evitar carregamentos duplicados
   - Timer para auto-unload configurável
@@ -39,9 +39,9 @@ VideosDGX implementa uma arquitetura de microserviços containerizada para model
   - Sistema de fila de jobs (asyncio.Queue)
   - Worker assíncrono para processamento
   - Health checks e métricas
-- **Padrão**: Template Method para geração de vídeo
+- **Padrêo**: Template Method para geraçêo de vídeo
 - **Features**:
-  - Validação automática (Pydantic)
+  - Validaçêo automática (Pydantic)
   - Background processing
   - File serving (download de vídeos)
 
@@ -50,7 +50,7 @@ VideosDGX implementa uma arquitetura de microserviços containerizada para model
   - Logging configurável
   - Monitoramento de recursos (GPU/CPU)
   - Coleta de métricas
-  - Validação de parâmetros
+  - Validaçêo de parâmetros
 - **Classes**:
   - `MetricsCollector`: Estatísticas de inferência
 
@@ -62,7 +62,7 @@ Cada modelo tem sua própria estrutura:
 model_name/
 ├── Dockerfile          # Herda de base, adiciona deps específicas
 ├── app.py             # Entry point, instancia API
-├── model_config.py    # Lógica de carregamento e geração
+├── model_config.py    # Lógica de carregamento e geraçêo
 └── requirements.txt   # Dependências específicas
 ```
 
@@ -73,24 +73,24 @@ model_name/
 - Define variáveis de ambiente
 
 #### app.py
-- Configura `ModelLoader` com função de carregamento
-- Instancia `VideoModelAPI` com função de geração
+- Configura `ModelLoader` com funçêo de carregamento
+- Instancia `VideoModelAPI` com funçêo de geraçêo
 - Exporta app FastAPI
 
 #### model_config.py
-- `load_MODEL_model()`: Carrega modelo com quantização
-- `generate_video_MODEL()`: Implementa geração de vídeo
+- `load_MODEL_model()`: Carrega modelo com quantizaçêo
+- `generate_video_MODEL()`: Implementa geraçêo de vídeo
 
 ## Fluxo de Dados
 
-### Geração de Vídeo
+### Geraçêo de Vídeo
 
 ```
 1. Cliente HTTP
    ↓
 2. POST /generate (FastAPI)
    ↓
-3. Validação (Pydantic)
+3. Validaçêo (Pydantic)
    ↓
 4. Criar Job
    ↓
@@ -99,7 +99,7 @@ model_name/
 6. Worker assíncrono pega Job
    ↓
 7. ModelLoader.get_model()
-   ├─ Se não carregado: load()
+   ├─ Se nêo carregado: load()
    └─ Se carregado: retorna
    ↓
 8. generate_video_MODEL(pipeline, request, output_path)
@@ -116,20 +116,20 @@ model_name/
 ```
 1. Container inicia
    ├─ API pronta (~500MB RAM)
-   └─ Modelo NÃO carregado
+   └─ Modelo NêO carregado
 
-2. Primeira requisição chega
+2. Primeira requisiçêo chega
    ↓
 3. ModelLoader.get_model()
    ↓
 4. Verificar se já carregado
    ├─ Sim: retornar modelo
-   └─ Não: chamar load()
+   └─ Nêo: chamar load()
 
 5. load()
    ├─ Adquirir lock
    ├─ Chamar load_function (model_config)
-   ├─ Carregar com quantização
+   ├─ Carregar com quantizaçêo
    ├─ Atualizar estado (loaded=True)
    └─ Iniciar timer de auto-unload
 
@@ -137,22 +137,22 @@ model_name/
 
 7. Auto-unload (opcional)
    ├─ Timer dispara após X minutos
-   ├─ Verificar última utilização
+   ├─ Verificar última utilizaçêo
    └─ Se idle > threshold: unload()
 ```
 
-## Quantização
+## Quantizaçêo
 
 ### Estratégia por Modelo
 
-| Modelo | Quantização | Biblioteca | Razão |
+| Modelo | Quantizaçêo | Biblioteca | Razêo |
 |--------|-------------|------------|-------|
 | LTX-2 | FP4 (NF4) | bitsandbytes | Áudio+vídeo = grande, FP4 mantém qualidade |
 | Wan 2.1 | FP8 | Native PyTorch | 14B params, FP8 balanceia tamanho/qualidade |
 | MAGI-1 | FP4 (NF4) | bitsandbytes | Vídeos longos, economia de memória crítica |
 | Waver | FP8 | Native PyTorch | Lightweight, FP8 suficiente |
 
-### Implementação
+### Implementaçêo
 
 #### FP4 (bitsandbytes)
 ```python
@@ -187,7 +187,7 @@ model = Model.from_pretrained(
 - Auto-unload libera memória para outros modelos
 
 ### 2. Blackwell GB10
-- FP4/FP8 quantização nativa acelerada
+- FP4/FP8 quantizaçêo nativa acelerada
 - ~1 PFLOP FP4 performance
 - Uso de NVFP4 quando disponível
 
@@ -211,7 +211,7 @@ model = Model.from_pretrained(
       :8001          :8002          :8003
 ```
 
-- Bridge network para comunicação inter-container
+- Bridge network para comunicaçêo inter-container
 - Port mapping para acesso externo
 - Containers isolados (network namespace)
 
@@ -238,7 +238,7 @@ videosdgx_outputs/
 
 ### Volume Lifecycle
 
-1. **Criação**: `docker volume create videosdgx_models`
+1. **Criaçêo**: `docker volume create videosdgx_models`
 2. **Mount**: Todos os containers montam em `/models` e `/outputs`
 3. **Compartilhamento**: Modelos compartilhados entre containers
 4. **Backup**: `docker run --rm -v videosdgx_models:/data -v $(pwd):/backup ubuntu tar czf /backup/models.tar.gz /data`
@@ -257,7 +257,7 @@ healthcheck:
 
 ### Application Level
 - `/health`: Status básico (sempre responde se API está up)
-- `/ready`: Modelo carregado? (false se não carregado)
+- `/ready`: Modelo carregado? (false se nêo carregado)
 - `/info`: Detalhes completos (sistema + modelo + fila)
 
 ## Métricas
@@ -265,7 +265,7 @@ healthcheck:
 ### Coletadas Automaticamente
 
 - **Inference**:
-  - Duração por geração
+  - Duraçêo por geraçêo
   - Tamanho do prompt
   - Taxa de sucesso/erro
 
@@ -276,7 +276,7 @@ healthcheck:
 
 - **Modelo**:
   - Status (carregado/descarregado)
-  - Última utilização
+  - Última utilizaçêo
   - Auto-unload timer
 
 ### Acesso
@@ -303,17 +303,17 @@ Resposta:
 ### Considerações Atuais
 
 - Containers rodam como root (TODO: non-root user)
-- Bind only localhost (não exposto externamente)
+- Bind only localhost (nêo exposto externamente)
 - Volume permissions (755)
-- Sem autenticação (TODO: JWT)
+- Sem autenticaçêo (TODO: JWT)
 
 ### Melhorias Futuras
 
-1. **User namespacing**: Containers com UID/GID não-root
+1. **User namespacing**: Containers com UID/GID nêo-root
 2. **Secrets management**: Docker secrets para HuggingFace tokens
 3. **TLS**: HTTPS para APIs
-4. **Rate limiting**: Proteção contra abuse
-5. **Input validation**: Sanitização de prompts
+4. **Rate limiting**: Proteçêo contra abuse
+5. **Input validation**: Sanitizaçêo de prompts
 
 ## Escalabilidade
 
@@ -331,7 +331,7 @@ Resposta:
 ### Limitações Atuais
 - Single GPU por modelo (CUDA_VISIBLE_DEVICES=0)
 - Sem suporte a multi-GPU (model parallelism)
-- Fila in-memory (não persiste em restart)
+- Fila in-memory (nêo persiste em restart)
 
 ## Testing Strategy
 
@@ -370,14 +370,14 @@ curl -X POST http://localhost:8001/generate -d '{...}'
 - [ ] Monitoramento (Prometheus/Grafana)
 - [ ] Backup automático de volumes
 - [ ] Rate limiting habilitado
-- [ ] Autenticação configurada
+- [ ] Autenticaçêo configurada
 - [ ] SSL/TLS certificates
 - [ ] Auto-restart policies
 - [ ] Resource limits (docker-compose)
 
 ## Future Enhancements
 
-1. **WebUI**: Interface web para geração
+1. **WebUI**: Interface web para geraçêo
 2. **Streaming**: SSE para progress updates
 3. **Priority Queue**: Jobs com prioridade
 4. **Model Caching**: Cache de outputs similares
@@ -388,6 +388,6 @@ curl -X POST http://localhost:8001/generate -d '{...}'
 
 ---
 
-**Versão**: 1.0
+**Versêo**: 1.0
 **Data**: 2026-02-15
 **Plataforma**: DGX Spark 2026

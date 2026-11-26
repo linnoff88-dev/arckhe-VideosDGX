@@ -1,4 +1,4 @@
-// Configuração dos modelos
+// Configuraçêo dos modelos
 const MODELS = {
     ltx2: { name: 'LTX-2', apiPath: '/api/ltx2', desc: 'Vídeo + Áudio' },
     wan21: { name: 'Wan 2.1', apiPath: '/api/wan21', desc: 'Versátil 14B' },
@@ -12,7 +12,7 @@ let completedJobs = [];
 let statusInterval = null;
 let jobsInterval = null;
 
-// Inicialização
+// Inicializaçêo
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 });
@@ -75,7 +75,7 @@ function updateStatusCard(card, modelKey, data, status) {
         const modelLoaded = data.model?.loaded || false;
         const gpuMem = data.system?.gpu_memory;
 
-        statusText.textContent = modelLoaded ? '✓ Modelo carregado' : '○ Modelo não carregado';
+        statusText.textContent = modelLoaded ? '✓ Modelo carregado' : '○ Modelo nêo carregado';
         statusText.style.color = modelLoaded ? 'var(--success)' : 'var(--warning)';
 
         if (gpuMem && gpuMem.available) {
@@ -275,7 +275,7 @@ function renderCompletedJobs() {
                 <div class="video-container">
                     <video controls>
                         <source src="${downloadUrl}" type="video/mp4">
-                        Seu navegador não suporta vídeo.
+                        Seu navegador nêo suporta vídeo.
                     </video>
                 </div>
                 <div class="job-actions">
@@ -362,7 +362,7 @@ const HELP_CONTENT = {
             <h3>🎬 LTX-2 (Vídeo + Áudio)</h3>
             <ul>
                 <li><strong>Melhor para:</strong> Vídeos que precisam de áudio sincronizado</li>
-                <li><strong>Quantização:</strong> FP4 (NVFP4)</li>
+                <li><strong>Quantizaçêo:</strong> FP4 (NVFP4)</li>
                 <li><strong>Memória:</strong> ~25-30GB</li>
                 <li><strong>Velocidade:</strong> Média</li>
             </ul>
@@ -370,7 +370,7 @@ const HELP_CONTENT = {
             <h3>🎨 Wan 2.1 (Versátil 14B)</h3>
             <ul>
                 <li><strong>Melhor para:</strong> Vídeos de propósito geral, alta qualidade</li>
-                <li><strong>Quantização:</strong> FP8</li>
+                <li><strong>Quantizaçêo:</strong> FP8</li>
                 <li><strong>Memória:</strong> ~28-32GB</li>
                 <li><strong>Velocidade:</strong> Média-Lenta</li>
             </ul>
@@ -378,7 +378,7 @@ const HELP_CONTENT = {
             <h3>⏱️ MAGI-1 (Vídeos Longos)</h3>
             <ul>
                 <li><strong>Melhor para:</strong> Vídeos mais longos (10-60s) com contexto temporal</li>
-                <li><strong>Quantização:</strong> FP4</li>
+                <li><strong>Quantizaçêo:</strong> FP4</li>
                 <li><strong>Memória:</strong> ~20-25GB</li>
                 <li><strong>Velocidade:</strong> Lenta (mas gera vídeos mais longos)</li>
             </ul>
@@ -386,7 +386,7 @@ const HELP_CONTENT = {
             <h3>⚡ Waver 1.0 (Rápido)</h3>
             <ul>
                 <li><strong>Melhor para:</strong> Prototipagem rápida, batch processing</li>
-                <li><strong>Quantização:</strong> FP8</li>
+                <li><strong>Quantizaçêo:</strong> FP8</li>
                 <li><strong>Memória:</strong> ~15-18GB</li>
                 <li><strong>Velocidade:</strong> Rápida</li>
             </ul>
@@ -401,12 +401,12 @@ const HELP_CONTENT = {
     prompt: {
         title: "Como Escrever um Bom Prompt",
         content: `
-            <p>O prompt é a descrição do vídeo que você quer gerar. Quanto mais detalhado, melhor!</p>
+            <p>O prompt é a descriçêo do vídeo que você quer gerar. Quanto mais detalhado, melhor!</p>
 
             <h3>✅ Boas Práticas</h3>
             <ul>
                 <li>Seja específico e descritivo</li>
-                <li>Descreva a cena, ação, iluminação, estilo</li>
+                <li>Descreva a cena, açêo, iluminaçêo, estilo</li>
                 <li>Use vírgulas para separar conceitos</li>
                 <li>Mencione câmera/ângulo se relevante</li>
             </ul>
@@ -432,7 +432,7 @@ const HELP_CONTENT = {
     },
 
     duration: {
-        title: "Duração do Vídeo",
+        title: "Duraçêo do Vídeo",
         content: `
             <p>Define quanto tempo terá o vídeo gerado (em segundos).</p>
 
@@ -445,7 +445,7 @@ const HELP_CONTENT = {
             </ul>
 
             <div class="warning">
-                <strong>⚠️ Atenção:</strong> Vídeos mais longos demoram exponencialmente mais para gerar 
+                <strong>⚠️ Atençêo:</strong> Vídeos mais longos demoram exponencialmente mais para gerar 
                 e consomem mais memória.
             </div>
 
@@ -463,9 +463,9 @@ const HELP_CONTENT = {
 
             <h3>🎬 Quando Usar Cada FPS</h3>
             <ul>
-                <li><strong>24 FPS:</strong> Padrão cinema, aspecto cinematográfico</li>
+                <li><strong>24 FPS:</strong> Padrêo cinema, aspecto cinematográfico</li>
                 <li><strong>30 FPS:</strong> Vídeos web, YouTube, mais suave</li>
-                <li><strong>60 FPS:</strong> Ação rápida, movimentos muito suaves</li>
+                <li><strong>60 FPS:</strong> Açêo rápida, movimentos muito suaves</li>
             </ul>
 
             <h3>⚖️ Trade-offs</h3>
@@ -484,7 +484,7 @@ const HELP_CONTENT = {
     },
 
     resolution: {
-        title: "Resolução do Vídeo",
+        title: "Resoluçêo do Vídeo",
         content: `
             <p>Define o tamanho (largura x altura) do vídeo em pixels.</p>
 
@@ -508,13 +508,13 @@ const HELP_CONTENT = {
                     <ul>
                         <li>Tempo: ~120-300s</li>
                         <li>Qualidade: Excelente</li>
-                        <li>Uso: Produção final</li>
+                        <li>Uso: Produçêo final</li>
                     </ul>
                 </li>
             </ul>
 
             <div class="warning">
-                <strong>⚠️ Atenção:</strong> Resoluções maiores requerem muito mais memória 
+                <strong>⚠️ Atençêo:</strong> Resoluções maiores requerem muito mais memória 
                 e tempo de processamento (até 4-5x mais lento).
             </div>
 
@@ -528,21 +528,21 @@ const HELP_CONTENT = {
     seed: {
         title: "Seed (Semente Aleatória)",
         content: `
-            <p>Um número que controla a aleatoriedade da geração, permitindo resultados reproduzíveis.</p>
+            <p>Um número que controla a aleatoriedade da geraçêo, permitindo resultados reproduzíveis.</p>
 
             <h3>🎲 Como Funciona</h3>
             <ul>
                 <li><strong>Mesma seed + mesmo prompt = mesmo vídeo</strong></li>
                 <li><strong>Seeds diferentes = vídeos diferentes</strong></li>
                 <li>Qualquer número entre 0 e 999999999</li>
-                <li>Vazio (padrão) = seed aleatória a cada geração</li>
+                <li>Vazio (padrêo) = seed aleatória a cada geraçêo</li>
             </ul>
 
             <h3>💡 Quando Usar</h3>
             <ul>
-                <li><strong>Experimentação:</strong> Testar variações de parâmetros mantendo o visual base</li>
-                <li><strong>Reprodução:</strong> Recriar exatamente o mesmo vídeo</li>
-                <li><strong>Comparação:</strong> Comparar diferentes modelos com mesma seed</li>
+                <li><strong>Experimentaçêo:</strong> Testar variações de parâmetros mantendo o visual base</li>
+                <li><strong>Reproduçêo:</strong> Recriar exatamente o mesmo vídeo</li>
+                <li><strong>Comparaçêo:</strong> Comparar diferentes modelos com mesma seed</li>
             </ul>
 
             <h3>✨ Exemplo de Uso</h3>
@@ -561,7 +561,7 @@ const HELP_CONTENT = {
     },
 
     guidance: {
-        title: "Guidance Scale (Escala de Orientação)",
+        title: "Guidance Scale (Escala de Orientaçêo)",
         content: `
             <p>Controla o quanto o modelo deve seguir o prompt vs. criar livremente.</p>
 
@@ -578,10 +578,10 @@ const HELP_CONTENT = {
                     <ul>
                         <li>Resultado mais artístico e variado</li>
                         <li>Pode ignorar detalhes do prompt</li>
-                        <li>Bom para exploração criativa</li>
+                        <li>Bom para exploraçêo criativa</li>
                     </ul>
                 </li>
-                <li><strong>Guidance 7.5 (padrão):</strong>
+                <li><strong>Guidance 7.5 (padrêo):</strong>
                     <ul>
                         <li>Equilíbrio ideal</li>
                         <li>Segue bem o prompt</li>
@@ -592,13 +592,13 @@ const HELP_CONTENT = {
                     <ul>
                         <li>Muito literal ao prompt</li>
                         <li>Pode parecer "forçado"</li>
-                        <li>Menos variação natural</li>
+                        <li>Menos variaçêo natural</li>
                     </ul>
                 </li>
             </ul>
 
             <div class="warning">
-                <strong>⚠️ Atenção:</strong> Valores muito altos (>15) podem gerar artefatos 
+                <strong>⚠️ Atençêo:</strong> Valores muito altos (>15) podem gerar artefatos 
                 ou resultados de baixa qualidade.
             </div>
 
@@ -614,12 +614,12 @@ const MODEL_INFO = {
     ltx2: {
         title: "🎬 LTX-2 - Vídeo + Áudio",
         content: `
-            <p>Modelo completo de geração de vídeo com áudio sincronizado.</p>
+            <p>Modelo completo de geraçêo de vídeo com áudio sincronizado.</p>
 
             <h3>✨ Características</h3>
             <ul>
                 <li>Gera vídeo E áudio simultaneamente</li>
-                <li>Quantização FP4 (NVFP4) otimizada</li>
+                <li>Quantizaçêo FP4 (NVFP4) otimizada</li>
                 <li>14B parâmetros</li>
                 <li>Memória: ~25-30GB quando carregado</li>
             </ul>
@@ -635,7 +635,7 @@ const MODEL_INFO = {
             <h3>⚙️ Especificações Técnicas</h3>
             <ul>
                 <li><strong>Arquitetura:</strong> Diffusion Transformer</li>
-                <li><strong>Quantização:</strong> FP4 (NF4)</li>
+                <li><strong>Quantizaçêo:</strong> FP4 (NF4)</li>
                 <li><strong>Contexto máximo:</strong> 5-15 segundos ideal</li>
                 <li><strong>Tempo de inferência:</strong> ~60-180s (5s @ 1024x576)</li>
             </ul>
@@ -645,7 +645,7 @@ const MODEL_INFO = {
             </div>
 
             <div class="warning">
-                <strong>⚠️ Limitação:</strong> Mais lento que modelos só-vídeo devido ao processamento de áudio.
+                <strong>⚠️ Limitaçêo:</strong> Mais lento que modelos só-vídeo devido ao processamento de áudio.
             </div>
         `
     },
@@ -658,7 +658,7 @@ const MODEL_INFO = {
             <h3>✨ Características</h3>
             <ul>
                 <li>14 bilhões de parâmetros</li>
-                <li>Quantização FP8 para máxima qualidade</li>
+                <li>Quantizaçêo FP8 para máxima qualidade</li>
                 <li>Melhor balanço qualidade/desempenho</li>
                 <li>Memória: ~28-32GB quando carregado</li>
             </ul>
@@ -674,18 +674,18 @@ const MODEL_INFO = {
             <h3>⚙️ Especificações Técnicas</h3>
             <ul>
                 <li><strong>Arquitetura:</strong> Diffusion Transformer (14B)</li>
-                <li><strong>Quantização:</strong> FP8</li>
+                <li><strong>Quantizaçêo:</strong> FP8</li>
                 <li><strong>Contexto máximo:</strong> Até 30 segundos</li>
                 <li><strong>Tempo de inferência:</strong> ~90-240s (5s @ 1024x576)</li>
             </ul>
 
             <div class="tip">
-                <strong>💡 Quando usar:</strong> Para produção final e quando qualidade visual 
+                <strong>💡 Quando usar:</strong> Para produçêo final e quando qualidade visual 
                 é prioridade sobre velocidade.
             </div>
 
             <div class="warning">
-                <strong>⚠️ Limitação:</strong> Requer mais memória e tempo que modelos menores.
+                <strong>⚠️ Limitaçêo:</strong> Requer mais memória e tempo que modelos menores.
             </div>
         `
     },
@@ -699,7 +699,7 @@ const MODEL_INFO = {
             <ul>
                 <li>Arquitetura autoregressive (gera frame por frame)</li>
                 <li>Mantém contexto temporal entre frames</li>
-                <li>Quantização FP4 para eficiência</li>
+                <li>Quantizaçêo FP4 para eficiência</li>
                 <li>Memória: ~20-25GB quando carregado</li>
             </ul>
 
@@ -707,16 +707,16 @@ const MODEL_INFO = {
             <ul>
                 <li>Vídeos de 10-60 segundos</li>
                 <li>Narrativas com continuidade temporal</li>
-                <li>Cenas com evolução gradual</li>
+                <li>Cenas com evoluçêo gradual</li>
                 <li>Time-lapses e sequências</li>
             </ul>
 
             <h3>⚙️ Especificações Técnicas</h3>
             <ul>
                 <li><strong>Arquitetura:</strong> Autoregressive Transformer</li>
-                <li><strong>Quantização:</strong> FP4 (NF4)</li>
+                <li><strong>Quantizaçêo:</strong> FP4 (NF4)</li>
                 <li><strong>Contexto máximo:</strong> Até 60 segundos</li>
-                <li><strong>Tempo de inferência:</strong> ~120-600s (variável com duração)</li>
+                <li><strong>Tempo de inferência:</strong> ~120-600s (variável com duraçêo)</li>
             </ul>
 
             <h3>🔬 Como Funciona</h3>
@@ -732,7 +732,7 @@ const MODEL_INFO = {
             </div>
 
             <div class="warning">
-                <strong>⚠️ Limitação:</strong> MUITO mais lento para vídeos longos (geração incremental).
+                <strong>⚠️ Limitaçêo:</strong> MUITO mais lento para vídeos longos (geraçêo incremental).
             </div>
         `
     },
@@ -745,7 +745,7 @@ const MODEL_INFO = {
             <h3>✨ Características</h3>
             <ul>
                 <li>Modelo compacto e rápido</li>
-                <li>Quantização FP8 balanceada</li>
+                <li>Quantizaçêo FP8 balanceada</li>
                 <li>Ideal para prototipagem</li>
                 <li>Memória: ~15-18GB quando carregado</li>
             </ul>
@@ -753,7 +753,7 @@ const MODEL_INFO = {
             <h3>🎯 Melhor Para</h3>
             <ul>
                 <li>Testes rápidos de prompts</li>
-                <li>Prototipagem e experimentação</li>
+                <li>Prototipagem e experimentaçêo</li>
                 <li>Processar múltiplos vídeos em sequência</li>
                 <li>Quando velocidade > qualidade máxima</li>
             </ul>
@@ -761,7 +761,7 @@ const MODEL_INFO = {
             <h3>⚙️ Especificações Técnicas</h3>
             <ul>
                 <li><strong>Arquitetura:</strong> Lightweight Diffusion</li>
-                <li><strong>Quantização:</strong> FP8</li>
+                <li><strong>Quantizaçêo:</strong> FP8</li>
                 <li><strong>Contexto máximo:</strong> Até 15 segundos</li>
                 <li><strong>Tempo de inferência:</strong> ~30-90s (5s @ 1024x576)</li>
             </ul>
@@ -780,7 +780,7 @@ const MODEL_INFO = {
             </div>
 
             <div class="warning">
-                <strong>⚠️ Limitação:</strong> Qualidade inferior a Wan 2.1, menos detalhes em cenas complexas.
+                <strong>⚠️ Limitaçêo:</strong> Qualidade inferior a Wan 2.1, menos detalhes em cenas complexas.
             </div>
         `
     }

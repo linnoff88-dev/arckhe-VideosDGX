@@ -88,7 +88,7 @@ def run_benchmark(endpoint: str, test_case: Dict) -> Dict[str, Any]:
             }
 
         print(f"  Job criado: {job_id}")
-        print(f"  Aguardando conclusão...")
+        print(f"  Aguardando conclusêo...")
 
         # Poll job status
         max_wait = 300  # 5 minutos

@@ -1,4 +1,4 @@
-# Wan 2.2 Setup - Status de Implementação
+# Wan 2.2 Setup - Status de Implementaçêo
 
 **Data de início:** 2026-02-16
 **Status geral:** 🔄 Em progresso - Fase 2 (Wan 2.2 5B)
@@ -11,9 +11,9 @@ Após problemas com Wan 2.1 (safetensors headers muito grandes), decidimos imple
 
 ### Problema Wan 2.1
 - ❌ `wan2.1_t2v_14B.safetensors` tem header >48KB
-- ❌ `safetensors_rust 0.7.0` não suporta headers tão grandes
+- ❌ `safetensors_rust 0.7.0` nêo suporta headers têo grandes
 - ❌ Erro: "Error while deserializing header: header too large"
-- ✅ **Solução:** Migrar para Wan 2.2
+- ✅ **Soluçêo:** Migrar para Wan 2.2
 
 ---
 
@@ -21,7 +21,7 @@ Após problemas com Wan 2.1 (safetensors headers muito grandes), decidimos imple
 
 ### Downloads
 
-| Arquivo | Tamanho | Status | Localização |
+| Arquivo | Tamanho | Status | Localizaçêo |
 |---------|---------|--------|-------------|
 | `wan2.2_vae.safetensors` | 1.4GB | ✅ Completo | `models/vae/` |
 | `wan2.2_ti2v_5B_fp16.safetensors` | 9.3GB | 🔄 Baixando (~1-2h) | `models/unet/` |
@@ -32,18 +32,18 @@ Após problemas com Wan 2.1 (safetensors headers muito grandes), decidimos imple
 ### Arquivos Criados
 
 - ✅ `workflow_wan22_5b_t2v.json` - Workflow ComfyUI para Wan 2.2 5B
-- ✅ `gerar_video_wan22_5b.py` - Script CLI para geração de vídeos
+- ✅ `gerar_video_wan22_5b.py` - Script CLI para geraçêo de vídeos
 
-### Configuração do Workflow
+### Configuraçêo do Workflow
 
 ```json
 {
   "UNet": "wan2.2_ti2v_5B_fp16.safetensors",
   "VAE": "wan2.2_vae.safetensors",
   "Text Encoder": "models_t5_umt5-xxl-enc-bf16.pth",
-  "Resolução padrão": "720x480",
-  "Frames padrão": 33 (~2s @ 24fps),
-  "CFG padrão": 6.0
+  "Resoluçêo padrêo": "720x480",
+  "Frames padrêo": 33 (~2s @ 24fps),
+  "CFG padrêo": 6.0
 }
 ```
 
@@ -51,7 +51,7 @@ Após problemas com Wan 2.1 (safetensors headers muito grandes), decidimos imple
 
 1. ✅ Aguardar download do modelo 5B (9.3GB)
 2. 🔲 Reiniciar ComfyUI para carregar novos modelos
-3. 🔲 Testar geração com `./gerar_video_wan22_5b.py "test prompt"`
+3. 🔲 Testar geraçêo com `./gerar_video_wan22_5b.py "test prompt"`
 4. 🔲 Verificar qualidade e performance
 5. 🔲 Documentar resultados
 
@@ -59,9 +59,9 @@ Após problemas com Wan 2.1 (safetensors headers muito grandes), decidimos imple
 
 ## Fase 3: Wan 2.2 14B MoE - Planejado
 
-### Modelos Necessários (ainda não baixados)
+### Modelos Necessários (ainda nêo baixados)
 
-| Arquivo | Tamanho | Localização |
+| Arquivo | Tamanho | Localizaçêo |
 |---------|---------|-------------|
 | `wan2.2_t2v_low_noise_14B_fp8_scaled.safetensors` | ~35GB | `models/unet/` |
 | `wan2.2_t2v_high_noise_14B_fp8_scaled.safetensors` | ~35GB | `models/unet/` |
@@ -99,13 +99,13 @@ Mais complexo que 5B, mas qualidade cinematográfica superior.
 
 ### Desvantagens vs 14B MoE
 
-- 📉 **Qualidade inferior**: Boa, mas não cinematográfica
+- 📉 **Qualidade inferior**: Boa, mas nêo cinematográfica
 - ⚠️ **Menos aderência ao prompt**: Pode desviar mais do texto
-- 🎨 **Menos controle estético**: Menos preciso em iluminação/composição
+- 🎨 **Menos controle estético**: Menos preciso em iluminaçêo/composiçêo
 
 ---
 
-## Comparação de Modelos Video (DGX Spark)
+## Comparaçêo de Modelos Video (DGX Spark)
 
 | Modelo | Status | Tamanho | VRAM | Recursos Únicos | Qualidade |
 |--------|--------|---------|------|-----------------|-----------|
@@ -158,28 +158,28 @@ df -h /home/nmaldaner/projetos/VideosDGX
 ### Wan 2.1
 - ❌ Safetensors header muito grande (>48KB)
 - ❌ Incompatível com safetensors_rust 0.7.0
-- ✅ Solução: Usar Wan 2.2
+- ✅ Soluçêo: Usar Wan 2.2
 
 ### T5 Encoder FP8
 - ⚠️ `umt5_xxl_fp8_e4m3fn_scaled.safetensors` também tem header grande
-- ✅ Workaround: Usar versão BF16 `.pth` (11GB)
+- ✅ Workaround: Usar versêo BF16 `.pth` (11GB)
 - 📝 Aceitar maior uso de VRAM em troca de compatibilidade
 
 ---
 
-## Próxima Atualização
+## Próxima Atualizaçêo
 
 Após download do modelo 5B completar (~1-2h), realizar testes e atualizar este documento com:
-- Tempo de geração real
+- Tempo de geraçêo real
 - Qualidade dos vídeos
 - Uso de VRAM observado
-- Decisão sobre prosseguir para 14B MoE
+- Decisêo sobre prosseguir para 14B MoE
 
 ---
 
 ## Interface Web - Histórico de Versões
 
-| Versão | Arquivo | Porta | Novidades |
+| Versêo | Arquivo | Porta | Novidades |
 |--------|---------|-------|-----------|
 | v4.0 | `web_interface_v4.py` | 7860 | Multi-modelo inicial |
 | v4.1 | `web_interface_v4_1.py` | 7861 | Image-to-Video (I2V) |
@@ -200,11 +200,11 @@ python3 web_interface_v4_2.py
 ### v4.2 — Funcionalidades
 
 - **Fila ilimitada**: Submeta vários jobs sem esperar o anterior terminar
-- **Status `queued`**: Jobs ficam em fila com posição visível (`#1`, `#2`, ...)
-- **Cancelar**: Botão ✕ em cards `queued` (imediato) ou `processing` (≤5s)
-- **Botão sempre ativo**: Não bloqueia mais ao ter um job processando
+- **Status `queued`**: Jobs ficam em fila com posiçêo visível (`#1`, `#2`, ...)
+- **Cancelar**: Botêo ✕ em cards `queued` (imediato) ou `processing` (≤5s)
+- **Botêo sempre ativo**: Nêo bloqueia mais ao ter um job processando
 
 ---
 
-**Última atualização:** 2026-02-18 BRT
+**Última atualizaçêo:** 2026-02-18 BRT
 **Responsável:** Claude Code Agent (Sonnet 4.5)

@@ -29,7 +29,7 @@ def generate_video(model_name, api_url):
         print(f"✗ Erro verificando health: {e}")
         return False
 
-    # Envia requisição de geração
+    # Envia requisiçêo de geraçêo
     payload = {
         "prompt": TEST_PROMPT,
         "duration": 5,
@@ -39,8 +39,8 @@ def generate_video(model_name, api_url):
     }
 
     print(f"\nPrompt: {TEST_PROMPT}")
-    print(f"Configuração: {payload}")
-    print("\nEnviando requisição...")
+    print(f"Configuraçêo: {payload}")
+    print("\nEnviando requisiçêo...")
 
     try:
         response = requests.post(
@@ -68,7 +68,7 @@ def generate_video(model_name, api_url):
 
 def main():
     print("="*60)
-    print("GERAÇÃO DE VÍDEOS - TODOS OS MODELOS")
+    print("GERAÇêO DE VÍDEOS - TODOS OS MODELOS")
     print("="*60)
 
     results = {}

@@ -1,84 +1,84 @@
-﻿# VideosDGX - Docker Multi-Container para Video LLMs
+ï»¿# VideosDGX - Docker Multi-Container para Video LLMs
 
-Infraestrutura containerizada para rodar modelos de geraÃ§Ã£o de vÃ­deo no DGX Spark 2026.
+Infraestrutura containerizada para rodar modelos de geraêÂ§êÂ£o de vêÂ­deo no DGX Spark 2026.
 
-## ðŸ“‹ VisÃ£o Geral
+## ê°Å¸ââ¹ VisêÂ£o Geral
 
-Este projeto fornece uma arquitetura Docker multi-container para executar 4 modelos de geraÃ§Ã£o de vÃ­deo:
+Este projeto fornece uma arquitetura Docker multi-container para executar 4 modelos de geraêÂ§êÂ£o de vêÂ­deo:
 
-- **LTX-2**: GeraÃ§Ã£o completa de vÃ­deo + Ã¡udio (FP4, ~25-30GB)
-- **Wan 2.1**: Modelo versÃ¡til de 14B parÃ¢metros (FP8, ~28-32GB)
-- **MAGI-1**: Modelo autoregressive para vÃ­deos longos (FP4, ~20-25GB)
+- **LTX-2**: GeraêÂ§êÂ£o completa de vêÂ­deo + êÂ¡udio (FP4, ~25-30GB)
+- **Wan 2.1**: Modelo versêÂ¡til de 14B parêÂ¢metros (FP8, ~28-32GB)
+- **MAGI-1**: Modelo autoregressive para vêÂ­deos longos (FP4, ~20-25GB)
 - **Waver 1.0**: Modelo leve para batch generation (FP8, ~15-18GB)
 
-## ðŸŽ¯ Status Atual (2026-02-16)
+## ê°Å¸Å½Â¯ Status Atual (2026-02-16)
 
-### âœ… Funcionando
+### ê¢Åâ¦ Funcionando
 
-- âœ… **Docker Containers**: Todos os 4 containers (ltx2, wan21, magi1, waver) estÃ£o UP e respondendo
-- âœ… **APIs REST**: Endpoints /health retornando status saudÃ¡vel em todas as portas (8001-8004)
-- âœ… **Job Submission**: Jobs de geraÃ§Ã£o de vÃ­deo aceitos com sucesso por todos os modelos
-- âœ… **Modelos Baixados**:
+- ê¢Åâ¦ **Docker Containers**: Todos os 4 containers (ltx2, wan21, magi1, waver) estêÂ£o UP e respondendo
+- ê¢Åâ¦ **APIs REST**: Endpoints /health retornando status saudêÂ¡vel em todas as portas (8001-8004)
+- ê¢Åâ¦ **Job Submission**: Jobs de geraêÂ§êÂ£o de vêÂ­deo aceitos com sucesso por todos os modelos
+- ê¢Åâ¦ **Modelos Baixados**:
   - LTX-2: 293GB completo (checkpoint 41GB + Gemma FP8 6GB + projections 2.7GB + audio VAE 208MB)
   - Wan 2.1: 65GB completo (modelo montado de 6 shards)
   - MAGI-1: Download em andamento
-  - Waver: DisponÃ­vel no Docker volume
+  - Waver: DisponêÂ­vel no Docker volume
 
-### âš ï¸ Issues Conhecidos
+### ê¢Å¡Â ê¯Â¸Â Issues Conhecidos
 
-1. **LTX-2**: Carregamento iniciou mas travou em 50% (4/8 shards) - possÃ­vel timeout ou OOM
-2. **Wan 2.1 & Waver**: Erro `torch.xpu` AttributeError durante inicializaÃ§Ã£o (relacionado a ARM64 + CUDA)
-3. **MAGI-1**: Erro de configuraÃ§Ã£o - falta `model_type` no config.json
-4. **CUDA Memory**: Sistema host com 117GB/120GB VRAM jÃ¡ alocados, impedindo testes locais
+1. **LTX-2**: Carregamento iniciou mas travou em 50% (4/8 shards) - possêÂ­vel timeout ou OOM
+2. **Wan 2.1 & Waver**: Erro `torch.xpu` AttributeError durante inicializaêÂ§êÂ£o (relacionado a ARM64 + CUDA)
+3. **MAGI-1**: Erro de configuraêÂ§êÂ£o - falta `model_type` no config.json
+4. **CUDA Memory**: Sistema host com 117GB/120GB VRAM jêÂ¡ alocados, impedindo testes locais
 
-### ðŸ“ Scripts de Teste DisponÃ­veis
+### ê°Å¸âÂ Scripts de Teste DisponêÂ­veis
 
-- `generate_all_videos.py`: Submete jobs de geraÃ§Ã£o para todos os 4 modelos simultaneamente
+- `generate_all_videos.py`: Submete jobs de geraêÂ§êÂ£o para todos os 4 modelos simultaneamente
 - `check_jobs_status.py`: Monitora status dos jobs em loop (10s de intervalo, 10min timeout)
 - `test_ltx2_direct.py`: Testa LTX-2 via API Python direta (ltx_pipelines)
 - `test_ltx2_cpu.py`: Teste de fallback em CPU (extremamente lento)
 
-### CaracterÃ­sticas
+### CaracterêÂ­sticas
 
-- âœ… Isolamento por container (controle granular)
-- âœ… APIs REST completas para cada modelo
-- âœ… Carregamento sob demanda (lazy loading)
-- âœ… QuantizaÃ§Ã£o otimizada (FP4/FP8)
-- âœ… Gerenciamento de fila de jobs
-- âœ… Health checks e mÃ©tricas
-- âœ… Volumes persistentes para modelos e outputs
+- ê¢Åâ¦ Isolamento por container (controle granular)
+- ê¢Åâ¦ APIs REST completas para cada modelo
+- ê¢Åâ¦ Carregamento sob demanda (lazy loading)
+- ê¢Åâ¦ QuantizaêÂ§êÂ£o otimizada (FP4/FP8)
+- ê¢Åâ¦ Gerenciamento de fila de jobs
+- ê¢Åâ¦ Health checks e mêÂ©tricas
+- ê¢Åâ¦ Volumes persistentes para modelos e outputs
 
-## ðŸ—ï¸ Arquitetura
+## ê°Å¸Ââê¯Â¸Â Arquitetura
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    DGX Spark 2026                       â”‚
-â”‚              128GB Unified Memory + Blackwell           â”‚
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-â”‚  LTX-2      â”‚  Wan 2.1    â”‚  MAGI-1     â”‚  Waver 1.0   â”‚
-â”‚  :8001      â”‚  :8002      â”‚  :8003      â”‚  :8004       â”‚
-â”‚  FP4        â”‚  FP8        â”‚  FP4        â”‚  FP8         â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-         â”‚              â”‚              â”‚              â”‚
-         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                          â”‚
-                   â”Œâ”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”
-                   â”‚   Volumes   â”‚
-                   â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
-                   â”‚   models/   â”‚
-                   â”‚   outputs/  â”‚
-                   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+ê¢âÅê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ
+ê¢ââ                    DGX Spark 2026                       ê¢ââ
+ê¢ââ              128GB Unified Memory + Blackwell           ê¢ââ
+ê¢âÅê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ¤
+ê¢ââ  LTX-2      ê¢ââ  Wan 2.1    ê¢ââ  MAGI-1     ê¢ââ  Waver 1.0   ê¢ââ
+ê¢ââ  :8001      ê¢ââ  :8002      ê¢ââ  :8003      ê¢ââ  :8004       ê¢ââ
+ê¢ââ  FP4        ê¢ââ  FP8        ê¢ââ  FP4        ê¢ââ  FP8         ê¢ââ
+ê¢ââê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ´ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ´ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ´ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âË
+         ê¢ââ              ê¢ââ              ê¢ââ              ê¢ââ
+         ê¢ââê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ´ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ´ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âË
+                          ê¢ââ
+                   ê¢âÅê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ´ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ
+                   ê¢ââ   Volumes   ê¢ââ
+                   ê¢âÅê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âÂ¤
+                   ê¢ââ   models/   ê¢ââ
+                   ê¢ââ   outputs/  ê¢ââ
+                   ê¢ââê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢ââ¬ê¢âË
 ```
 
-## ðŸš€ Quick Start
+## ê°Å¸Å¡â¬ Quick Start
 
-### PrÃ©-requisitos
+### PrêÂ©-requisitos
 
 - Docker Engine 24.0+
 - Docker Compose 2.20+
 - NVIDIA Docker Runtime
 - GPU com suporte CUDA 12.3+
-- ~100GB de espaÃ§o em disco (para modelos)
+- ~100GB de espaêÂ§o em disco (para modelos)
 
 ### 1. Build da Base Image
 
@@ -112,7 +112,7 @@ huggingface-cli download Lightricks/LTX-Video --local-dir /var/lib/docker/volume
 docker-compose build
 ```
 
-### 4. Iniciar os ServiÃ§os
+### 4. Iniciar os ServiêÂ§os
 
 ```bash
 docker-compose up -d
@@ -124,17 +124,17 @@ docker-compose up -d
 ./scripts/health_check.py
 ```
 
-SaÃ­da esperada:
+SaêÂ­da esperada:
 
 ```
 =========================================
 VideosDGX - Health Check
 =========================================
 
-â— LTX-2
+ê¢âÂ LTX-2
    Status:      Online
    Endpoint:    http://localhost:8001
-   Modelo:      NÃ£o carregado
+   Modelo:      NêÂ£o carregado
    GPU Memory:  0.5GB / 128GB
    CPU Memory:  0.8GB / 128GB
    Queue:       0 jobs
@@ -142,26 +142,26 @@ VideosDGX - Health Check
 ...
 ```
 
-## ðŸ“¡ Uso das APIs
+## ê°Å¸âÂ¡ Uso das APIs
 
-Todas as APIs seguem o mesmo padrÃ£o REST.
+Todas as APIs seguem o mesmo padrêÂ£o REST.
 
-### Endpoints DisponÃ­veis
+### Endpoints DisponêÂ­veis
 
-| Endpoint | MÃ©todo | DescriÃ§Ã£o |
+| Endpoint | MêÂ©todo | DescriêÂ§êÂ£o |
 |----------|--------|-----------|
-| `/` | GET | InformaÃ§Ãµes gerais da API |
-| `/health` | GET | Health check bÃ¡sico |
-| `/ready` | GET | Verifica se modelo estÃ¡ carregado |
-| `/info` | GET | InformaÃ§Ãµes detalhadas (sistema + modelo) |
-| `/generate` | POST | Gera vÃ­deo a partir de prompt |
-| `/unload` | POST | Descarrega modelo da memÃ³ria |
+| `/` | GET | InformaêÂ§êÂµes gerais da API |
+| `/health` | GET | Health check bêÂ¡sico |
+| `/ready` | GET | Verifica se modelo estêÂ¡ carregado |
+| `/info` | GET | InformaêÂ§êÂµes detalhadas (sistema + modelo) |
+| `/generate` | POST | Gera vêÂ­deo a partir de prompt |
+| `/unload` | POST | Descarrega modelo da memêÂ³ria |
 | `/queue/status` | GET | Status da fila de jobs |
-| `/jobs/{job_id}` | GET | Status de um job especÃ­fico |
-| `/jobs/{job_id}/download` | GET | Download do vÃ­deo gerado |
-| `/metrics` | GET | MÃ©tricas de performance |
+| `/jobs/{job_id}` | GET | Status de um job especêÂ­fico |
+| `/jobs/{job_id}/download` | GET | Download do vêÂ­deo gerado |
+| `/metrics` | GET | MêÂ©tricas de performance |
 
-### Exemplo: Gerar VÃ­deo
+### Exemplo: Gerar VêÂ­deo
 
 ```bash
 # LTX-2 (porta 8001)
@@ -213,7 +213,7 @@ Resposta (em processamento):
 }
 ```
 
-### Download do VÃ­deo
+### Download do VêÂ­deo
 
 ```bash
 # Quando status = "completed"
@@ -222,9 +222,9 @@ curl -O http://localhost:8001/jobs/ltx2-abc12345/download
 
 Ou acesse diretamente no navegador: `http://localhost:8001/jobs/ltx2-abc12345/download`
 
-## ðŸ”§ ConfiguraÃ§Ã£o
+## ê°Å¸âÂ§ ConfiguraêÂ§êÂ£o
 
-### VariÃ¡veis de Ambiente (.env)
+### VariêÂ¡veis de Ambiente (.env)
 
 ```bash
 # Auto-unload: minutos de inatividade antes de descarregar modelo
@@ -235,7 +235,7 @@ AUTO_UNLOAD_MINUTES=30
 LOG_LEVEL=INFO
 ```
 
-### Portas dos ServiÃ§os
+### Portas dos ServiêÂ§os
 
 | Modelo | Porta | Endpoint |
 |--------|-------|----------|
@@ -244,7 +244,7 @@ LOG_LEVEL=INFO
 | MAGI-1 | 8003 | http://localhost:8003 |
 | Waver 1.0 | 8004 | http://localhost:8004 |
 
-## ðŸ“Š Monitoramento
+## ê°Å¸âÅ  Monitoramento
 
 ### Health Check
 
@@ -266,7 +266,7 @@ Testar apenas um modelo:
 ./scripts/benchmark.py --model ltx2
 ```
 
-Teste rÃ¡pido:
+Teste rêÂ¡pido:
 
 ```bash
 ./scripts/benchmark.py --quick
@@ -278,10 +278,10 @@ Teste rÃ¡pido:
 # Todos os containers
 docker-compose logs -f
 
-# Container especÃ­fico
+# Container especêÂ­fico
 docker-compose logs -f ltx2
 
-# Ãšltimas 100 linhas
+# êÅ¡ltimas 100 linhas
 docker-compose logs --tail=100 wan21
 ```
 
@@ -299,20 +299,20 @@ docker volume inspect videosdgx_models
 docker volume inspect videosdgx_outputs
 ```
 
-## ðŸŽ¯ Gerenciamento de MemÃ³ria
+## ê°Å¸Å½Â¯ Gerenciamento de MemêÂ³ria
 
-### EstratÃ©gia de Carregamento
+### EstratêÂ©gia de Carregamento
 
-1. **Container inicia**: API pronta, modelo NÃƒO carregado (~500MB RAM)
-2. **Primeira requisiÃ§Ã£o**: Modelo carregado automaticamente
-3. **RequisiÃ§Ãµes subsequentes**: Modelo jÃ¡ em memÃ³ria (rÃ¡pido)
-4. **Auto-unload**: ApÃ³s X minutos de inatividade (configurÃ¡vel)
+1. **Container inicia**: API pronta, modelo NêÆO carregado (~500MB RAM)
+2. **Primeira requisiêÂ§êÂ£o**: Modelo carregado automaticamente
+3. **RequisiêÂ§êÂµes subsequentes**: Modelo jêÂ¡ em memêÂ³ria (rêÂ¡pido)
+4. **Auto-unload**: ApêÂ³s X minutos de inatividade (configurêÂ¡vel)
 
-### Estimativa de MemÃ³ria
+### Estimativa de MemêÂ³ria
 
-Com 128GB de memÃ³ria unificada:
+Com 128GB de memêÂ³ria unificada:
 
-| Modelo | QuantizaÃ§Ã£o | MemÃ³ria | Tempo de Carga |
+| Modelo | QuantizaêÂ§êÂ£o | MemêÂ³ria | Tempo de Carga |
 |--------|-------------|---------|----------------|
 | LTX-2 | FP4 | ~25-30GB | ~60-90s |
 | Wan 2.1 | FP8 | ~28-32GB | ~70-100s |
@@ -341,26 +341,26 @@ Resposta:
 }
 ```
 
-## ðŸ”„ Abordagens Alternativas
+## ê°Å¸ââ Abordagens Alternativas
 
-AlÃ©m da arquitetura Docker, este projeto inclui duas abordagens alternativas configuradas:
+AlêÂ©m da arquitetura Docker, este projeto inclui duas abordagens alternativas configuradas:
 
 ### ComfyUI (Recomendado pela NVIDIA)
 
-ComfyUI estÃ¡ instalado e configurado com custom nodes para LTX-2:
+ComfyUI estêÂ¡ instalado e configurado com custom nodes para LTX-2:
 
 ```bash
 # Ativar ambiente
 source comfyui-env/bin/activate
 
-# Iniciar servidor (requer resolver issue de memÃ³ria)
+# Iniciar servidor (requer resolver issue de memêÂ³ria)
 cd ComfyUI
 python main.py --port 8188
 
 # Acessar: http://localhost:8188
 ```
 
-**LocalizaÃ§Ã£o dos modelos ComfyUI**:
+**LocalizaêÂ§êÂ£o dos modelos ComfyUI**:
 - Checkpoint: `ComfyUI/models/checkpoints/ltx-2-19b-distilled.safetensors` (41GB)
 - Text Encoder: `ComfyUI/models/clip/gemma_3_12B_it_fp8_e4m3fn.safetensors` (6GB)
 - Projections: `ComfyUI/models/clip/ltx-2-19b-dev-fp4_projections_only.safetensors` (2.7GB)
@@ -378,7 +378,7 @@ API oficial da Lightricks instalada via pip:
 # Ativar ambiente
 source comfyui-env/bin/activate
 
-# Gerar vÃ­deo via linha de comando
+# Gerar vêÂ­deo via linha de comando
 python -m ltx_pipelines.distilled \
   --checkpoint-path ComfyUI/models/checkpoints/ltx-2-19b-distilled.safetensors \
   --gemma-root ComfyUI/models/clip/ \
@@ -395,9 +395,9 @@ python -m ltx_pipelines.distilled \
 - `ltx-core`
 - `ltx-pipelines`
 
-## ðŸ§ª Testes Realizados
+## ê°Å¸Â§Âª Testes Realizados
 
-### GeraÃ§Ã£o de VÃ­deos (16/02/2026)
+### GeraêÂ§êÂ£o de VêÂ­deos (16/02/2026)
 
 Executado `generate_all_videos.py` com prompt: *"A cat walking on a beach at sunset, cinematic camera movement, golden hour lighting, 4k quality"*
 
@@ -405,34 +405,34 @@ Executado `generate_all_videos.py` com prompt: *"A cat walking on a beach at sun
 
 | Modelo | Status | Job ID | Detalhes |
 |--------|--------|--------|----------|
-| LTX-2 | â¸ï¸ Travado | ltx2-26252c62 | Carregamento iniciou (50%), depois timeout |
-| Wan 2.1 | âŒ Falhou | wan21-66eb1181 | torch.xpu AttributeError |
-| MAGI-1 | âŒ Falhou | magi1-5d8c2647 | Config.json sem model_type |
-| Waver | âŒ Falhou | waver-cf98097a | torch.xpu AttributeError |
+| LTX-2 | ê¢ÂÂ¸ê¯Â¸Â Travado | ltx2-26252c62 | Carregamento iniciou (50%), depois timeout |
+| Wan 2.1 | ê¢ÂÅ Falhou | wan21-66eb1181 | torch.xpu AttributeError |
+| MAGI-1 | ê¢ÂÅ Falhou | magi1-5d8c2647 | Config.json sem model_type |
+| Waver | ê¢ÂÅ Falhou | waver-cf98097a | torch.xpu AttributeError |
 
 **Log completo**: `generation_results.log`
 
-## ðŸ› ï¸ Comandos Ãšteis
+## ê°Å¸âºÂ ê¯Â¸Â Comandos êÅ¡teis
 
 ### Docker Compose
 
 ```bash
-# Iniciar todos os serviÃ§os
+# Iniciar todos os serviêÂ§os
 docker-compose up -d
 
-# Parar todos os serviÃ§os
+# Parar todos os serviêÂ§os
 docker-compose down
 
-# Rebuild de um serviÃ§o especÃ­fico
+# Rebuild de um serviêÂ§o especêÂ­fico
 docker-compose build ltx2
 
-# Restart de um serviÃ§o
+# Restart de um serviêÂ§o
 docker-compose restart wan21
 
 # Ver logs
 docker-compose logs -f
 
-# Escalar serviÃ§o (nÃ£o recomendado para GPUs)
+# Escalar serviêÂ§o (nêÂ£o recomendado para GPUs)
 docker-compose up -d --scale waver=2
 ```
 
@@ -463,16 +463,16 @@ docker-compose down
 # Remover volumes (CUIDADO: apaga modelos!)
 docker-compose down -v
 
-# Limpar imagens nÃ£o utilizadas
+# Limpar imagens nêÂ£o utilizadas
 docker image prune -a
 
 # Limpar tudo (CUIDADO!)
 docker system prune -a --volumes
 ```
 
-## ðŸ› Troubleshooting
+## ê°Å¸Ââº Troubleshooting
 
-### Container nÃ£o inicia
+### Container nêÂ£o inicia
 
 ```bash
 # Verificar logs
@@ -485,13 +485,13 @@ nvidia-smi
 docker run --rm --gpus all nvidia/cuda:12.3.0-base-ubuntu22.04 nvidia-smi
 ```
 
-### Modelo nÃ£o carrega
+### Modelo nêÂ£o carrega
 
 ```bash
 # Verificar se modelo existe
 docker volume inspect videosdgx_models
 
-# Verificar permissÃµes
+# Verificar permissêÂµes
 docker exec videosdgx-ltx2 ls -la /models/ltx2
 
 # Verificar logs de carregamento
@@ -501,10 +501,10 @@ docker-compose logs ltx2 | grep "Carregando"
 ### Out of Memory
 
 ```bash
-# Verificar memÃ³ria GPU
+# Verificar memêÂ³ria GPU
 nvidia-smi
 
-# Descarregar modelos nÃ£o usados
+# Descarregar modelos nêÂ£o usados
 curl -X POST http://localhost:8001/unload
 curl -X POST http://localhost:8002/unload
 
@@ -514,12 +514,12 @@ docker-compose restart ltx2
 
 ### Performance lenta
 
-1. Verificar se modelo estÃ¡ carregado: `curl http://localhost:8001/ready`
+1. Verificar se modelo estêÂ¡ carregado: `curl http://localhost:8001/ready`
 2. Verificar fila: `curl http://localhost:8001/queue/status`
-3. Verificar mÃ©tricas: `curl http://localhost:8001/metrics`
-4. Ajustar nÃºmero de inference steps nas configs
+3. Verificar mêÂ©tricas: `curl http://localhost:8001/metrics`
+4. Ajustar nêÂºmero de inference steps nas configs
 
-### âš ï¸ Erros Conhecidos e SoluÃ§Ãµes
+### ê¢Å¡Â ê¯Â¸Â Erros Conhecidos e SoluêÂ§êÂµes
 
 #### 1. torch.xpu AttributeError (Wan 2.1, Waver)
 
@@ -530,12 +530,12 @@ AttributeError: module 'torch' has no attribute 'xpu'
 
 **Causa**: Bibliotecas tentando detectar Intel XPU em ambiente ARM64 + CUDA
 
-**SoluÃ§Ãµes tentadas**:
-- âŒ Environment variables (`ACCELERATE_USE_XPU=0`)
-- âŒ Monkey-patching `torch.xpu`
-- â³ **SoluÃ§Ã£o necessÃ¡ria**: Patch no cÃ³digo de inicializaÃ§Ã£o dos containers
+**SoluêÂ§êÂµes tentadas**:
+- ê¢ÂÅ Environment variables (`ACCELERATE_USE_XPU=0`)
+- ê¢ÂÅ Monkey-patching `torch.xpu`
+- ê¢ÂÂ³ **SoluêÂ§êÂ£o necessêÂ¡ria**: Patch no cêÂ³digo de inicializaêÂ§êÂ£o dos containers
 
-**Workaround temporÃ¡rio**:
+**Workaround temporêÂ¡rio**:
 ```python
 # Adicionar antes de imports de diffusers/accelerate
 import torch
@@ -556,7 +556,7 @@ RuntimeError: CUDA out of memory. Tried to allocate X GB
 
 **Causa**: Processo root (PID 2351379) consumindo 117GB/120GB VRAM
 
-**SoluÃ§Ã£o**:
+**SoluêÂ§êÂ£o**:
 ```bash
 # Requer sudo
 sudo kill -9 2351379
@@ -564,7 +564,7 @@ sudo sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'
 nvidia-smi
 ```
 
-**VerificaÃ§Ã£o**:
+**VerificaêÂ§êÂ£o**:
 ```bash
 # Mostrar processos usando GPU
 fuser -v /dev/nvidia*
@@ -578,15 +578,15 @@ ps aux | grep 2351379
 Unrecognized model in /models/magi1. Should have a `model_type` key in its config.json
 ```
 
-**Causa**: Download incompleto ou configuraÃ§Ã£o ausente
+**Causa**: Download incompleto ou configuraêÂ§êÂ£o ausente
 
-**SoluÃ§Ã£o**:
+**SoluêÂ§êÂ£o**:
 ```bash
 # Verificar integridade do download
 docker exec videosdgx-magi1 ls -lah /models/magi1/
 docker exec videosdgx-magi1 cat /models/magi1/config.json
 
-# Re-download se necessÃ¡rio
+# Re-download se necessêÂ¡rio
 docker exec videosdgx-magi1 huggingface-cli download SandAI-org/MAGI-1 --local-dir /models/magi1
 ```
 
@@ -594,27 +594,27 @@ docker exec videosdgx-magi1 huggingface-cli download SandAI-org/MAGI-1 --local-d
 
 **Sintoma**: Carregamento trava em 50% (4/8 checkpoint shards)
 
-**DiagnÃ³stico**:
+**DiagnêÂ³stico**:
 ```bash
 # Verificar logs detalhados
 docker logs videosdgx-ltx2 --tail 200
 
-# Verificar uso de memÃ³ria durante carregamento
+# Verificar uso de memêÂ³ria durante carregamento
 docker stats videosdgx-ltx2
 
-# Verificar se processo estÃ¡ travado ou apenas lento
+# Verificar se processo estêÂ¡ travado ou apenas lento
 docker exec videosdgx-ltx2 ps aux
 ```
 
-**PossÃ­veis causas**:
+**PossêÂ­veis causas**:
 - OOM durante carregamento de shards grandes
 - Deadlock em carregamento multi-threaded
-- Timeout muito curto nas requisiÃ§Ãµes
+- Timeout muito curto nas requisiêÂ§êÂµes
 
-**SoluÃ§Ã£o**:
+**SoluêÂ§êÂ£o**:
 ```bash
 # Aumentar timeout no check_jobs_status.py
-max_iterations = 120  # 20 minutos ao invÃ©s de 10
+max_iterations = 120  # 20 minutos ao invêÂ©s de 10
 
 # Ou restart do container
 docker-compose restart ltx2
@@ -624,99 +624,99 @@ docker-compose restart ltx2
 
 **Erro**: `403 Client Error: Forbidden for url: google/gemma-3-12b-it`
 
-**SoluÃ§Ã£o aplicada**: Usar modelo alternativo nÃ£o-gated
+**SoluêÂ§êÂ£o aplicada**: Usar modelo alternativo nêÂ£o-gated
 ```bash
 # Baixado: GitMylo/LTX-2-comfy_gemma_fp8_e4m3fn
-# LocalizaÃ§Ã£o: ComfyUI/models/clip/gemma_3_12B_it_fp8_e4m3fn.safetensors
+# LocalizaêÂ§êÂ£o: ComfyUI/models/clip/gemma_3_12B_it_fp8_e4m3fn.safetensors
 ```
 
-## ðŸ“š Estrutura de Arquivos
+## ê°Å¸âÅ¡ Estrutura de Arquivos
 
 ```
 VideosDGX/
-â”œâ”€â”€ common/                    # CÃ³digo compartilhado (Docker)
-â”‚   â”œâ”€â”€ base.Dockerfile        # Base image com CUDA + PyTorch
-â”‚   â”œâ”€â”€ api_base.py            # Framework FastAPI
-â”‚   â”œâ”€â”€ model_loader.py        # Gerenciador de modelos
-â”‚   â””â”€â”€ utils.py               # Utilidades (logging, metrics)
-â”œâ”€â”€ ltx2/                      # LTX-2 container especÃ­fico
-â”‚   â”œâ”€â”€ Dockerfile
-â”‚   â”œâ”€â”€ app.py
-â”‚   â”œâ”€â”€ model_config.py
-â”‚   â””â”€â”€ requirements.txt
-â”œâ”€â”€ wan21/                     # Wan 2.1 container
-â”œâ”€â”€ magi1/                     # MAGI-1 container
-â”œâ”€â”€ waver/                     # Waver container
-â”œâ”€â”€ scripts/                   # Scripts de utilidade
-â”‚   â”œâ”€â”€ download_models.sh
-â”‚   â”œâ”€â”€ health_check.py
-â”‚   â””â”€â”€ benchmark.py
-â”œâ”€â”€ ComfyUI/                   # ComfyUI installation
-â”‚   â”œâ”€â”€ models/
-â”‚   â”‚   â”œâ”€â”€ checkpoints/       # LTX-2 checkpoint (41GB)
-â”‚   â”‚   â”œâ”€â”€ clip/              # Gemma FP8 encoder (6GB) + projections (2.7GB)
-â”‚   â”‚   â””â”€â”€ vae/               # Audio VAE (208MB)
-â”‚   â””â”€â”€ custom_nodes/
-â”‚       â”œâ”€â”€ ComfyUI-LTXVideo/  # LTX-2 custom node
-â”‚       â””â”€â”€ MAGI-1/            # MAGI-1 custom node
-â”œâ”€â”€ LTX-2/                     # RepositÃ³rio oficial Lightricks
-â”‚   â””â”€â”€ src/ltx_pipelines/     # API Python direta
-â”œâ”€â”€ comfyui-env/               # Python venv (PyTorch 2.10.0+cu130)
-â”œâ”€â”€ docker-compose.yml         # OrquestraÃ§Ã£o dos 4 containers
-â”œâ”€â”€ .env                       # ConfiguraÃ§Ãµes de ambiente
-â”œâ”€â”€ generate_all_videos.py    # Script de teste - submete jobs para todos os modelos
-â”œâ”€â”€ check_jobs_status.py      # Script de monitoramento de jobs
-â”œâ”€â”€ test_ltx2_direct.py        # Teste LTX-2 via Python API
-â”œâ”€â”€ test_ltx2_cpu.py           # Teste LTX-2 em CPU (fallback)
-â”œâ”€â”€ generation_results.log     # Log dos testes executados
-â”œâ”€â”€ CLAUDE.md                  # InstruÃ§Ãµes para Claude Code
-â”œâ”€â”€ ARCHITECTURE.md            # DocumentaÃ§Ã£o da arquitetura
-â”œâ”€â”€ QUICKSTART.md              # Guia rÃ¡pido de inÃ­cio
-â”œâ”€â”€ PROJECT_SUMMARY.md         # Resumo do projeto
-â”œâ”€â”€ CHANGELOG.md               # HistÃ³rico de mudanÃ§as
-â””â”€â”€ README.md                  # Este arquivo
+ê¢âÅê¢ââ¬ê¢ââ¬ common/                    # CêÂ³digo compartilhado (Docker)
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ base.Dockerfile        # Base image com CUDA + PyTorch
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ api_base.py            # Framework FastAPI
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ model_loader.py        # Gerenciador de modelos
+ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ utils.py               # Utilidades (logging, metrics)
+ê¢âÅê¢ââ¬ê¢ââ¬ ltx2/                      # LTX-2 container especêÂ­fico
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ Dockerfile
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ app.py
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ model_config.py
+ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ requirements.txt
+ê¢âÅê¢ââ¬ê¢ââ¬ wan21/                     # Wan 2.1 container
+ê¢âÅê¢ââ¬ê¢ââ¬ magi1/                     # MAGI-1 container
+ê¢âÅê¢ââ¬ê¢ââ¬ waver/                     # Waver container
+ê¢âÅê¢ââ¬ê¢ââ¬ scripts/                   # Scripts de utilidade
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ download_models.sh
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ health_check.py
+ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ benchmark.py
+ê¢âÅê¢ââ¬ê¢ââ¬ ComfyUI/                   # ComfyUI installation
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ models/
+ê¢ââ   ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ checkpoints/       # LTX-2 checkpoint (41GB)
+ê¢ââ   ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ clip/              # Gemma FP8 encoder (6GB) + projections (2.7GB)
+ê¢ââ   ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ vae/               # Audio VAE (208MB)
+ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ custom_nodes/
+ê¢ââ       ê¢âÅê¢ââ¬ê¢ââ¬ ComfyUI-LTXVideo/  # LTX-2 custom node
+ê¢ââ       ê¢ââê¢ââ¬ê¢ââ¬ MAGI-1/            # MAGI-1 custom node
+ê¢âÅê¢ââ¬ê¢ââ¬ LTX-2/                     # RepositêÂ³rio oficial Lightricks
+ê¢ââ   ê¢ââê¢ââ¬ê¢ââ¬ src/ltx_pipelines/     # API Python direta
+ê¢âÅê¢ââ¬ê¢ââ¬ comfyui-env/               # Python venv (PyTorch 2.10.0+cu130)
+ê¢âÅê¢ââ¬ê¢ââ¬ docker-compose.yml         # OrquestraêÂ§êÂ£o dos 4 containers
+ê¢âÅê¢ââ¬ê¢ââ¬ .env                       # ConfiguraêÂ§êÂµes de ambiente
+ê¢âÅê¢ââ¬ê¢ââ¬ generate_all_videos.py    # Script de teste - submete jobs para todos os modelos
+ê¢âÅê¢ââ¬ê¢ââ¬ check_jobs_status.py      # Script de monitoramento de jobs
+ê¢âÅê¢ââ¬ê¢ââ¬ test_ltx2_direct.py        # Teste LTX-2 via Python API
+ê¢âÅê¢ââ¬ê¢ââ¬ test_ltx2_cpu.py           # Teste LTX-2 em CPU (fallback)
+ê¢âÅê¢ââ¬ê¢ââ¬ generation_results.log     # Log dos testes executados
+ê¢âÅê¢ââ¬ê¢ââ¬ CLAUDE.md                  # InstruêÂ§êÂµes para Claude Code
+ê¢âÅê¢ââ¬ê¢ââ¬ ARCHITECTURE.md            # DocumentaêÂ§êÂ£o da arquitetura
+ê¢âÅê¢ââ¬ê¢ââ¬ QUICKSTART.md              # Guia rêÂ¡pido de inêÂ­cio
+ê¢âÅê¢ââ¬ê¢ââ¬ PROJECT_SUMMARY.md         # Resumo do projeto
+ê¢âÅê¢ââ¬ê¢ââ¬ CHANGELOG.md               # HistêÂ³rico de mudanêÂ§as
+ê¢ââê¢ââ¬ê¢ââ¬ README.md                  # Este arquivo
 ```
 
 **Volumes Docker**:
 ```
 videosdgx_models/
-â”œâ”€â”€ ltx2/           # 293GB - RepositÃ³rio completo HuggingFace
-â”œâ”€â”€ wan21/          # 65GB  - Modelo Wan 2.1 completo
-â”œâ”€â”€ magi1/          # Em download
-â””â”€â”€ waver/          # Modelo Waver 1.0
+ê¢âÅê¢ââ¬ê¢ââ¬ ltx2/           # 293GB - RepositêÂ³rio completo HuggingFace
+ê¢âÅê¢ââ¬ê¢ââ¬ wan21/          # 65GB  - Modelo Wan 2.1 completo
+ê¢âÅê¢ââ¬ê¢ââ¬ magi1/          # Em download
+ê¢ââê¢ââ¬ê¢ââ¬ waver/          # Modelo Waver 1.0
 
-videosdgx_outputs/  # VÃ­deos gerados pelos containers
+videosdgx_outputs/  # VêÂ­deos gerados pelos containers
 ```
 
-## ðŸ” SeguranÃ§a
+## ê°Å¸âÂ SeguranêÂ§a
 
-- **Sem exposiÃ§Ã£o externa**: Por padrÃ£o, APIs sÃ³ acessÃ­veis via localhost
+- **Sem exposiêÂ§êÂ£o externa**: Por padrêÂ£o, APIs sêÂ³ acessêÂ­veis via localhost
 - **Volumes isolados**: Cada container tem acesso controlado
-- **Sem root**: Containers rodam com usuÃ¡rio nÃ£o-privilegiado (TODO)
+- **Sem root**: Containers rodam com usuêÂ¡rio nêÂ£o-privilegiado (TODO)
 - **Secrets**: Use Docker secrets para credenciais HuggingFace
 
-## ðŸ“ˆ PrÃ³ximos Passos
+## ê°Å¸âË PrêÂ³ximos Passos
 
 - [ ] Adicionar frontend web
-- [ ] Implementar autenticaÃ§Ã£o JWT
-- [ ] Sistema de cache de vÃ­deos
+- [ ] Implementar autenticaêÂ§êÂ£o JWT
+- [ ] Sistema de cache de vêÂ­deos
 - [ ] Auto-scaling baseado em demanda
 - [ ] Prometheus + Grafana para monitoramento
 - [ ] CI/CD pipeline
 - [ ] Fine-tuning de modelos
-- [ ] Suporte a mÃºltiplas GPUs
+- [ ] Suporte a mêÂºltiplas GPUs
 
-## ðŸ“„ LicenÃ§a
+## ê°Å¸ââ LicenêÂ§a
 
-Este projeto Ã© fornecido como estÃ¡, para uso no DGX Spark 2026.
+Este projeto êÂ© fornecido como estêÂ¡, para uso no DGX Spark 2026.
 
-## ðŸ¤ Contribuindo
+## ê°Å¸Â¤Â Contribuindo
 
-ContribuiÃ§Ãµes sÃ£o bem-vindas! Por favor, abra uma issue primeiro para discutir mudanÃ§as maiores.
+ContribuiêÂ§êÂµes sêÂ£o bem-vindas! Por favor, abra uma issue primeiro para discutir mudanêÂ§as maiores.
 
-## ðŸ“ž Suporte
+## ê°Å¸âÅ¾ Suporte
 
-Para problemas, abra uma issue neste repositÃ³rio.
+Para problemas, abra uma issue neste repositêÂ³rio.
 
 ---
 
@@ -724,4 +724,4 @@ Para problemas, abra uma issue neste repositÃ³rio.
 
 ---
 
-Projeto adaptado da comunidade INEMA TDS - Marca Arckhe
+Projeto  - ARCKHÉe

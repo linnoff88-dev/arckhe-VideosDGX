@@ -1,6 +1,6 @@
 """
-Configuração e carregamento do modelo Wan 2.1 (14B)
-Wan 2.1: Modelo versátil de geração de vídeo
+Configuraçêo e carregamento do modelo Wan 2.1 (14B)
+Wan 2.1: Modelo versátil de geraçêo de vídeo
 """
 import torch
 from pathlib import Path
@@ -16,20 +16,20 @@ def load_wan21_model(model_path: str, quantization: str = "fp8") -> Tuple[Any, A
 
     Args:
         model_path: Caminho para os arquivos do modelo
-        quantization: Tipo de quantização (fp8, fp16)
+        quantization: Tipo de quantizaçêo (fp8, fp16)
 
     Returns:
         Tupla (model, pipeline)
     """
-    logger.info(f"Carregando Wan 2.1 de {model_path} com quantização {quantization}")
+    logger.info(f"Carregando Wan 2.1 de {model_path} com quantizaçêo {quantization}")
 
     try:
         from diffusers import DiffusionPipeline
 
-        # Configurações de quantização
+        # Configurações de quantizaçêo
         if quantization == "fp8":
             torch_dtype = torch.float8_e4m3fn if hasattr(torch, 'float8_e4m3fn') else torch.float16
-            logger.info("Usando quantização FP8")
+            logger.info("Usando quantizaçêo FP8")
         else:
             torch_dtype = torch.float16
             logger.info("Usando FP16")
@@ -37,7 +37,7 @@ def load_wan21_model(model_path: str, quantization: str = "fp8") -> Tuple[Any, A
         # Verificar se modelo existe
         model_path_obj = Path(model_path)
         if not model_path_obj.exists():
-            logger.warning(f"Modelo não encontrado em {model_path}, baixando do HuggingFace...")
+            logger.warning(f"Modelo nêo encontrado em {model_path}, baixando do HuggingFace...")
             model_id = "Wan-AI/Wan2.1-T2V-14B"  # ID oficial do HuggingFace
         else:
             model_id = str(model_path_obj)

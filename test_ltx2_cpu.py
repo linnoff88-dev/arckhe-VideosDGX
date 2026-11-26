@@ -6,7 +6,7 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # Força CPU
 
 print("=== Teste LTX-2 - CPU Only ===")
-print("AVISO: Geração em CPU é MUITO lenta (pode levar horas)\n")
+print("AVISO: Geraçêo em CPU é MUITO lenta (pode levar horas)\n")
 
 try:
     from ltx_pipelines import DistilledPipeline
@@ -33,7 +33,7 @@ try:
     video = pipeline(
         prompt="A simple test: a red ball on white background",
         num_frames=25,  # Apenas 1 segundo para teste rápido
-        height=256,     # Resolução mínima para teste
+        height=256,     # Resoluçêo mínima para teste
         width=256,
         num_inference_steps=4,  # Mínimo de steps
         guidance_scale=2.0

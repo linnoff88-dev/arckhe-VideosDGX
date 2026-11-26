@@ -1,6 +1,6 @@
 # Guia de Início Rápido - VideosDGX
 
-Guia passo-a-passo para começar a usar os modelos de geração de vídeo.
+Guia passo-a-passo para começar a usar os modelos de geraçêo de vídeo.
 
 ## 🎯 Objetivo
 
@@ -11,10 +11,10 @@ Ter os 4 modelos rodando e gerando vídeos em menos de 30 minutos.
 Antes de começar, verifique:
 
 ```bash
-# Docker instalado (versão 24.0+)
+# Docker instalado (versêo 24.0+)
 docker --version
 
-# Docker Compose instalado (versão 2.20+)
+# Docker Compose instalado (versêo 2.20+)
 docker-compose --version
 
 # NVIDIA Docker Runtime
@@ -24,7 +24,7 @@ docker run --rm --gpus all nvidia/cuda:12.3.0-base-ubuntu22.04 nvidia-smi
 df -h
 ```
 
-Se algum comando falhar, consulte a seção **Instalação de Dependências** no final.
+Se algum comando falhar, consulte a seçêo **Instalaçêo de Dependências** no final.
 
 ## 🚀 Passo 1: Build da Imagem Base
 
@@ -43,7 +43,7 @@ Ou use o Makefile:
 make base
 ```
 
-**Verificação**:
+**Verificaçêo**:
 ```bash
 docker images | grep videosdgx-base
 # Deve mostrar: videosdgx-base  latest  ...  ~15GB
@@ -51,17 +51,17 @@ docker images | grep videosdgx-base
 
 ## 🚀 Passo 2: Download dos Modelos
 
-⚠️ **IMPORTANTE**: Esta é uma simulação. Os IDs de modelos usados são hipotéticos. Em produção, substitua pelos IDs reais do HuggingFace.
+⚠️ **IMPORTANTE**: Esta é uma simulaçêo. Os IDs de modelos usados sêo hipotéticos. Em produçêo, substitua pelos IDs reais do HuggingFace.
 
-### Opção A: Script Interativo (Recomendado)
+### Opçêo A: Script Interativo (Recomendado)
 
 ```bash
 ./scripts/download_models.sh
 ```
 
-Escolha a opção 5 para baixar todos os modelos.
+Escolha a opçêo 5 para baixar todos os modelos.
 
-### Opção B: Manual
+### Opçêo B: Manual
 
 ```bash
 # Criar volumes
@@ -74,7 +74,7 @@ huggingface-cli download Lightricks/LTX-Video \
   --local-dir /var/lib/docker/volumes/videosdgx_models/_data/ltx2
 ```
 
-**Verificação**:
+**Verificaçêo**:
 ```bash
 docker volume ls | grep videosdgx
 # Deve mostrar:
@@ -96,9 +96,9 @@ Ou com Makefile:
 make build
 ```
 
-Isso levará ~20-30 minutos dependendo da conexão. As imagens finais terão ~20-25GB cada.
+Isso levará ~20-30 minutos dependendo da conexêo. As imagens finais terêo ~20-25GB cada.
 
-**Verificação**:
+**Verificaçêo**:
 ```bash
 docker images | grep videosdgx
 # Deve mostrar:
@@ -121,9 +121,9 @@ Ou:
 make up
 ```
 
-Os containers vão iniciar em background. Aguarde ~30 segundos para as APIs estarem prontas.
+Os containers vêo iniciar em background. Aguarde ~30 segundos para as APIs estarem prontas.
 
-**Verificação**:
+**Verificaçêo**:
 ```bash
 docker-compose ps
 # Todos devem estar "Up" e "healthy"
@@ -141,10 +141,10 @@ VideosDGX - Health Check
 ● LTX-2
    Status:      Online
    Endpoint:    http://localhost:8001
-   Modelo:      Não carregado
+   Modelo:      Nêo carregado
    ...
 
-✓ Todos os serviços estão saudáveis
+✓ Todos os serviços estêo saudáveis
 ```
 
 ## 🎬 Passo 5: Gerar Seu Primeiro Vídeo
@@ -174,7 +174,7 @@ Resposta (exemplo):
 }
 ```
 
-**Importante**: Na primeira execução, o modelo será carregado automaticamente, o que pode levar 40-60 segundos adicionais.
+**Importante**: Na primeira execuçêo, o modelo será carregado automaticamente, o que pode levar 40-60 segundos adicionais.
 
 ### Verificar Status
 
@@ -327,7 +327,7 @@ curl http://localhost:8001/info | jq
 
 ## 🐛 Problemas Comuns
 
-### Container não inicia
+### Container nêo inicia
 
 ```bash
 # Ver logs de erro
@@ -356,7 +356,7 @@ curl http://localhost:8001/health
 ### Out of Memory
 
 ```bash
-# Descarregar modelos não usados
+# Descarregar modelos nêo usados
 curl -X POST http://localhost:8001/unload
 curl -X POST http://localhost:8002/unload
 curl -X POST http://localhost:8003/unload
@@ -365,7 +365,7 @@ curl -X POST http://localhost:8003/unload
 nvidia-smi
 ```
 
-### Vídeo não é gerado
+### Vídeo nêo é gerado
 
 ```bash
 # Verificar status do job
@@ -386,11 +386,11 @@ Agora que está tudo funcionando:
 2. **Compare modelos**: Use o mesmo prompt em diferentes modelos
 3. **Benchmark**: Execute `./scripts/benchmark.py` para ver performance
 4. **Customize**: Edite `.env` para configurar auto-unload, log level, etc.
-5. **Leia a documentação**: `README.md` e `ARCHITECTURE.md` para detalhes
+5. **Leia a documentaçêo**: `README.md` e `ARCHITECTURE.md` para detalhes
 
 ## 🔒 Auto-Unload de Modelos
 
-Por padrão, modelos ficam em memória permanentemente. Para liberar memória automaticamente após inatividade:
+Por padrêo, modelos ficam em memória permanentemente. Para liberar memória automaticamente após inatividade:
 
 ```bash
 # Editar .env
@@ -407,12 +407,12 @@ docker-compose restart
 
 - Verifique os logs: `docker-compose logs -f`
 - Execute health check: `./scripts/health_check.py`
-- Consulte `README.md` para documentação completa
+- Consulte `README.md` para documentaçêo completa
 - Consulte `ARCHITECTURE.md` para detalhes técnicos
 
 ---
 
-## Anexo: Instalação de Dependências
+## Anexo: Instalaçêo de Dependências
 
 ### Docker
 
@@ -468,4 +468,4 @@ huggingface-cli login
 
 ---
 
-**Pronto!** Você está rodando 4 modelos de geração de vídeo no DGX Spark! 🎉
+**Pronto!** Você está rodando 4 modelos de geraçêo de vídeo no DGX Spark! 🎉

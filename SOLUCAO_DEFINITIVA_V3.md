@@ -1,11 +1,11 @@
-# ✅ SOLUÇÃO DEFINITIVA - Interface Web v3 com Auto-Restart
+# ✅ SOLUÇêO DEFINITIVA - Interface Web v3 com Auto-Restart
 
 ## 🎯 O Que Foi Resolvido
 
-O problema de corrupção do Gemma encoder foi **completamente resolvido** com uma nova arquitetura que:
+O problema de corrupçêo do Gemma encoder foi **completamente resolvido** com uma nova arquitetura que:
 
 1. ✅ **Reinicia ComfyUI automaticamente** após cada vídeo
-2. ✅ **Aguarda a geração completa** (não retorna até vídeo pronto)
+2. ✅ **Aguarda a geraçêo completa** (nêo retorna até vídeo pronto)
 3. ✅ **Previne fila** (apenas 1 vídeo por vez)
 4. ✅ **Interface web moderna** com feedback em tempo real
 
@@ -31,7 +31,7 @@ Acesse: **http://localhost:7860**
 5. **Aguarde ~2-5 minutos**:
    - Status muda para "Processando"
    - Barra de progresso animada
-   - Botão fica desabilitado (1 vídeo por vez)
+   - Botêo fica desabilitado (1 vídeo por vez)
 6. **Vídeo aparece automaticamente** quando pronto
 7. **ComfyUI reinicia automaticamente** (15 segundos)
 8. **Gere o próximo vídeo**
@@ -62,12 +62,12 @@ Aguarda 15 segundos (ComfyUI inicializar)
 ✅ Sistema pronto para próximo vídeo
 ```
 
-## 📊 Comparação das Versões
+## 📊 Comparaçêo das Versões
 
 | Recurso | v1 | v2 | **v3** |
 |---------|----|----|--------|
 | Interface web | ✅ | ✅ | ✅ |
-| Não bloqueante | ❌ | ✅ | ✅ |
+| Nêo bloqueante | ❌ | ✅ | ✅ |
 | Aguarda vídeo | ❌ | ❌ | ✅ |
 | Auto-restart | ❌ | ❌ | ✅ |
 | Previne Gemma bug | ❌ | ❌ | ✅ |
@@ -83,11 +83,11 @@ Aguarda 15 segundos (ComfyUI inicializar)
 - ⚡ Presets rápidos (Rápido/HD/Longo)
 
 ### Funcionalidades
-- ✅ **Auto-atualização**: Frontend atualiza a cada 5 segundos
+- ✅ **Auto-atualizaçêo**: Frontend atualiza a cada 5 segundos
 - ✅ **Status em tempo real**: Processando, Concluído, Erro
-- ✅ **Barra de progresso**: Animação enquanto processa
-- ✅ **Tempo de geração**: Mostra quanto tempo levou
-- ✅ **Proteção de fila**: Não aceita novo vídeo enquanto outro está processando
+- ✅ **Barra de progresso**: Animaçêo enquanto processa
+- ✅ **Tempo de geraçêo**: Mostra quanto tempo levou
+- ✅ **Proteçêo de fila**: Nêo aceita novo vídeo enquanto outro está processando
 - ✅ **Timeout automático**: Marca como erro após 10 minutos
 - ✅ **Player integrado**: Assista o vídeo direto na interface
 
@@ -126,7 +126,7 @@ Aguarda 15 segundos (ComfyUI inicializar)
 
 ## 🔧 Troubleshooting
 
-### Interface não abre
+### Interface nêo abre
 ```bash
 # Verificar se porta 7860 está livre
 lsof -i :7860
@@ -138,7 +138,7 @@ kill -9 $(lsof -t -i:7860)
 ./iniciar_interface_web_v3.sh
 ```
 
-### ComfyUI não está rodando
+### ComfyUI nêo está rodando
 ```bash
 # Verificar se está rodando
 ps aux | grep "python.*main.py.*8188"
@@ -147,13 +147,13 @@ ps aux | grep "python.*main.py.*8188"
 ./reiniciar_comfyui.sh
 ```
 
-### Vídeo não aparece (timeout)
+### Vídeo nêo aparece (timeout)
 **Causas possíveis:**
 1. ComfyUI crashou (verificar log)
 2. CUDA sem memória (reiniciar resolve)
 3. Parâmetros inválidos (muito grande)
 
-**Solução:**
+**Soluçêo:**
 ```bash
 # Ver log do ComfyUI
 tail -50 comfyui_server.log
@@ -169,7 +169,7 @@ tail -50 comfyui_server.log
 - ComfyUI já foi reiniciado automaticamente
 - Pode tentar novo vídeo imediatamente
 
-## 📂 Onde os Vídeos São Salvos
+## 📂 Onde os Vídeos Sêo Salvos
 
 ```bash
 # Diretório
@@ -193,7 +193,7 @@ ls -t ComfyUI/output/*.mp4 | head -1
 - ✅ Feedback visual em tempo real
 - ✅ Player de vídeo integrado
 - ⚠️ Um vídeo por vez
-- ⏱️ Tempo total: geração + 15s restart
+- ⏱️ Tempo total: geraçêo + 15s restart
 
 ### CLI Direto
 - ✅ Múltiplos terminais = vários vídeos simultâneos
@@ -201,9 +201,9 @@ ls -t ComfyUI/output/*.mp4 | head -1
 - ⚠️ Precisa reiniciar manualmente entre vídeos
 - ⚠️ Sem interface gráfica
 
-**Recomendação:**
+**Recomendaçêo:**
 - **Interface v3**: Para uso casual, testes, demonstrações
-- **CLI**: Para produção em lote (com restarts manuais)
+- **CLI**: Para produçêo em lote (com restarts manuais)
 
 ## 🚀 Comandos Rápidos
 
@@ -226,7 +226,7 @@ tail -f comfyui_server.log
 
 ## 📊 Performance Esperada
 
-| Configuração | Frames | Duração | Tempo Aprox | Qualidade |
+| Configuraçêo | Frames | Duraçêo | Tempo Aprox | Qualidade |
 |--------------|--------|---------|-------------|-----------|
 | Rápido       | 49     | 2s      | ~2 min      | Boa       |
 | HD           | 49     | 2s      | ~3 min      | Excelente |
@@ -235,7 +235,7 @@ tail -f comfyui_server.log
 
 **+ 15 segundos de restart automático após cada vídeo**
 
-## ✅ Vantagens da Solução v3
+## ✅ Vantagens da Soluçêo v3
 
 1. **Confiável**: Nunca mais CUDA error do Gemma
 2. **Simples**: Interface web intuitiva
@@ -256,6 +256,6 @@ Você agora tem uma **interface web profissional** que:
 
 ---
 
-**USE A INTERFACE V3 - É A SOLUÇÃO DEFINITIVA! 🚀**
+**USE A INTERFACE V3 - É A SOLUÇêO DEFINITIVA! 🚀**
 
 Acesse: http://localhost:7860

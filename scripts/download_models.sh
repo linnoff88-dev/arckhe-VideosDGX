@@ -14,14 +14,14 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Criar volume se não existir
+# Criar volume se nêo existir
 echo -e "${YELLOW}Verificando volumes Docker...${NC}"
 docker volume create videosdgx_models 2>/dev/null || true
 docker volume create videosdgx_outputs 2>/dev/null || true
 echo -e "${GREEN}✓ Volumes verificados${NC}"
 echo ""
 
-# Função para download de modelo
+# Funçêo para download de modelo
 download_model() {
     local model_name=$1
     local model_id=$2
@@ -56,7 +56,7 @@ try:
     print(\"✓ Download completo!\")
 except Exception as e:
     print(f\"⚠ Aviso: {e}\")
-    print(\"Modelo pode não estar disponível. Será necessário configurar manualmente.\")
+    print(\"Modelo pode nêo estar disponível. Será necessário configurar manualmente.\")
 '
         "
 
@@ -73,7 +73,7 @@ echo "4) Waver 1.0 (Lightweight, ~15-18GB)"
 echo "5) Todos os modelos"
 echo "0) Sair"
 echo ""
-read -p "Escolha uma opção [0-5]: " choice
+read -p "Escolha uma opçêo [0-5]: " choice
 
 case $choice in
     1)
@@ -109,7 +109,7 @@ case $choice in
         exit 0
         ;;
     *)
-        echo -e "${RED}Opção inválida${NC}"
+        echo -e "${RED}Opçêo inválida${NC}"
         exit 1
         ;;
 esac

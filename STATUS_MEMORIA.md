@@ -3,7 +3,7 @@
 
 ---
 
-## 🎉 ATUALIZAÇÃO CRÍTICA: MEMÓRIA LIBERADA!
+## 🎉 ATUALIZAÇêO CRÍTICA: MEMÓRIA LIBERADA!
 
 **Status**: ✅ **PROBLEMA DE MEMÓRIA RESOLVIDO**
 
@@ -53,7 +53,7 @@ Mon Feb 16 10:32:54 2026
 
 **⚠️ Nota sobre "Memory-Usage: Not Supported"**:
 - Esta mensagem é normal para o NVIDIA GB10
-- Não significa erro - apenas que o nvidia-smi não reporta memória detalhada
+- Nêo significa erro - apenas que o nvidia-smi nêo reporta memória detalhada
 - O importante: **nenhum processo grande consumindo GPU**
 
 ---
@@ -126,7 +126,7 @@ gdm         3625  0.0  0.0 3942572 71096 tty1    Sl+  Feb06   3:24 /usr/bin/gnom
 
 ---
 
-## 📈 Comparação: Antes vs Depois
+## 📈 Comparaçêo: Antes vs Depois
 
 ### Estado Anterior (Problema)
 
@@ -145,9 +145,9 @@ RAM:
 ```
 
 **Impacto**:
-- ❌ ComfyUI não iniciava (CUDA OOM)
-- ❌ Python API não rodava (CUDA OOM)
-- ❌ Impossível testar geração de vídeos no host
+- ❌ ComfyUI nêo iniciava (CUDA OOM)
+- ❌ Python API nêo rodava (CUDA OOM)
+- ❌ Impossível testar geraçêo de vídeos no host
 - ❌ Apenas containers Docker funcionavam (com issues)
 
 ### Estado Atual (Resolvido)
@@ -170,7 +170,7 @@ RAM:
 **Impacto**:
 - ✅ ComfyUI PODE iniciar agora
 - ✅ Python API PODE rodar agora
-- ✅ POSSÍVEL testar geração de vídeos
+- ✅ POSSÍVEL testar geraçêo de vídeos
 - ✅ Sem blockers de memória
 
 ---
@@ -184,20 +184,20 @@ PID: 2351379
 User: root
 RAM: 66GB
 VRAM: 117GB (estimado)
-Comando: [não identificado]
+Comando: [nêo identificado]
 ```
 
 **Hipóteses sobre o desaparecimento**:
 
 1. **Timeout automático**: Processo pode ter timeout após inatividade
 2. **Crash**: Processo pode ter crashado por falta de recursos
-3. **Reinicialização**: Sistema pode ter sido reiniciado
+3. **Reinicializaçêo**: Sistema pode ter sido reiniciado
 4. **Kill manual**: Alguém com sudo pode ter matado o processo
 5. **Completou tarefa**: Processo pode ter completado e terminado
 
 **Evidências**:
 - Sistema rodando desde Feb 06 (uptime de ~10 dias)
-- Não houve reinicialização completa
+- Nêo houve reinicializaçêo completa
 - Provável: Timeout ou crash do processo
 
 **Resultado**: Seja qual for a causa, **a memória está liberada agora!**
@@ -217,7 +217,7 @@ python3 -c "import torch; print('CUDA available:', torch.cuda.is_available())"
 python3 -c "import torch; print('Devices:', torch.cuda.device_count())"
 # Esperado: Devices: 1
 
-# Testar alocação de memória
+# Testar alocaçêo de memória
 python3 -c "import torch; x = torch.zeros(1000, 1000).cuda(); print('Test tensor allocated:', x.shape)"
 # Esperado: Test tensor allocated: torch.Size([1000, 1000])
 ```
@@ -252,7 +252,7 @@ docker stats --no-stream
 
 **Consumo estimado** (4 containers rodando):
 - CPU: Baixo (idle)
-- RAM: ~475MB total (containers vazios, modelos não carregados)
+- RAM: ~475MB total (containers vazios, modelos nêo carregados)
 
 **Status**: ✅ Containers saudáveis, memória normal
 
@@ -262,7 +262,7 @@ docker stats --no-stream
 
 ### 1. ComfyUI (AGORA POSSÍVEL!)
 
-**Antes**: ❌ CUDA OOM impedindo inicialização
+**Antes**: ❌ CUDA OOM impedindo inicializaçêo
 **Agora**: ✅ Pode iniciar sem problemas
 
 **Comando para testar**:
@@ -287,7 +287,7 @@ python main.py --port 8188
 
 ### 2. Python API Direta (AGORA POSSÍVEL!)
 
-**Antes**: ❌ CUDA OOM impedindo execução
+**Antes**: ❌ CUDA OOM impedindo execuçêo
 **Agora**: ✅ Pode rodar sem problemas
 
 **Comando para testar**:
@@ -328,8 +328,8 @@ Com 113GB disponíveis, podemos testar:
 - Overhead: 10GB
 - **Total**: ~75GB ✅ Cabe!
 
-**Cenário 3: Múltiplos modelos** (talvez não simultaneamente)
-- LTX-2 + Wan 2.1: ~137GB ❌ Não cabe junto
+**Cenário 3: Múltiplos modelos** (talvez nêo simultaneamente)
+- LTX-2 + Wan 2.1: ~137GB ❌ Nêo cabe junto
 - Mas pode carregar um de cada vez ✅
 
 ---
@@ -343,11 +343,11 @@ Com 113GB disponíveis, podemos testar:
 source comfyui-env/bin/activate
 python3 -c "import torch; print('CUDA:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0))"
 
-# 2. Testar alocação de tensor
+# 2. Testar alocaçêo de tensor
 python3 -c "import torch; x = torch.randn(10000, 10000).cuda(); print('Tensor shape:', x.shape); print('Memory allocated:', torch.cuda.memory_allocated(0) / 1024**3, 'GB')"
 ```
 
-**Sucesso esperado**: CUDA disponível, alocação bem-sucedida
+**Sucesso esperado**: CUDA disponível, alocaçêo bem-sucedida
 
 ---
 
@@ -359,7 +359,7 @@ source comfyui-env/bin/activate
 cd ComfyUI
 python main.py --port 8188 &
 
-# 2. Aguardar inicialização (30-60s)
+# 2. Aguardar inicializaçêo (30-60s)
 sleep 60
 
 # 3. Verificar se está respondendo
@@ -376,14 +376,14 @@ free -h
 
 ### Fase 3: Gerar Vídeo de Teste (15-30 min)
 
-**Opção A: Via ComfyUI**
+**Opçêo A: Via ComfyUI**
 1. Acessar http://localhost:8188
 2. Carregar workflow example (LTX-2_T2V_Distilled_wLora.json)
 3. Configurar prompt simples
 4. Clicar "Queue Prompt"
-5. Aguardar geração
+5. Aguardar geraçêo
 
-**Opção B: Via Python API**
+**Opçêo B: Via Python API**
 ```bash
 source comfyui-env/bin/activate
 
@@ -400,7 +400,7 @@ python -m ltx_pipelines.distilled \
 
 **Parâmetros conservadores para primeiro teste**:
 - Frames: 25 (1 segundo a 24fps)
-- Resolução: 256x256 (mínima)
+- Resoluçêo: 256x256 (mínima)
 - Steps: 4 (mínimo para modelo distilled)
 
 **Tempo esperado**: 5-15 minutos
@@ -440,13 +440,13 @@ mpv test_first_video.mp4
 | ComfyUI | ✅ DESBLOQUEADO | Pode iniciar agora |
 | Python API | ✅ DESBLOQUEADO | Pode rodar agora |
 
-### Recomendação Imediata
+### Recomendaçêo Imediata
 
-**PRIORIDADE MÁXIMA**: Testar geração de vídeo AGORA que a memória está livre!
+**PRIORIDADE MÁXIMA**: Testar geraçêo de vídeo AGORA que a memória está livre!
 
 **Por quê**:
 1. Bloqueio crítico foi removido (memória liberada)
-2. Modelos já estão baixados (358GB+)
+2. Modelos já estêo baixados (358GB+)
 3. Ambiente configurado (ComfyUI + Python API)
 4. Oportunidade de finalmente **gerar o primeiro vídeo**
 
@@ -463,10 +463,10 @@ python -m ltx_pipelines.distilled \
 ```
 
 **Próximos passos após sucesso**:
-1. ✅ Documentar que geração funciona
+1. ✅ Documentar que geraçêo funciona
 2. ✅ Testar com parâmetros maiores
 3. ✅ Testar ComfyUI interface
-4. ✅ Atualizar documentação com sucesso
+4. ✅ Atualizar documentaçêo com sucesso
 
 **Próximos passos se falhar**:
 1. ❌ Documentar novo erro encontrado
@@ -486,7 +486,7 @@ python -m ltx_pipelines.distilled \
 **Feb 15-16 (~03:00-08:00)**: PROBLEMA CRÍTICO
 - RAM: 66GB consumidos por PID 2351379
 - GPU: 117GB consumidos (estimado)
-- Status: BLOQUEIO TOTAL para geração de vídeos
+- Status: BLOQUEIO TOTAL para geraçêo de vídeos
 
 **Feb 16 (~08:00-10:32)**: PROCESSO SUMIU
 - Causa: Desconhecida (timeout? crash? completou?)
@@ -526,7 +526,7 @@ Containers: 4 ativos (ltx2, wan21, magi1, waver)
 ### Capacidades
 
 ```
-Quantização suportada: FP4, FP8, FP16, BF16
+Quantizaçêo suportada: FP4, FP8, FP16, BF16
 Unified Memory: CPU e GPU compartilham 128GB
 Bandwidth: Alto (memória unificada)
 Max concurrent models: 1-2 grandes (dependendo do tamanho)
@@ -534,9 +534,9 @@ Max concurrent models: 1-2 grandes (dependendo do tamanho)
 
 ---
 
-## ✅ Conclusão
+## ✅ Conclusêo
 
-### Situação Atual
+### Situaçêo Atual
 
 **EXCELENTE NOTÍCIA**: O bloqueio crítico de memória foi removido!
 
@@ -549,14 +549,14 @@ Max concurrent models: 1-2 grandes (dependendo do tamanho)
 
 ### Mudança de Status
 
-**De**: ❌ Sistema CONFIGURADO mas NÃO FUNCIONAL (0% geração)
+**De**: ❌ Sistema CONFIGURADO mas NêO FUNCIONAL (0% geraçêo)
 **Para**: ✅ Sistema PRONTO PARA TESTES (bloqueio removido)
 
-### Ação Recomendada
+### Açêo Recomendada
 
-**URGENTE**: Aproveitar a janela de memória livre e **TESTAR GERAÇÃO AGORA**!
+**URGENTE**: Aproveitar a janela de memória livre e **TESTAR GERAÇêO AGORA**!
 
-Após 12+ horas de configuração e downloads, finalmente temos a oportunidade de:
+Após 12+ horas de configuraçêo e downloads, finalmente temos a oportunidade de:
 1. Gerar o primeiro vídeo
 2. Validar que o sistema funciona
 3. Confirmar que todo o esforço valeu a pena
@@ -566,4 +566,4 @@ Após 12+ horas de configuração e downloads, finalmente temos a oportunidade d
 **Relatório gerado em**: 16 de Fevereiro de 2026 - 10:35
 **Autor**: Claude Sonnet 4.5 (claude.ai/code)
 **Status**: ✅ MEMÓRIA LIVRE - PRONTO PARA TESTES
-**Próxima ação**: GERAR PRIMEIRO VÍDEO
+**Próxima açêo**: GERAR PRIMEIRO VÍDEO

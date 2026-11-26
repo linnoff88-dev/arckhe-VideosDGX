@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Interface Web para Geração de Vídeos LTX-2 (Versão 3 - Auto-Restart)
-Reinicia ComfyUI automaticamente entre vídeos para evitar corrupção do Gemma
+Interface Web para Geraçêo de Vídeos LTX-2 (Versêo 3 - Auto-Restart)
+Reinicia ComfyUI automaticamente entre vídeos para evitar corrupçêo do Gemma
 Acesse em: http://localhost:7860
 """
 
@@ -83,7 +83,7 @@ def restart_comfyui():
         return False
 
 def submit_and_generate_video(job_id: str, request: VideoRequest):
-    """Submete vídeo, aguarda geração E reinicia ComfyUI"""
+    """Submete vídeo, aguarda geraçêo E reinicia ComfyUI"""
     try:
         jobs[job_id]['status'] = 'processing'
         jobs[job_id]['started_at'] = datetime.now().isoformat()
@@ -123,7 +123,7 @@ def submit_and_generate_video(job_id: str, request: VideoRequest):
             print(f"❌ Job {job_id} falhou ao submeter")
             return
 
-        print(f"✅ Job {job_id} submetido! Aguardando geração...")
+        print(f"✅ Job {job_id} submetido! Aguardando geraçêo...")
 
         # Aguardar vídeo aparecer (com timeout)
         start_time = time.time()
@@ -150,7 +150,7 @@ def submit_and_generate_video(job_id: str, request: VideoRequest):
             print(f"✅ Vídeo {job_id} gerado em {elapsed:.1f}s!")
         else:
             jobs[job_id]['status'] = 'error'
-            jobs[job_id]['error'] = f'Timeout após {elapsed:.1f}s - vídeo não encontrado'
+            jobs[job_id]['error'] = f'Timeout após {elapsed:.1f}s - vídeo nêo encontrado'
             print(f"⏱️ Timeout para job {job_id}")
 
         save_jobs()
@@ -404,7 +404,7 @@ async def home():
     <div class="container">
         <div class="header">
             <h1>🎬 LTX-2 Video Generator v3</h1>
-            <div class="badge">✨ Auto-Restart • Um vídeo por vez • Sem corrupção</div>
+            <div class="badge">✨ Auto-Restart • Um vídeo por vez • Sem corrupçêo</div>
         </div>
 
         <div class="main-card">
@@ -660,7 +660,7 @@ async def home():
 
 @app.post("/api/generate")
 async def generate(request: VideoRequest, background_tasks: BackgroundTasks):
-    """Inicia geração de vídeo"""
+    """Inicia geraçêo de vídeo"""
     # Verificar se já há job processando
     for job in jobs.values():
         if job['status'] == 'processing':
@@ -697,7 +697,7 @@ async def get_video(filename: str):
     file_path = (OUTPUT_DIR / filename).resolve()
     if OUTPUT_DIR.resolve() in file_path.parents and file_path.is_file():
         return FileResponse(file_path)
-    return JSONResponse(status_code=404, content={"error": "Vídeo não encontrado"})
+    return JSONResponse(status_code=404, content={"error": "Vídeo nêo encontrado"})
 
 @app.get("/api/all-videos")
 async def get_all_videos():
@@ -742,10 +742,10 @@ if __name__ == "__main__":
     print()
     print("✨ Melhorias:")
     print("   - Reinicia ComfyUI automaticamente entre vídeos")
-    print("   - Previne corrupção do Gemma encoder")
+    print("   - Previne corrupçêo do Gemma encoder")
     print("   - Um vídeo por vez (sem fila)")
     print("   - Timeout de 10 minutos por vídeo")
-    print("   - Aguarda geração completa")
+    print("   - Aguarda geraçêo completa")
     print()
     print("⚠️  IMPORTANTE:")
     print("   - Cada vídeo leva ~2-5 minutos")

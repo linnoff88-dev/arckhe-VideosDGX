@@ -8,7 +8,7 @@ from datetime import datetime
 from typing import Dict, Any
 import json
 
-# Configuração de logging
+# Configuraçêo de logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -105,7 +105,7 @@ class MetricsCollector:
 def validate_video_params(duration: int, fps: int, resolution: str) -> bool:
     """Valida parâmetros de vídeo"""
     try:
-        # Validar duração
+        # Validar duraçêo
         if duration < 1 or duration > 60:
             return False
 
@@ -113,7 +113,7 @@ def validate_video_params(duration: int, fps: int, resolution: str) -> bool:
         if fps not in [24, 30, 60]:
             return False
 
-        # Validar resolução
+        # Validar resoluçêo
         width, height = map(int, resolution.split('x'))
         if width < 256 or height < 256 or width > 4096 or height > 4096:
             return False

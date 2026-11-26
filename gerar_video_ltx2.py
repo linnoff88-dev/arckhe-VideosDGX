@@ -14,7 +14,7 @@ import time
 import sys
 from pathlib import Path
 
-# Configuração padrão
+# Configuraçêo padrêo
 COMFYUI_API = "http://localhost:8188/prompt"
 OUTPUT_DIR = Path("/home/nmaldaner/projetos/VideosDGX/ComfyUI/output")
 GEMMA_PATH = "gemma-3-12b-it-qat-q4_0-unquantized/model-00001-of-00005.safetensors"
@@ -220,12 +220,12 @@ def main():
         "prompt",
         nargs='?',
         default=None,
-        help="Prompt para geração do vídeo"
+        help="Prompt para geraçêo do vídeo"
     )
     parser.add_argument(
         "--prompt", "-p",
         dest="prompt_arg",
-        help="Prompt para geração do vídeo (alternativa)"
+        help="Prompt para geraçêo do vídeo (alternativa)"
     )
     parser.add_argument(
         "--negative",
@@ -285,8 +285,8 @@ def main():
     if not prompt:
         print("❌ Erro: Prompt é obrigatório!")
         print("\nUso:")
-        print('  python3 gerar_video_ltx2.py "Descrição do vídeo"')
-        print('  python3 gerar_video_ltx2.py --prompt "Descrição do vídeo"')
+        print('  python3 gerar_video_ltx2.py "Descriçêo do vídeo"')
+        print('  python3 gerar_video_ltx2.py --prompt "Descriçêo do vídeo"')
         sys.exit(1)
 
     # Validações
@@ -299,9 +299,9 @@ def main():
     # Criar workflow
     print("🎬 Gerando workflow LTX-2...")
     print(f"   Prompt: {prompt}")
-    print(f"   Resolução: {args.width}x{args.height}")
+    print(f"   Resoluçêo: {args.width}x{args.height}")
     print(f"   Frames: {args.frames} @ {args.fps} FPS")
-    print(f"   Duração: {args.frames / args.fps:.2f} segundos")
+    print(f"   Duraçêo: {args.frames / args.fps:.2f} segundos")
     print(f"   CFG: {args.cfg}")
     print(f"   Seed: {args.seed}")
 
@@ -328,9 +328,9 @@ def main():
     try:
         prompt_id = submeter_workflow(workflow)
 
-        print(f"\n✅ SUCESSO! Geração iniciada!")
+        print(f"\n✅ SUCESSO! Geraçêo iniciada!")
         print(f"\n   Prompt ID: {prompt_id}")
-        print(f"\n⏳ Aguardando geração...")
+        print(f"\n⏳ Aguardando geraçêo...")
 
         # Estimar tempo
         estimated_time = (args.frames / 49) * 77  # 77s para 49 frames

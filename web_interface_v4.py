@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Interface Web para Geração de Vídeos - v4 Multi-Modelo
+Interface Web para Geraçêo de Vídeos - v4 Multi-Modelo
 Suporta: LTX-2 19B | Wan 2.2 5B | Wan 2.2 14B MoE
 Acesse em: http://localhost:7860
 """
@@ -71,7 +71,7 @@ def start_progress_watcher():
     try:
         import websocket
     except ImportError:
-        print("  [info] websocket-client não instalado - progresso por estimativa de tempo")
+        print("  [info] websocket-client nêo instalado - progresso por estimativa de tempo")
         return
 
     client_id = str(uuid.uuid4())
@@ -161,13 +161,13 @@ def build_cmd(job_id: str, req):
 
 
 def estimate_seconds(req) -> int:
-    """Estimativa grosseira de segundos de geração baseada em frames e modelo."""
+    """Estimativa grosseira de segundos de geraçêo baseada em frames e modelo."""
     factors = {"wan22_14b": 6, "wan22_5b": 2, "ltx2": 3}
     return req.frames * factors.get(req.model, 4)
 
 
 def calc_progress_pct(job: dict) -> int:
-    """Retorna 0-100. Usa WS se disponível, senão estimativa por tempo."""
+    """Retorna 0-100. Usa WS se disponível, senêo estimativa por tempo."""
     prompt_id = job.get("prompt_id")
     if prompt_id and prompt_id in comfyui_progress:
         p = comfyui_progress[prompt_id]
@@ -236,7 +236,7 @@ def run_job(job_id: str, req):
             jobs[job_id]["video_size_mb"]   = round(stat.st_size / 1048576, 2)
         else:
             jobs[job_id]["status"] = "error"
-            jobs[job_id]["error"]  = f"Timeout: vídeo não encontrado após {elapsed:.0f}s"
+            jobs[job_id]["error"]  = f"Timeout: vídeo nêo encontrado após {elapsed:.0f}s"
 
         save_jobs()
         restart_comfyui()
@@ -399,11 +399,11 @@ async def home():
     <div class="model-btn" onclick="selectModel('ltx2', this)">
       <span class="model-badge badge-audio">ÁUDIO</span>
       <div class="model-name">LTX-2 19B</div>
-      <div class="model-desc">Único com geração de áudio · ~3 min</div>
+      <div class="model-desc">Único com geraçêo de áudio · ~3 min</div>
     </div>
   </div>
 
-  <label>Resolução</label>
+  <label>Resoluçêo</label>
   <div class="presets" id="presets"></div>
 
   <div class="form-group">
@@ -614,7 +614,7 @@ function buildDetailGrid(req, job) {
   const dur  = req.frames && req.fps ? `${(req.frames/req.fps).toFixed(1)}s` : '—';
   const items = [
     ['Modelo',      MODEL_LABELS[req.model] || req.model],
-    ['Resolução',   `${req.width}×${req.height}`],
+    ['Resoluçêo',   `${req.width}×${req.height}`],
     ['Frames',      `${req.frames} (${dur} @ ${req.fps}fps)`],
     ['CFG',         req.cfg],
     ['Steps',       req.steps || '—'],
@@ -624,7 +624,7 @@ function buildDetailGrid(req, job) {
     ['Submetido',   fmt(job.created_at)],
     ['Iniciado',    fmt(job.started_at)],
     ['Concluído',   fmt(job.completed_at)],
-    ['Duração',     job.generation_time || elapsed(job.started_at, job.completed_at)],
+    ['Duraçêo',     job.generation_time || elapsed(job.started_at, job.completed_at)],
     ['Tamanho',     job.video_size_mb ? `${job.video_size_mb} MB` : '—'],
     ['Prompt ID',   job.prompt_id || '—'],
   ];
@@ -650,7 +650,7 @@ async function loadJobs() {
 
     const hasProcessing = sorted.some(([,j]) => j.status === 'processing');
     document.getElementById('genBtn').disabled = hasProcessing;
-    document.getElementById('gen-status').textContent = hasProcessing ? '⏳ Aguardando geração atual...' : '';
+    document.getElementById('gen-status').textContent = hasProcessing ? '⏳ Aguardando geraçêo atual...' : '';
 
     container.innerHTML = sorted.map(([id, job]) => {
       const req         = job.request || {};
@@ -821,7 +821,7 @@ async def get_video(filename: str):
     fp = (OUTPUT_DIR / filename).resolve()
     if OUTPUT_DIR.resolve() in fp.parents and fp.is_file():
         return FileResponse(fp)
-    return JSONResponse(status_code=404, content={"error": "Não encontrado"})
+    return JSONResponse(status_code=404, content={"error": "Nêo encontrado"})
 
 
 @app.get("/api/all-videos")
