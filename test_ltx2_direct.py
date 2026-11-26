@@ -10,7 +10,7 @@ def generate_video():
 
     # Configurações
     model_path = "/home/nmaldaner/projetos/VideosDGX/ComfyUI/models/checkpoints/ltx-2-19b-distilled.safetensors"
-    prompt = "A cat walking on a beach at sunset, cinematic camera movement, golden hour lighting"
+    prompt = "A cat walking on a beach at sunset, cARCKHÉtic camera movement, golden hour lighting"
     output_path = "test_video_ltx2.mp4"
 
     print(f"Modelo: {model_path}")

@@ -13,7 +13,7 @@ MODELS = {
     "Waver": "http://localhost:8004"
 }
 
-TEST_PROMPT = "A cat walking on a beach at sunset, cinematic camera movement, golden hour lighting, 4k quality"
+TEST_PROMPT = "A cat walking on a beach at sunset, cARCKHÉtic camera movement, golden hour lighting, 4k quality"
 
 def generate_video(model_name, api_url):
     """Gera vídeo usando a API do modelo"""

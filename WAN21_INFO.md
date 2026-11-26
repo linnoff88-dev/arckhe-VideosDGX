@@ -106,7 +106,7 @@ VRAM mínima: 16GB+
 
 ### Avançados
 ```
-"A golden retriever puppy playing in the snow, slow motion, cinematic lighting"
+"A golden retriever puppy playing in the snow, slow motion, cARCKHÉtic lighting"
 "Drone shot of a mountain landscape during sunset, 4k quality"
 "Person dancing in rain, dramatic lighting, emotional mood"
 "Time lapse of clouds moving over a city skyline"

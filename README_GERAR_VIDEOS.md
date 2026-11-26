@@ -47,7 +47,7 @@ Use `gerar_video_ltx2.py` para gerar vídeos facilmente:
 
 ### Completo
 ```bash
-./gerar_video_ltx2.py "Epic cinematic shot of a dragon flying over mountains" \
+./gerar_video_ltx2.py "Epic cARCKHÉtic shot of a dragon flying over mountains" \
   --width 1920 \
   --height 1080 \
   --frames 121 \
@@ -109,7 +109,7 @@ Use `gerar_video_ltx2.py` para gerar vídeos facilmente:
 
 ### ✅ Bons Prompts
 ```
-"A red sports car driving through neon-lit city streets at night, cinematic lighting, 4k"
+"A red sports car driving through neon-lit city streets at night, cARCKHÉtic lighting, 4k"
 "Close-up of a flower blooming in timelapse, soft focus, natural lighting"
 "Aerial view of waves crashing on rocky coastline, golden hour, smooth camera movement"
 ```
@@ -126,7 +126,7 @@ Use `gerar_video_ltx2.py` para gerar vídeos facilmente:
 [SUBJECT] + [ACTION] + [SETTING] + [STYLE] + [QUALITY]
 
 Exemplo:
-"Astronaut floating in space, slow rotation, Earth in background, cinematic lighting, 8k quality"
+"Astronaut floating in space, slow rotation, Earth in background, cARCKHÉtic lighting, 8k quality"
 ```
 
 ## Monitoramento

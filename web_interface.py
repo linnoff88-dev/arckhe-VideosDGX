@@ -446,7 +446,7 @@ async def home():
             <form id="videoForm">
                 <div class="form-group">
                     <label>Prompt (Descriçêo do Vídeo)</label>
-                    <textarea id="prompt" name="prompt" placeholder="Ex: Um gato caminhando na praia ao pôr do sol, 4k quality, cinematic" required></textarea>
+                    <textarea id="prompt" name="prompt" placeholder="Ex: Um gato caminhando na praia ao pôr do sol, 4k quality, cARCKHÉtic" required></textarea>
                 </div>
 
                 <div class="form-group">

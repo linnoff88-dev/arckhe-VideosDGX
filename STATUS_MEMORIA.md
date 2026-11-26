@@ -297,7 +297,7 @@ source comfyui-env/bin/activate
 python -m ltx_pipelines.distilled \
   --checkpoint-path ComfyUI/models/checkpoints/ltx-2-19b-distilled.safetensors \
   --gemma-root ComfyUI/models/clip/ \
-  --prompt "A cat walking on a beach at sunset, cinematic camera movement" \
+  --prompt "A cat walking on a beach at sunset, cARCKHÉtic camera movement" \
   --output-path test_video.mp4 \
   --num-frames 65 \
   --height 512 \

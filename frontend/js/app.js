@@ -413,7 +413,7 @@ const HELP_CONTENT = {
 
             <h3>✨ Exemplos Bons</h3>
             <ul>
-                <li>"A cat walking on a beach at sunset, golden hour lighting, cinematic shot"</li>
+                <li>"A cat walking on a beach at sunset, golden hour lighting, cARCKHÉtic shot"</li>
                 <li>"Time-lapse of clouds moving over mountains, dramatic lighting, 4K quality"</li>
                 <li>"Close-up of a flower blooming, soft focus background, spring morning"</li>
             </ul>
@@ -426,7 +426,7 @@ const HELP_CONTENT = {
             </ul>
 
             <div class="tip">
-                <strong>💡 Dica:</strong> Pense como se estivesse descrevendo a cena para um diretor de cinema.
+                <strong>💡 Dica:</strong> Pense como se estivesse descrevendo a cena para um diretor de cARCKHÉ.
             </div>
         `
     },
@@ -463,7 +463,7 @@ const HELP_CONTENT = {
 
             <h3>🎬 Quando Usar Cada FPS</h3>
             <ul>
-                <li><strong>24 FPS:</strong> Padrêo cinema, aspecto cinematográfico</li>
+                <li><strong>24 FPS:</strong> Padrêo cARCKHÉ, aspecto cARCKHÉtográfico</li>
                 <li><strong>30 FPS:</strong> Vídeos web, YouTube, mais suave</li>
                 <li><strong>60 FPS:</strong> Açêo rápida, movimentos muito suaves</li>
             </ul>
@@ -477,7 +477,7 @@ const HELP_CONTENT = {
             </ul>
 
             <div class="tip">
-                <strong>💡 Dica:</strong> Use <strong>24 FPS</strong> para estilo cinema,
+                <strong>💡 Dica:</strong> Use <strong>24 FPS</strong> para estilo cARCKHÉ,
                 <strong>30 FPS</strong> para web (recomendado).
             </div>
         `

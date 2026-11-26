@@ -207,7 +207,7 @@ Agora que tudo está funcionando, teste os outros modelos:
 curl -X POST http://localhost:8001/generate \
   -H "Content-Type: application/json" \
   -d '{
-    "prompt": "A cinematic shot of a city at night with rain",
+    "prompt": "A cARCKHÉtic shot of a city at night with rain",
     "duration": 5,
     "resolution": "1024x576",
     "fps": 24,

@@ -399,7 +399,7 @@ python -m ltx_pipelines.distilled \
 
 ### GeraêÂ§êÂ£o de VêÂ­deos (16/02/2026)
 
-Executado `generate_all_videos.py` com prompt: *"A cat walking on a beach at sunset, cinematic camera movement, golden hour lighting, 4k quality"*
+Executado `generate_all_videos.py` com prompt: *"A cat walking on a beach at sunset, cARCKHÉtic camera movement, golden hour lighting, 4k quality"*
 
 **Resultados**:
 

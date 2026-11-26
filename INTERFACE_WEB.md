@@ -142,9 +142,9 @@ http://localhost:7860
 4. Aguarde ~77 segundos
 5. Assista o resultado!
 
-### Exemplo 2: Vídeo HD Cinematográfico
+### Exemplo 2: Vídeo HD CARCKHÉtográfico
 1. Clique em "✨ Qualidade"
-2. Prompt: "Epic cinematic shot of a dragon flying over mountains, golden hour lighting, 4k quality"
+2. Prompt: "Epic cARCKHÉtic shot of a dragon flying over mountains, golden hour lighting, 4k quality"
 3. Prompt Negativo: "blur, distorted, low quality"
 4. Ajuste CFG para 4.5 (mais fidelidade)
 5. Clique em "🚀 Gerar Vídeo"

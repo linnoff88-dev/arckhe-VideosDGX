@@ -106,7 +106,7 @@
 
 ### Avançados
 ```bash
-./gerar_video_wan21.py "A golden retriever puppy playing in the snow, slow motion, cinematic lighting"
+./gerar_video_wan21.py "A golden retriever puppy playing in the snow, slow motion, cARCKHÉtic lighting"
 
 ./gerar_video_wan21.py "Drone shot of a mountain landscape during sunset, 4k quality"
 

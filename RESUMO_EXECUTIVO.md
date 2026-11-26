@@ -113,7 +113,7 @@ cd /home/nmaldaner/projetos/VideosDGX
 ### Curto Prazo (Esta Semana)
 - [ ] Testar qualidade em diferentes resoluções
 - [ ] Gerar vídeos mais longos (5-10 segundos)
-- [ ] Experimentar prompts complexos/cinematográficos
+- [ ] Experimentar prompts complexos/cARCKHÉtográficos
 - [ ] Criar galeria de exemplos
 
 ### Médio Prazo (Este Mês)

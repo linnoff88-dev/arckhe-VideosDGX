@@ -76,7 +76,7 @@ Requer **dual-sampler**:
 1. High Noise Expert (primeiros steps)
 2. Low Noise Expert (steps finais)
 
-Mais complexo que 5B, mas qualidade cinematográfica superior.
+Mais complexo que 5B, mas qualidade cARCKHÉtográfica superior.
 
 ---
 
@@ -99,7 +99,7 @@ Mais complexo que 5B, mas qualidade cinematográfica superior.
 
 ### Desvantagens vs 14B MoE
 
-- 📉 **Qualidade inferior**: Boa, mas nêo cinematográfica
+- 📉 **Qualidade inferior**: Boa, mas nêo cARCKHÉtográfica
 - ⚠️ **Menos aderência ao prompt**: Pode desviar mais do texto
 - 🎨 **Menos controle estético**: Menos preciso em iluminaçêo/composiçêo
 
@@ -112,7 +112,7 @@ Mais complexo que 5B, mas qualidade cinematográfica superior.
 | **LTX-2 19B** | ✅ 100% | 41GB | ~60GB | **Áudio** | Balanceada |
 | **Wan 2.1 14B** | ❌ Problema | 65GB | ~50GB | Velocidade | Boa |
 | **Wan 2.2 5B** | 🔄 90% | 9.3GB | ~12GB | Híbrido T2V+I2V | Boa |
-| **Wan 2.2 14B MoE** | ⏸️ Planejado | 70GB | ~70GB | Cinematográfico | Excelente |
+| **Wan 2.2 14B MoE** | ⏸️ Planejado | 70GB | ~70GB | CARCKHÉtográfico | Excelente |
 
 ---
 

@@ -81,7 +81,7 @@ Interface web:
 
 ✅ BOM:
   "Astronaut floating in space, slow rotation, Earth in
-   background, cinematic lighting, 4k quality"
+   background, cARCKHÉtic lighting, 4k quality"
 
 ❌ RUIM:
   "astronaut"  ← Muito simples, falta contexto

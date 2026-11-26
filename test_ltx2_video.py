@@ -97,7 +97,7 @@ def main():
     workflow = load_workflow()
 
     # Modifica o prompt
-    test_prompt = "A cat walking on a beach at sunset, cinematic, high quality"
+    test_prompt = "A cat walking on a beach at sunset, cARCKHÉtic, high quality"
     print(f"Prompt: {test_prompt}")
     workflow = modify_workflow_prompt(workflow, test_prompt)
 
